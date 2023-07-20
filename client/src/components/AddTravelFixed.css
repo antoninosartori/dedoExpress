@@ -1,0 +1,25 @@
+.createTravel-button{
+   position: fixed;
+   bottom: var(--px3);
+   right: var(--px3);
+   padding: var(--px1);
+   height: 60px;
+   width: 60px;
+   background-color: var(--secondaryColor);
+   border-radius: 50%;
+   z-index: 10;
+   box-shadow: var(--boxShadowShort);
+}
+
+.createTravel-buttonLink{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 100%;
+}
+
+.createTravel-buttonText{
+   font-size: var(--px6);
+   color: var(--bgColor);
+}

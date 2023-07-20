@@ -1,0 +1,13 @@
+.btn-primary{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: var(--px1) var(--px2);
+   border-radius: var(--borderRadius);
+   font-size: var(--px2);
+   width: max-content;
+   margin: 0 auto;
+   background-color: var(--secondaryColor);
+   color: var(--bgColor);
+   font-size: var(--px2);
+}

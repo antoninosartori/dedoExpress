@@ -1,0 +1,12 @@
+.singUpPage{
+   display: flex;
+   flex-direction: column;
+   gap: var(--marginVerticalToComponents);
+}
+
+.singUpPage form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: var(--px2);
+}

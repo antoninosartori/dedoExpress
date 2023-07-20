@@ -1,0 +1,12 @@
+.homePage{
+   display: flex;
+   flex-direction: column;
+   gap: var(--marginVerticalToComponents);
+}
+
+.homePage .travels-container{
+   display: flex;
+   flex-direction: column;
+   gap: var(--px2);
+}
+

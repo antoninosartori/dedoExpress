@@ -1,0 +1,37 @@
+.loginPage{
+   display: flex;
+   flex-direction: column;
+   gap: var(--marginVerticalToComponents);
+}
+
+.loginPage form{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: var(--px1);
+}
+
+.loginPage form .formGroup{
+   padding: 0;
+}
+
+.passwordHide-Show_container{
+   position: absolute;
+   right: var(--px4);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.passwordHide-Show_container img{
+   width: var(--px2);
+   height: var(--px2);
+}
+
+.loginPage input:focus {
+   outline: 2px solid var(--secondaryColor);
+}
+
+.linkToSingUp{
+   margin-top: var(--px2);
+}

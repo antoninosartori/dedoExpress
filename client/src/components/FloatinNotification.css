@@ -1,0 +1,42 @@
+.floatinNotification-container {
+   position: absolute;
+   bottom: calc(var(--headerHeight) + var(--marginVerticalToComponents));
+   width: 90%;
+   z-index: 100;
+   padding: var(--px2);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transition: 1s all;
+   border-radius: var(--borderRadius);
+   color: var(--white);
+   text-align: center;
+}
+
+.fl-notification-animation{
+   transition: 1s all;
+}
+
+.fl-notification-warning {
+   background-color: var(--yellow);
+}
+
+.fl-notification-success {
+   background-color: var(--green);
+}
+
+.fl-notification-error {
+   background-color: var(--red);
+}
+
+.fl-notification-warning .notification-text {
+   color: var(--white);
+}
+
+.fl-notification-success .notification-text {
+   color: var(--white);
+}
+
+.fl-notification-error .notification-text {
+   color: var(--white);
+}

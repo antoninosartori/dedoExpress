@@ -1,0 +1,106 @@
+.travelDetailsPage{
+   display: flex;
+   flex-direction: column;
+   gap: var(--marginVerticalToComponents);
+}
+
+.travelDetails-deleteTravelContainer{
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+}
+
+.deleteTravelContainer-withBorder{
+   padding: var(--px1);
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   gap: var(--px1);
+   background-color: var(--red);
+   border-radius: var(--borderRadius);
+}
+
+.travelDetails-container{
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   height: 100%;
+   gap: var(--marginVerticalToComponents);
+}
+
+.travelDetails-header, .travelDetails-driverInfo_header{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.travelDetails-header .icon, .travelDetails-driverInfo_header .icon{
+   width: var(--px4);
+}
+
+.travelDetails-travelTitle{
+   font-weight: 100;
+   font-size: var(--px3);
+   font-style: italic;
+   text-align: center;
+   word-break:break-all;
+}
+
+.travelDetails-travelInfo{
+   display: flex;
+   flex-direction: column;
+   gap: var(--px2);
+}
+
+.travelDetails-row{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.travelDetails_travelInfo-left, .travelDetails_travelInfo-right{
+   display: flex;
+   gap: 5px;
+}
+
+.travelDetails_travelInfo-right .travelInfo-columnGroup{
+   align-items: flex-end;
+}
+
+.travelInfo-columnGroup{
+   display: flex;
+   flex-direction: column;
+}
+
+.travelInfo-text{
+   font-size: var(--px2);
+   font-weight: 700;
+}
+
+.leftText{
+   padding-left: 5px;
+}
+
+.rightText{
+   padding-right: 5px;
+}
+
+.travelDetails-travelInfo .icon{
+   width: var(--px3);
+}
+
+.travelDetails-driverInfo_header{
+   gap: var(--px2);
+}
+
+.travelDetails-driverInfo-container{
+   display: flex;
+   flex-direction: column;
+   gap: var(--px2);
+}
+
+.travelDetails-driverInfo-container .travelDetails-row{
+   font-size: var(--px2);
+}
+

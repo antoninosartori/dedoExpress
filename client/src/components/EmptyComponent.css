@@ -1,0 +1,12 @@
+.emptyComponent-container{
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: var(--px4);
+}
+.emptyComponent-container p {
+   font-size: var(--px2);
+   font-style: oblique;
+}
