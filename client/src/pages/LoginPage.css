@@ -13,11 +13,16 @@
 
 .loginPage form .formGroup{
    padding: 0;
+   position: relative;
+}
+
+.loginPage form .formGroup input[name="password"]{
+   padding-right: var(--px4);
 }
 
 .passwordHide-Show_container{
    position: absolute;
-   right: var(--px4);
+   right: var(--px2);
    display: flex;
    justify-content: center;
    align-items: center;

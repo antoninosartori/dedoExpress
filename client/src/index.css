@@ -6,6 +6,7 @@
    --marginVerticalToComponents: 50px;
    --boxShadowLarge: 2px 2px 8px #00000083;
    --boxShadowShort: 2px 2px 4px #00000083;
+   --desktopBreakpoint: 768px;
 
    --px1: 10px;
    --px2: 20px;
@@ -146,3 +147,21 @@ input::placeholder {
 .inactive {
    display: none;
 }
+
+/* desktop */
+@media screen and (min-width: 768px){
+   .searchFormHome-form{
+      flex-direction: row;
+   }
+
+   .createTravel form label{
+      width: 50%;
+      margin: 0 auto;
+   }
+
+   .formGroup{
+      margin: 0 auto;
+      width: 50%;
+   }
+}
+   
