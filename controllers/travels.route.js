@@ -3,6 +3,29 @@ const tokenExtractor = require('../middlewares/tokenExtractor.js')
 const Travel = require('../models/Travel.model.js')
 const User = require('../models/User.model.js')
 
+travelsRouter.get('/', async (req, res, next) => {
+   const { from, to } = req.query;
+   const query = {};
+   if (from) {
+     query.from = from.toLowerCase();
+   }
+   if (to) {
+     query.to = to.toLowerCase();
+   }
+ 
+   try {
+      const travels = await Travel
+         .find(query).populate('user', {
+            username: 1,
+            cellphone: 1,
+            avatar: 1
+         })
+      res.status(200).json(travels)
+   } catch (err) {
+      next(err)
+   }
+})
+
 travelsRouter.post('/', tokenExtractor, async (req, res, next) => {
    const { body, userId } = req
    const { title, from, to, capacity, price, date } = body
@@ -74,35 +97,14 @@ travelsRouter.delete('/:travelId', tokenExtractor, async (req, res, next) => {
    }
 })
 
-travelsRouter.get('/', async (req, res, next) => {
-   const { from, to } = req.query;
-   const query = {};
-   if (from) {
-     query.from = from.toLowerCase();
-   }
-   if (to) {
-     query.to = to.toLowerCase();
-   }
- 
-   try {
-      const travels = await Travel
-         .find(query).populate('user', {
-            username: 1,
-            cellphone: 1
-         })
-      res.status(200).json(travels)
-   } catch (err) {
-      next(err)
-   }
-})
-
 travelsRouter.get('/:travelId', async (req, res, next) => {
    const { travelId } = req.params
 
    try {
       const travel = await Travel.findById(travelId).populate('user', {
          username: 1,
-         cellphone: 1
+         cellphone: 1,
+         avatar: 1
       })
       res.status(200).json(travel)
    } catch (err) {

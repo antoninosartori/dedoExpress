@@ -7,7 +7,10 @@ const userSchema = new Schema({
    email: { type: String, unique: true, require: true },
    passwordHash: { type: String, require: true },
    cellphone: { type: Number, require: true, unique: true},
-   avatar: String,
+   avatar: {
+      public_id: String,
+      url: String
+   },
    travels: [{
       type: Schema.Types.ObjectId,
       ref: 'Travel'

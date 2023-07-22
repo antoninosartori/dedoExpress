@@ -40,6 +40,7 @@ loginRouter.post('/', async (req, res, next) => {
          userId: user._id,
          name: user.name,
          username: user.username,
+         avatar: user.avatar,
          token
       })
    } catch (err) {

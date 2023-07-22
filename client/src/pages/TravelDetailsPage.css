@@ -4,20 +4,29 @@
    gap: var(--marginVerticalToComponents);
 }
 
-.travelDetails-deleteTravelContainer{
+.travelDetails-ownerContainer{
    display: flex;
-   justify-content: flex-start;
+   justify-content: space-between;
+   gap: var(--px2);
    align-items: center;
 }
 
-.deleteTravelContainer-withBorder{
-   padding: var(--px1);
+.deleteTravelContainer-withBorder, .updateTravelContainer-withBorder{
    display: flex;
-   justify-content: flex-start;
    align-items: center;
    gap: var(--px1);
-   background-color: var(--red);
    border-radius: var(--borderRadius);
+   padding: var(--px1);
+   width: 50%;
+}
+
+.deleteTravelContainer-withBorder{
+   background-color: var(--red);
+}
+
+.updateTravelContainer-withBorder{
+   background-color: var(--thirdColor);
+   /* color: var(--mainColor); */
 }
 
 .travelDetails-container{
@@ -35,8 +44,13 @@
    justify-content: center;
 }
 
-.travelDetails-header .icon, .travelDetails-driverInfo_header .icon{
+.travelDetails-header .icon{
    width: var(--px4);
+}
+
+.travelDetails-driverInfo_header .avatarImage{
+   width: var(--avatarBig);
+   height: var(--avatarBig);
 }
 
 .travelDetails-travelTitle{

@@ -41,3 +41,48 @@
    width: 100%;
    gap: var(--px1);
 }
+
+.inputAccount input:focus{
+   outline: 1px solid var(--secondaryColor);
+}
+
+.userDetailsPage form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: var(--px2);
+}
+
+.inputFile-container{
+   position: relative;
+   height: 150px;
+   width: 150px;
+   border-radius: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.inputFile-container img{
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   border-radius: 50%;
+}
+
+.userDetailsPage form input[type='file']{
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background: transparent;
+   border-radius: 50%;
+   opacity: 0;
+}
+
+.userDetailsPage form input[type='file']::file-selector-button {
+   display: none;
+}
+
+.userDetailsPage form input:focus{
+   outline: 1px solid var(--secondaryColor);
+}

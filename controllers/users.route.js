@@ -2,14 +2,38 @@ const usersRouter = require('express').Router()
 const User = require('../models/User.model')
 const bcrypt = require('bcrypt')
 const tokenExtractor = require('../middlewares/tokenExtractor')
+const cloudinary = require('cloudinary').v2;
+          
+cloudinary.config({ 
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_SECRET_KEY,
+  secure: true
+});
 
 usersRouter.post('/', async (req, res, next) => {
-   const { name, username, email, password, cellphone } = req.body
-
+   const { name, username, email, password, cellphone, avatarBase64 } = req.body
+   
    const saltsOrRounds = 10
    const passwordHash = await bcrypt.hash(password, saltsOrRounds)
+   const savedAvatar = await cloudinary.uploader.upload(avatarBase64, {
+      folder: `DedoExpressApp/user/${username}/avatar`,
+      transformation: [
+         {aspect_ratio: "1.0", width: 150, crop: "fill"},
+         {quality: 60}
+      ]
+   })
+
    const newUser = new User({
-      name, username, email, passwordHash, cellphone
+      name, 
+      username, 
+      email, 
+      passwordHash, 
+      cellphone, 
+      avatar: {
+         public_id: savedAvatar.public_id,
+         url: savedAvatar.secure_url
+      }
    })
 
    try {
@@ -48,19 +72,35 @@ usersRouter.get('/:userId', tokenExtractor , async (req, res, next) => {
 })
 
 usersRouter.put('/:userId', tokenExtractor, async ( req, res, next) => {
-   const { name, username, email, cellphone } = req.body
+   const { name, username, email, cellphone, avatarBase64 } = req.body
    const { userId } = req
    
    const user = await User.findById(userId)
    if (!user) {
       res.status(401).json({ error: 'without authorization' })
    }
-   
+
+   await cloudinary.uploader.destroy(user.avatar.public_id)
+   const savedAvatar = await cloudinary.uploader.upload(avatarBase64, {
+      folder: `DedoExpressApp/user/${username}/avatar`,
+      transformation: [
+         {aspect_ratio: "1.0", width: 150, crop: "fill"},
+         {quality: 60}
+      ]
+   })
+
    /* const saltsOrRounds = 10
    const passwordHash = await bcrypt.hash(password,saltsOrRounds) */
 
    const newUserInfo = {
-      name, username, email, cellphone 
+      name, 
+      username, 
+      email, 
+      cellphone, 
+      avatar: {
+         public_id: savedAvatar.public_id,
+         url: savedAvatar.secure_url
+      }
    }
 
    try {

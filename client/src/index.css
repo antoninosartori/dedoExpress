@@ -6,7 +6,10 @@
    --marginVerticalToComponents: 50px;
    --boxShadowLarge: 2px 2px 8px #00000083;
    --boxShadowShort: 2px 2px 4px #00000083;
-   --desktopBreakpoint: 768px;
+   --avatarSmall: 40px;
+   --avatarMedium: 55px;
+   --avatarBig: 100px;
+
 
    --px1: 10px;
    --px2: 20px;
@@ -74,7 +77,8 @@ body {
 }
 
 main.container {
-   min-height: calc(100vh - var(--headerHeight));
+   /* min-height: calc(100vh - var(--headerHeight)); */
+   min-height: calc(100dvh - var(--headerHeight));
    width: 100%;
    max-width: var(--containerWidth);
    margin: 0 auto;

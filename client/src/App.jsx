@@ -7,6 +7,7 @@ import CreateTravelPage from './pages/CreateTravelPage'
 import TravelDetailsPage from './pages/TravelDetailsPage'
 import SingUpPage from './pages/SingUpPage'
 import UserDetailsPage from './pages/UserDetailsPage'
+import UpdateTravelPage from './pages/UpdateTravelPage'
 
 function App() {
 
@@ -22,7 +23,9 @@ function App() {
                <Route path='/singUp' element={ < SingUpPage /> } />
                <Route path='/createTravel' element={< CreateTravelPage /> } />
                <Route path='/travelDetails/:travelId' element={ < TravelDetailsPage /> } />
+               <Route path='/updateTravel/:travelId' element={ < UpdateTravelPage /> } />
                <Route path='/user/:userId' element={ < UserDetailsPage /> } />
+              
             </Routes>
          </TravelContextState>
 

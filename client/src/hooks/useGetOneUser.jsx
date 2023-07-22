@@ -9,11 +9,12 @@ export default function useGetOneUser() {
    const { setFloatingNotification, setIsLoading } = useContext(NotificationContext)
    const params = useParams();
    const { userId } = params
-   const [account, setAccount] = useState({})
+   const [ account, setAccount ] = useState({})
    const [ name, setName] = useState('')
    const [ username, setUsername] = useState('')
    const [ email, setEmail] = useState('')
    const [ cellphone, setCellphone] = useState('')
+   const [ avatarBase64, setAvatarBase64] = useState('')
    const navigate = useNavigate()
 
    useEffect(() => {
@@ -42,12 +43,13 @@ export default function useGetOneUser() {
       
       getOneUser(userId, credentials)
          .then(data => {
-            const { name, username, email, cellphone } = data
+            const { name, username, email, cellphone, avatar } = data
             setAccount(data)
             setName(name)
             setUsername(username)
             setEmail(email)
             setCellphone(cellphone)
+            setAvatarBase64(avatar.url)
          })
          .catch(err => {
             setFloatingNotification({ message: err.response.data, status: 'error', duration: 5000 })
@@ -62,7 +64,7 @@ export default function useGetOneUser() {
       setIsLoading(true)
 
       const newUserInfo = {
-         name, username , email, cellphone
+         name, username , email, cellphone, avatarBase64
       }
 
       const token = 
@@ -86,8 +88,9 @@ export default function useGetOneUser() {
 
       try {
          const newUser = await updateAccount(userId, newUserInfo, credentials)
+         console.log({newUser})
          setAccount(newUser)
-         setUser({...user, name: name, username: username})
+         await setUser({...user, name: name, username: username, avatar: newUser.updatedUser.avatar})
          setIsLoading(false)
          setFloatingNotification({
             message: 'Has actualizado tu usuario correctamente',
@@ -105,13 +108,26 @@ export default function useGetOneUser() {
       }
    }
 
+   const handleChangeAvatar = (event) => {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      if (file) {
+         reader.readAsDataURL(file)
+         reader.onloadend = () => {
+            setAvatarBase64(reader.result)
+         }
+      }
+   }
+
    return {
-      name, username, email, cellphone,
+      name, username, email, cellphone, avatarBase64,
       handleChangeName: event => setName(event.target.value),
       handleChangeUsername: event => setUsername(event.target.value), 
       handleChangeEmail: event => setEmail(event.target.value), 
       handleChangeCellphone: event => setCellphone(event.target.value), 
       account, 
-      handleSubmitUpdateAccount
+      handleSubmitUpdateAccount,
+      handleChangeAvatar
    }
 }

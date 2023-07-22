@@ -16,7 +16,7 @@ import titleIcon from '../assets/write.svg'
 export default function CreateTravelPage() {
    const { user } = useContext(UserContext)
    const { handleCreateTravel, handleChangeTitle, handleChangeFrom, handleChangeTo, handleChangeCapacity, handleChangePrice, handleChangeDate, handleChangeTime } = useCreateTravelForm()
-   const { floatinNotificacion, isLoading } = useContext(NotificationContext)
+   const { floatingNotification, isLoading } = useContext(NotificationContext)
    const navigate = useNavigate()
 
    if (user === null) {
@@ -28,7 +28,7 @@ export default function CreateTravelPage() {
       <main className='container createTravel'>
          <form onSubmit={handleCreateTravel}>
 
-            {floatinNotificacion && < FloatinNotification message={floatinNotificacion.message} status={floatinNotificacion.status} duration={floatinNotificacion.duration} />}
+            {floatingNotification.message && < FloatinNotification message={floatingNotification.message} status={floatingNotification.status} duration={floatingNotification.duration} />}
             {isLoading && < LoadingSpinner text='creando viaje...' />}
 
             <h2>Crea tu viaje</h2>

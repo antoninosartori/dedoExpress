@@ -55,10 +55,12 @@
 
 .pageHeader .toggable-iconContainer{
    display: flex;
+   
 }
 
 .pageHeader .toggable-iconImg{
-   width: var(--px4);
+   width: var(--avatarSmall);
    height: auto;
    object-fit: cover;
+   border-radius: 50%;
 }

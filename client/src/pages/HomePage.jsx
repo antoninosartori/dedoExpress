@@ -19,7 +19,7 @@ export default function HomePage() {
    const { getInitialAllTravel } = useGetTravels()
    const [travels, setTravels] = useState(allTravels)
    const navigate = useNavigate()
-   
+
    useEffect(() => {
       const initialTravels = getInitialAllTravel()
       setTravels(initialTravels)

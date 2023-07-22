@@ -8,11 +8,10 @@ import Button from '../components/Button'
 import LoadingSpinner from '../components/LoadingSpinner'
 import FloatinNotification from '../components/FloatinNotification'
 
-
 export default function SingUpPage() {
    const { user } = useContext(UserContext)
    const { floatingNotification, isLoading } = useContext(NotificationContext)
-   const { handleCreateUser, handleChangeName, handleChangeEmail, handleChangeUsername, handleChangePassword, handleChangeCellphone } = useCreateUser()
+   const { handleCreateUser, handleChangeName, handleChangeEmail, handleChangeUsername, handleChangePassword, handleChangeCellphone, handleChangeAvatar, avatarBase64 } = useCreateUser()
    const navigate = useNavigate()
 
    useEffect(() => {
@@ -30,9 +29,13 @@ export default function SingUpPage() {
             <input type="text" required placeholder='tu username' onChange={handleChangeUsername} autoComplete='off' />
             <input type="password" required placeholder='tu contraseña' onChange={handleChangePassword} autoComplete='off' />
             <input type="number" required placeholder='celular' onChange={handleChangeCellphone} autoComplete='off' />
+            <div className='inputFile-container'>
+               <input type="file" name="avatar" onChange={handleChangeAvatar} />
+               <img src={avatarBase64} alt="avatar de tu usuario" />
+            </div>
             <Button type='submit'>Crear usuario</Button>
             
-            {isLoading && < LoadingSpinner text='creando usuario' />}
+            {isLoading && < LoadingSpinner text='creando usuario...' />}
 
          </form>
          {floatingNotification.message &&

@@ -11,12 +11,15 @@ import capacityIcon from '../assets/people-fill.svg'
 import chevronIcon from '../assets/chevron-down.svg'
 import Toggable from '../components/Toggable'
 import FloatinNotification from '../components/FloatinNotification'
+import Avatar from './Avatar'
 
 export default function TravelCard({ travel, ...restOfProps }) {
    const { floatingNotification } = useContext(NotificationContext)
 
    const { _id: travelId, title, from, to, price, capacity, date, time, user } = travel
-   const { _id: userId, username, cellphone } = user[0]
+   const { _id: userId, username, cellphone, avatar } = user[0]
+   const { url: avatarUrl } = avatar
+   
 
    /* hay que mejorar esto 👇 */
    const [firstSplitDate] = date.split('T')
@@ -38,7 +41,8 @@ export default function TravelCard({ travel, ...restOfProps }) {
 
             <header className='travelCard-header'>
                <div className='travelCard-header_userAvatar'>
-                  <img src={userIcon} alt={`usuario ${username}`} />
+                  {/* <img src={userIcon} alt={`usuario ${username}`} /> */}
+                  < Avatar avatarSrc={avatarUrl} username={username} />
                </div>
                <div className='travelCard-header_userInfo'>
                   <h3 className='travelCard-usernameText'>{username}</h3>

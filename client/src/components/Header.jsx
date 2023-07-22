@@ -4,13 +4,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 import Toggable from './Toggable'
 import NavMenu from './NavMenu';
-import account from '../assets/account.svg'
 import backIcon from '../assets/chevron-down.svg'
+import defaultIcon from '../assets/account.svg'
 
 function Header() {
    const { user } = useContext(UserContext)
    const navigate = useNavigate()
    const returnToHome = user !== null ? '/' : '/login'
+   const avatar = user ? user.avatar.url : defaultIcon
+
    return (
       <header className='pageHeader'>
          <div className='header-logo_container'>
@@ -24,7 +26,7 @@ function Header() {
          </div>
          {
             user &&
-            <Toggable shownClassName='header-navMenu' animationClassName='translate(100%)' icon={account}>
+            <Toggable shownClassName='header-navMenu' animationClassName='translate(100%)' icon={avatar}>
                < NavMenu />
             </Toggable>
          }

@@ -1,6 +1,6 @@
 import './TravelDetailsPage.css'
 import { useContext, useEffect } from 'react'
-import { useNavigate, } from 'react-router-dom'
+import { Link, useNavigate, } from 'react-router-dom'
 import useGetTravels from '../hooks/useGetTravels'
 import useGetOneTravel from '../hooks/useGetOneTravel'
 import { NotificationContext } from '../context/FloatinNotificationContext'
@@ -8,6 +8,7 @@ import { UserContext } from '../context/UserContext'
 import FloatinNotification from '../components/FloatinNotification'
 import LoadingSpinner from '../components/LoadingSpinner'
 import Button from '../components/Button'
+import Avatar from '../components/Avatar'
 import fromIcon from '../assets/from.svg'
 import toIcon from '../assets/to.svg'
 import writeIcon from '../assets/write.svg'
@@ -16,8 +17,8 @@ import timeTravelIcon from '../assets/time_travel.svg'
 import dateIcon from '../assets/calendar.svg'
 import priceIcon from '../assets/currency-dollar.svg'
 import capacityIcon from '../assets/people-fill.svg'
-import userIcon from '../assets/account.svg'
 import deleteIcon from '../assets/trash3.svg'
+import editIcon from '../assets/pencil.svg'
 
 export default function TravelDetailsPage() {
    const { user: userLogged } = useContext(UserContext)
@@ -35,21 +36,25 @@ export default function TravelDetailsPage() {
 
    const defaultText = user ? `Hola ${user[0].username}, me gustaria viajar con vos a ${to}.` : ''
 
-   const canDelete = 
-      !user 
+   const isOwner =
+      !user
          ? false
-         : userLogged.userId === user[0]._id 
+         : userLogged.userId === user[0]._id
 
    return (
       <main className='container travelDetailsPage'>
 
-         {canDelete && 
-            <div className='travelDetails-deleteTravelContainer'>
+         {isOwner &&
+            <div className='travelDetails-ownerContainer'>
+               <Link className='updateTravelContainer-withBorder' to={`/updateTravel/${travelId}`}>
+                  <img src={editIcon} alt="Modificar viaje" />
+                  <span>modificar</span>
+               </Link>
                <div className='deleteTravelContainer-withBorder' onClick={() => handleTravelDelete(travelId)}>
-                  <img 
-                  className='deleteTravel-icon'  
-                  src={deleteIcon} 
-                  alt="borrar este viaje" 
+                  <img
+                     className='deleteTravel-icon'
+                     src={deleteIcon}
+                     alt="borrar este viaje"
                   />
                   <span>eliminar viaje</span>
                </div>
@@ -59,14 +64,14 @@ export default function TravelDetailsPage() {
          <h2 className='title'>Detalles del viaje</h2>
 
          <section>
-            { floatingNotification.message && 
-               <FloatinNotification 
-                  message={floatingNotification.message} 
-                  status={floatingNotification.status} 
-                  duration={floatingNotification.duration} 
+            {floatingNotification.message &&
+               <FloatinNotification
+                  message={floatingNotification.message}
+                  status={floatingNotification.status}
+                  duration={floatingNotification.duration}
                />
             }
-            { isLoading && 
+            {isLoading &&
                < LoadingSpinner text='cargando viaje' />
             }
 
@@ -75,7 +80,7 @@ export default function TravelDetailsPage() {
                   <article className='travelDetails-container'>
                      <header className='travelDetails-header'>
                         <img className='icon' src={writeIcon} alt="titulo del viaje" />
-                        <h3 className='travelDetails-travelTitle'>{`' ${title} '`}</h3>
+                        <h3 className='travelDetails-travelTitle'>{title && `'${title}'`}</h3>
                      </header>
 
                      <div className="travelDetails-travelInfo">
@@ -133,7 +138,7 @@ export default function TravelDetailsPage() {
                      {user && !isLoading &&
                         <>
                            <header className='travelDetails-driverInfo_header'>
-                              <img className='icon' src={userIcon} alt="titulo del viaje" />
+                              < Avatar avatarSrc={user[0].avatar.url} username={user[0].username} />
                               <h3 className='travelDetails-userTitle'>Detalles del conductor</h3>
                            </header>
                            <div className='travelDetails-driverInfo-container'>
