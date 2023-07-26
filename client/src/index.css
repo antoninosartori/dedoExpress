@@ -1,6 +1,5 @@
 :root {
-   --fontMain: 'Roboto', sans-serif;
-
+   --fontMain: 'Quicksand', sans-serif;
    --headerHeight: 80px;
    --containerWidth: 992px;
    --marginVerticalToComponents: 50px;

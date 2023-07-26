@@ -8,18 +8,14 @@ export default function useCreateTravelForm() {
    const { user } = useContext(UserContext)
    const { setFloatingNotification, setIsLoading } = useContext(NotificationContext)
    const navigate = useNavigate()
-   const [title, setTitle] = useState('') /* 👉 debe ser mayor a 5 letras, menor a 20 o 30 caracteres. */
+   const [title, setTitle] = useState('') 
    const [from, setFrom] = useState('')
    const [to, setTo] = useState('')
    const [capacity, setCapacity] = useState(0)
    const [price, setPrice] = useState(0)
-   const [date, setDate] = useState('')
-   const [time, setTime] = useState('')
-
-   const dateTime = new Date()
-   const thisYear = dateTime.getFullYear()
-   const thisMonth = dateTime.getMonth() + 1
-   const thisDay = dateTime.getDate()
+   const [dateTime, setDateTime] = useState('')
+   
+   const actualDateInMiniSeconds = new Date().getTime()
 
    useEffect(() => {
       if (user === null) {
@@ -28,8 +24,12 @@ export default function useCreateTravelForm() {
    }, [user])
 
    const handleCreateTravel = async (event) => {
+      
       event.preventDefault()
       const regex = /^[0-9]*$/
+
+      const dateInputInMilisecond = dateTime ? new Date(dateTime).getTime() : null
+
       if (!title) {
          setFloatingNotification({
             message: 'debes ponerle un titulo a tu viaje',
@@ -54,7 +54,7 @@ export default function useCreateTravelForm() {
          })
          return
       } 
-      else if(title.length > 20){
+      else if(title.length > 30){
          setFloatingNotification({
             message: 'el titulo de tu viaje es muy largo',
             status: 'error',
@@ -142,46 +142,27 @@ export default function useCreateTravelForm() {
          })
          return
       } 
-      else if(!date){
+      else if(!dateTime){
          setFloatingNotification({
-            message: 'Ingresa un dia de salida',
+            message: 'Ingresa una fecha de salida',
             status: 'error',
             duration: 3000
          })
          return
       }
-      else if(Number(date.split('-')[0]) !== thisYear){
+      else if(actualDateInMiniSeconds >= dateInputInMilisecond){
          setFloatingNotification({
-            message: 'El año de la salida tiene que ser el actual',
+            message: 'Ingresa una fecha a futuro',
             status: 'error',
             duration: 3000
          })
          return
       }
-      else if(
-         Number((date.split('-')[1]) < thisMonth )
-         || (Number(date.split('-')[1]) === thisMonth && Number(date.split('-')[2]) < thisDay)){
-         setFloatingNotification({
-            message: 'la fecha de salida debe ser a futuro',
-            status: 'error',
-            duration: 3000
-         })
-         return
-      }
-      else if(!time){
-         setFloatingNotification({
-            message: 'Ingresa una hora de salida',
-            status: 'error',
-            duration: 3000
-         })
-         return
-      }
-
 
       setIsLoading(true)
 
       const { token } = user
-      const newTravel = { title, from, to, capacity, price, date }
+      const newTravel = { title, from, to, capacity, price, date: dateTime }
 
       const config = {
          headers: {
@@ -215,7 +196,7 @@ export default function useCreateTravelForm() {
       handleChangeTo: event => setTo(event.target.value),
       handleChangePrice: event => setPrice(event.target.value),
       handleChangeCapacity: event => setCapacity(event.target.value),
-      handleChangeDate: event => setDate(event.target.value),
+      handleChangeDateTime: event => setDateTime(event.target.value),
       handleChangeTime: event => setTime(event.target.value),
    }
 }

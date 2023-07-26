@@ -8,7 +8,6 @@ const travelSchema = new Schema({
    capacity: Number,
    price: Number,
    date: Date,
-   time: Date,
    user: [{
          type: Schema.Types.ObjectId,
          ref: 'User'

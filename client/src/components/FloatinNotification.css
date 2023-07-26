@@ -19,6 +19,7 @@
 
 .fl-notification-warning {
    background-color: var(--yellow);
+   color: var(--black);
 }
 
 .fl-notification-success {
@@ -30,7 +31,7 @@
 }
 
 .fl-notification-warning .notification-text {
-   color: var(--white);
+   color: var(--black);
 }
 
 .fl-notification-success .notification-text {

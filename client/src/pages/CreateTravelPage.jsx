@@ -15,20 +15,26 @@ import titleIcon from '../assets/write.svg'
 
 export default function CreateTravelPage() {
    const { user } = useContext(UserContext)
-   const { handleCreateTravel, handleChangeTitle, handleChangeFrom, handleChangeTo, handleChangeCapacity, handleChangePrice, handleChangeDate, handleChangeTime } = useCreateTravelForm()
+   const { handleCreateTravel, handleChangeTitle, handleChangeFrom, handleChangeTo, handleChangeCapacity, handleChangePrice, handleChangeDateTime} = useCreateTravelForm()
    const { floatingNotification, isLoading } = useContext(NotificationContext)
    const navigate = useNavigate()
 
    if (user === null) {
       navigate('/login')
    }
-
    
    return (
       <main className='container createTravel'>
          <form onSubmit={handleCreateTravel}>
 
-            {floatingNotification.message && < FloatinNotification message={floatingNotification.message} status={floatingNotification.status} duration={floatingNotification.duration} />}
+            { floatingNotification.message && 
+               < FloatinNotification 
+                  message={floatingNotification.message} 
+                  status={floatingNotification.status} 
+                  duration={floatingNotification.duration} 
+               />
+            }
+
             {isLoading && < LoadingSpinner text='creando viaje...' />}
 
             <h2>Crea tu viaje</h2>
@@ -61,9 +67,9 @@ export default function CreateTravelPage() {
                </div>
             </div>
             <div className='formGroup'>
-               <input onChange={handleChangeDate} name='date'  type="date" placeholder='¿Que dia?' autoComplete='off' />
-               <input onChange={handleChangeTime} name='time'  type="time" placeholder='¿A que hora?' autoComplete='off' />
+               <input onChange={handleChangeDateTime} name='dateTime'  type="datetime-local" placeholder='¿Que dia?' autoComplete='off' />
             </div>
+            
             <Button type='submit'>Crear viaje</Button>
             
          </form>

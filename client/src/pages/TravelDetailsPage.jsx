@@ -26,7 +26,18 @@ export default function TravelDetailsPage() {
    const { handleTravelDelete } = useGetTravels()
    const { floatingNotification, isLoading } = useContext(NotificationContext)
    const navigate = useNavigate()
-   const { title, from, to, price, capacity, user, _id: travelId, date, time } = travel
+   const { title, from, to, price, capacity, user, _id: travelId, date } = travel
+
+   const actualDate = new Date()
+   const actualLocaleDateTime = actualDate.toLocaleDateString('es-AR', {
+      weekday: 'long', 
+      year: 'numeric',
+      month: 'long', 
+      day: 'numeric', 
+      hour: 'numeric', 
+      minute: 'numeric'
+   })
+   const [ day, dayWithMonth, time ] = actualLocaleDateTime.split(', ')
 
    useEffect(() => {
       if (userLogged === null) {
@@ -105,7 +116,7 @@ export default function TravelDetailsPage() {
                               <img className='icon' src={dateIcon} alt="fecha de salida" />
                               <div className='travelInfo-columnGroup'>
                                  <span>fecha</span>
-                                 <h4 className='travelInfo-text leftText'>{date}</h4>
+                                 <h4 className='travelInfo-text leftText'>{`${day}, ${dayWithMonth}`}</h4>
                               </div>
                            </div>
                            <div className='travelDetails_travelInfo-right'>

@@ -46,7 +46,8 @@ export default function TravelCard({ travel, ...restOfProps }) {
                </div>
                <div className='travelCard-header_userInfo'>
                   <h3 className='travelCard-usernameText'>{username}</h3>
-                  <p className='travelCard-titleText'>{title}</p>
+                  {/* <p className='travelCard-titleText'>{title}</p> */}
+                  <p>{`${from} - ${to}`}</p>
                </div>
             </header>
 

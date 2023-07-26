@@ -110,6 +110,16 @@ export default function useGetOneUser() {
 
    const handleChangeAvatar = (event) => {
       const file = event.target.files[0];
+
+      if(file.size > 400000){
+         setFloatingNotification({
+            message: 'La imagen es demasiado grande, prueba con otra mas pequeña',
+            status: 'error',
+            duration: 5000
+         })
+         return
+      }
+
       const reader = new FileReader();
 
       if (file) {

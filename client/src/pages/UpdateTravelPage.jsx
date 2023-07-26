@@ -3,7 +3,7 @@ import './UpdateTravelPage.css'
 export default function UpdateTravelPage() {
    return (
       <main className='container UpdateTravelPage'>
-         UpdateTravel
+         <h2 className='title'>Modificar viaje</h2>
       </main>
    )
 }
