@@ -11,6 +11,11 @@
    gap: var(--px1);
 }
 
+.createTravel form .header-image{
+   width: var(--px4);
+   height: var(--px4);
+}
+
 .createTravel input{
    outline: none;
    border-radius: 0;
@@ -22,8 +27,8 @@
    outline: none;
 }
 
-.formGroup input[type="time"]{
-   width: 50%;
+.createTravel form .formGroup:has(> input:focus){
+   outline: var(--inputOutline);
 }
 
 .createTravel .btn-primary{

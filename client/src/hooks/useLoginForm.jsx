@@ -1,25 +1,23 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { UserContext } from "../context/UserContext"
 import { loginPost } from "../services/login"
 import { Navigate, useNavigate } from "react-router-dom";
 import { NotificationContext } from "../context/FloatinNotificationContext";
+import { LOCAL_STORAGE_NAME } from "../helpers/consts";
 
 export default function useLoginForm(){
    const { user, setUser } = useContext(UserContext);
    const { setFloatingNotification, setIsLoading} = useContext(NotificationContext)
-   const [username, setUsername] = useState('');
-   const [password, setPassword] = useState('');
+   
    const navigate = useNavigate()
    
-   const handleSubmit = async (event) => {
-      event.preventDefault()
-      
+   const handleLogin = async (data) => {
       setIsLoading(true)
-     
       try {
-         const credentials = { username,password }
+         const { username, password } = data
+         const credentials = { username ,password }
          const user = await loginPost(credentials)
-         window.localStorage.setItem('userFromDedoUp', JSON.stringify(user))
+         window.localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(user))
          setUser(user)
          setIsLoading(false)
          navigate('/')
@@ -35,11 +33,5 @@ export default function useLoginForm(){
       <Navigate to='/' />
    }
 
-   return {
-      username,
-      password,
-      handleChangeUsername: event => setUsername(event.target.value),
-      handleChangePassword: event => setPassword(event.target.value),
-      handleSubmit
-    }
+   return { handleLogin }
 }

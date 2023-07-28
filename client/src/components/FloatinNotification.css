@@ -1,14 +1,15 @@
 .floatinNotification-container {
+   width: 90%;
    position: absolute;
    bottom: calc(var(--headerHeight) + var(--marginVerticalToComponents));
-   width: 90%;
-   z-index: 100;
-   padding: var(--px2);
    display: flex;
    align-items: center;
    justify-content: center;
+   z-index: 100;
+   padding: var(--px2);
    transition: 1s all;
    border-radius: var(--borderRadius);
+   outline: var(--inputOutline);
    color: var(--white);
    text-align: center;
 }

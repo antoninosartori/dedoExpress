@@ -8,6 +8,10 @@
    box-shadow: var(--boxShadowShort);
 }
 
+.searchFormHome-form .formGroup:has(> input:focus){
+   outline: var(--inputOutline);
+}
+
 .searchFormHome-form input{
    outline: none;
    padding: 0;

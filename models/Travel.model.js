@@ -2,7 +2,6 @@ const { Schema, model } = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 
 const travelSchema = new Schema({
-   title: { type: String, require: true },
    from: { type: String, require: true },
    to: { type: String, require: true },
    capacity: Number,

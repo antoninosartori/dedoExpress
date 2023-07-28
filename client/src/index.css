@@ -1,25 +1,9 @@
 :root {
-   --fontMain: 'Quicksand', sans-serif;
-   --headerHeight: 80px;
-   --containerWidth: 992px;
-   --marginVerticalToComponents: 50px;
-   --boxShadowLarge: 2px 2px 8px #00000083;
-   --boxShadowShort: 2px 2px 4px #00000083;
-   --avatarSmall: 40px;
-   --avatarMedium: 55px;
-   --avatarBig: 100px;
-
-
-   --px1: 10px;
-   --px2: 20px;
-   --px3: 30px;
-   --px4: 40px;
-   --px5: 50px;
-   --px6: 60px;
-
-   --paddingX: var(--px2);
-   --paddingY: var(--px2);
-   --borderRadius: var(--px1);
+   /* colores */
+   --mainColor: #cbe86b;
+   --bgColor: #f2e9e1;
+   --secondaryColor: #1c140d;
+   --thirdColor: #ffffff;
    --white: #FFF7F3;
    --black: rgb(0, 0, 0);
    --green: rgb(71, 139, 71);
@@ -29,38 +13,35 @@
    --pinkDark: #EAB6A5;
    --pinkMedium: #FBCBBB;
    --pinkLight: #FFE7DD;
-
-
-   /* paleta #1 */
-   /* --mainColor: var(--pinkDark);
-   --bgColor: var(--white);
-   --secondaryColor: var(--pinkMedium);
-   --thirdColor: var(--pinkLight); */
-
-
-   /* paleta de color  */
-/*    --mainColor: #f7e4be;
-   --bgColor: #413e4a;
-   --secondaryColor: #73626e;
-   --thirdColor: #ffffff; */
-
-   /* paleta de color */
-   /* --mainColor: #87758f;
-   --bgColor: #2a091c;
-   --secondaryColor: #e3edd2;
-   --thirdColor: #ffffff; */
-
-   /* paleta de color pastel */
-   /* --mainColor: #97bea9;
-   --bgColor: #ffcdb8;
-   --secondaryColor: #37260c;
-   --thirdColor: #ffffff; */
-
-   /* paleta de color */
-   --mainColor: #cbe86b;
-   --bgColor: #f2e9e1;
-   --secondaryColor: #1c140d;
-   --thirdColor: #ffffff;
+   /* fuentes */
+   --fontMain: 'Quicksand', sans-serif;
+   /* medidas generales */
+   --px1em: 16px;
+   --px1: 10px;
+   --px2: 20px;
+   --px3: 30px;
+   --px4: 40px;
+   --px5: 50px;
+   --px6: 60px;
+   /* medidas de compontenes o separaciones entre componentes */
+   --headerHeight: 80px;
+   --containerWidth: 992px;
+   --marginVerticalToComponents: 50px;
+   --boxShadowLarge: 2px 2px 8px #00000083;
+   --boxShadowShort: 2px 2px 4px #00000083;
+   --boxShadowFromAbove: 0px 5px 5px 0px #00000083;
+   --inputOutline: 2px solid var(--secondaryColor);
+   --avatarSmall: 40px;
+   --avatarMedium: 55px;
+   --avatarBig: 100px;
+   --iconHeading: 40px;
+   --iconMedium: 25px;
+   --iconNormal: 16px;
+   --iconSmall: 14px;
+   /* espacios */
+   --paddingX: var(--px2);
+   --paddingY: var(--px2);
+   --borderRadius: var(--px1);
 }
 
 * {
@@ -101,7 +82,6 @@ button {
 }
 
 input {
-   /* outline: 1px solid var(--mainColor); */
    border: none;
    padding: var(--px1);
    width: 100%;
@@ -151,6 +131,28 @@ input::placeholder {
    display: none;
 }
 
+.bold{
+   font-weight: 700;
+}
+
+.justify-center{
+   justify-content: center;
+}
+.justify-start{
+   justify-content: flex-start;
+}
+.justify-end{
+   justify-content: flex-end;
+}
+.justify-between{
+   justify-content: space-between;
+}
+.justify-around{
+   justify-content: space-around;
+}
+.justify-evenly{
+   justify-content: space-evenly;
+}
 /* desktop */
 @media screen and (min-width: 768px){
    .searchFormHome-form{

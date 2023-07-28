@@ -42,74 +42,47 @@
 .travelCard-header_userInfo {
    display: flex;
    flex-direction: column;
-
 }
 
 .travelCard-usernameText {
    padding-right: var(--px2);
 }
 
-.travelCard-titleText {
-   text-overflow: ellipsis;
-   font-style: oblique;
+.travelCard-locations{
+   display: flex;
+   align-items: center;
+   gap: 5px;
+   font-size: var(--px2);
 }
 
-.deleteTravel-icon {
-   height: var(--px2);
-   width: var(--px2);
+.travelCard-locations img{
+   width: 15px;
+   height: 15px;
+   object-fit: cover;
 }
 
 .travelCard-body {
    height: 100%;
    width: 100%;
    display: flex;
+   flex-direction: column;
+   padding-top: var(--px1);
+   gap: 5px;
+   font-size: var(--px1em);
 }
 
 .travelCard-rowGroup {
    display: flex;
    align-items: center;
-}
-
-.travelCard-columnGroup {
-   display: flex;
-   flex-direction: column;
-}
-
-.travelCard-body_destinationContainer {
-   padding-top: var(--px1);
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
-   flex-grow: 1;
-}
-
-.travelCard-body_destinationContainer .travelCard-columnGroup h3 {
-   font-size: var(--px2);
-}
-
-.travelCard-body_destinationContainer .travelCard-rowGroup img {
-   width: var(--px5);
-
-}
-
-.travelCard-to {
-   padding-left: var(--px2);
-}
-
-.travelCard-body_aside {
-   width: 30%;
-   display: flex;
-   flex-direction: column;
    gap: 5px;
 }
 
-.travelCard-body_aside .travelCard-rowGroup {
+.travelCard-rowGroup img{
+   width: var(--px1em);
+}
+
+.travelCard-linkToDetails{
+   color: var(--secondaryColor);
+   display: flex;
    justify-content: flex-end;
-   gap: 5px;
-}
-
-.travelCard-body_aside .travelCard-rowGroup img {
-   width: var(--px2);
-   height: var(--px2);
-   object-fit: cover;
 }

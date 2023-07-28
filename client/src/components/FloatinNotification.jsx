@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react'
 import './FloatinNotification.css'
+import { useContext, useEffect, useState } from 'react'
 import {NotificationContext} from '../context/FloatinNotificationContext'
 
 export default function FloatinNotification({ message, duration, status }) {
@@ -7,9 +7,9 @@ export default function FloatinNotification({ message, duration, status }) {
    const { setFloatingNotification } = useContext(NotificationContext)
    
    const textMessage = message ?? ''
-   const durationTime = duration ?? 5000
+   const durationTime = duration ?? 3000
    const visibility = visible ? '' : 'inactive'
-   const notificationClassName = status ? `fl-notification-${status}` : `fl-notification-success`
+   const notificationClassName = status ? `fl-notification-${status}` : `fl-notification-error`
 
    useEffect(() => {
       setTimeout(() => {

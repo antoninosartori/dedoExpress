@@ -21,7 +21,6 @@ function Header() {
             </Link>
             <Link className='header-logo_link' to={returnToHome}>
                <h1 className='logo-text'>DedoExpress</h1>
-               {/* <span className='logo-fingerUp'>👍</span> */}
             </Link>
          </div>
          {

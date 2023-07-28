@@ -34,7 +34,7 @@
 }
 
 .loginPage input:focus {
-   outline: 2px solid var(--secondaryColor);
+   outline: var(--inputOutline);
 }
 
 .linkToSingUp{

@@ -8,4 +8,5 @@ export const url = {
    getOneTravel: `${prefix}/api/travels/`,
    deleteOneTravel: `${prefix}/api/travels/`,
    createNewTravel: `${prefix}/api/travels`,
+   updateTravel: `${prefix}/api/travels/`,
 }

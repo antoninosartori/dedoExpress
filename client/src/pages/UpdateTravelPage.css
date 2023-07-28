@@ -1,0 +1,37 @@
+.updateTravelPage{
+   display: flex;
+   flex-direction: column;
+   gap: var(--marginVerticalToComponents);
+}
+
+.updateTravelPage .updateTravel-header{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 5px;
+}
+
+.updateTravelPage .updateTravel-header .icon{
+   width: var(--iconHeading);
+}
+
+.updateTravelPage form{
+   display: flex;
+   flex-direction: column;
+}
+
+.updateTravelPage form .formGroup{
+   flex-wrap: wrap;
+   background-color: transparent;
+   outline: none;
+   padding-left: 0;
+   gap: 0;
+}
+
+.updateTravelPage form .formGroup input:focus{
+   outline: var(--inputOutline);
+}
+
+.updateTravelPage form .formGroup label{
+   padding-left: 5px;
+}

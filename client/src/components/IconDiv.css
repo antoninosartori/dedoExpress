@@ -1,0 +1,10 @@
+.iconGroup{
+   display: flex;
+   width: 100%;
+   align-items: center;
+}
+
+.iconGroup img{
+   width: var(--iconMedium);
+   height: var(--iconMedium);
+}

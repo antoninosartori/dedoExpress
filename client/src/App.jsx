@@ -15,7 +15,7 @@ function App() {
       <>
 
          < Header />
-         
+         {/* < Nav /> */}
          <TravelContextState>
             <Routes>
                <Route path='/' element={ < HomePage /> } />

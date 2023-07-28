@@ -9,6 +9,7 @@ import timeIcon from '../assets/alarm.svg'
 import priceIcon from '../assets/currency-dollar.svg'
 import capacityIcon from '../assets/people-fill.svg'
 import chevronIcon from '../assets/chevron-down.svg'
+import rightChevronIcon from '../assets/chevron-double-right.svg'
 import Toggable from '../components/Toggable'
 import FloatinNotification from '../components/FloatinNotification'
 import Avatar from './Avatar'
@@ -16,72 +17,69 @@ import Avatar from './Avatar'
 export default function TravelCard({ travel, ...restOfProps }) {
    const { floatingNotification } = useContext(NotificationContext)
 
-   const { _id: travelId, title, from, to, price, capacity, date, time, user } = travel
+   const { _id: travelId, title, from, to, price, capacity, date, user } = travel
    const { _id: userId, username, cellphone, avatar } = user[0]
    const { url: avatarUrl } = avatar
+
+   const dateTime = 
+      date 
+         ? new Date(date).toLocaleDateString('es-AR', {
+            weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric'
+         })
+         : null
+      
+   const [ day, dayNumberAndMonth, time] = dateTime.split(', ')
    
-
-   /* hay que mejorar esto 👇 */
-   const [firstSplitDate] = date.split('T')
-   const [year, month, day] = firstSplitDate.split('-')
-   const dateToShow = `${day}/${month}`
-
    return (
       <>
 
-         { floatingNotification.message && 
+         {floatingNotification.message &&
             < FloatinNotification
-               message={floatingNotification.message} 
-               status={floatingNotification.status} 
-               duration={floatingNotification.duration} 
-               /> 
+               message={floatingNotification.message}
+               status={floatingNotification.status}
+               duration={floatingNotification.duration}
+            />
          }
-         
+
          <article className='travelCard-container'>
 
             <header className='travelCard-header'>
                <div className='travelCard-header_userAvatar'>
-                  {/* <img src={userIcon} alt={`usuario ${username}`} /> */}
                   < Avatar avatarSrc={avatarUrl} username={username} />
                </div>
                <div className='travelCard-header_userInfo'>
                   <h3 className='travelCard-usernameText'>{username}</h3>
-                  {/* <p className='travelCard-titleText'>{title}</p> */}
-                  <p>{`${from} - ${to}`}</p>
+                  <p className='travelCard-locations'>
+                     {from}
+                     <img src={rightChevronIcon} alt="hacia donde" />
+                     {to}
+                  </p>
                </div>
             </header>
 
-            <Toggable icon={chevronIcon}>
+            <Toggable icon={chevronIcon} initialState>
                <div className="travelCard-body">
-                  <div className="travelCard-body_destinationContainer">
                      <div className="travelCard-rowGroup">
-                        <img src={travelIcon} alt="lugar de salida y de destino" />
-                        <div className='travelCard-columnGroup'>
-                           <h3 className='travelCard-from'>{from}</h3>
-                           <h3 className='travelCard-to'>{to}</h3>
-                        </div>
-                     </div>
-                     <Link to={`/travelDetails/${travelId}`}>ver detalles</Link>
-                  </div>
-
-                  <aside className='travelCard-body_aside'>
-                     <div className="travelCard-rowGroup">
-                        <span>{dateToShow}</span>
                         <img src={calendarIcon} alt="" />
+                        <span>sale:</span>
+                        <span className='bold'>{`${day}, ${dayNumberAndMonth}`}</span>
                      </div>
                      <div className="travelCard-rowGroup">
-                        <span>{time}</span>
                         <img src={timeIcon} alt="" />
+                        <span>hora:</span>
+                        <span className='bold'>{time}hs</span>
                      </div>
                      <div className="travelCard-rowGroup">
-                        <span>{capacity}</span>
                         <img src={capacityIcon} alt="" />
+                        <span>lugares disponibles:</span>
+                        <span className='bold'>{capacity}</span>
                      </div>
                      <div className="travelCard-rowGroup">
-                        <span>${price}</span>
                         <img src={priceIcon} alt="" />
+                        <span>precio por persona:</span>
+                        <span className='bold'>${price}</span>
                      </div>
-                  </aside>
+                     <Link className='travelCard-linkToDetails bold' to={`/travelDetails/${travelId}`}>ver detalles</Link>
                </div>
             </Toggable>
 

@@ -17,7 +17,7 @@ import timeTravelIcon from '../assets/time_travel.svg'
 import dateIcon from '../assets/calendar.svg'
 import priceIcon from '../assets/currency-dollar.svg'
 import capacityIcon from '../assets/people-fill.svg'
-import deleteIcon from '../assets/trash3.svg'
+import deleteIcon from '../assets/trashWhite.svg'
 import editIcon from '../assets/pencil.svg'
 
 export default function TravelDetailsPage() {
@@ -28,7 +28,7 @@ export default function TravelDetailsPage() {
    const navigate = useNavigate()
    const { title, from, to, price, capacity, user, _id: travelId, date } = travel
 
-   const actualDate = new Date()
+   const actualDate = new Date(date)
    const actualLocaleDateTime = actualDate.toLocaleDateString('es-AR', {
       weekday: 'long', 
       year: 'numeric',

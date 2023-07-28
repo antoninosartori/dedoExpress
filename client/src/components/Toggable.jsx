@@ -1,7 +1,7 @@
 import { useState } from "react"
 
-export default function Toggable({ children, icon, text, shownClassName, animationClassName }) {
-   const [visible, setVisible] = useState(false)
+export default function Toggable({ children, icon, text, shownClassName, animationClassName, initialState}) {
+   const [visible, setVisible] = useState(initialState)
    const [toggleAnimation, setToggleAnimation] = useState(false)
 
    const handleClick = () => {

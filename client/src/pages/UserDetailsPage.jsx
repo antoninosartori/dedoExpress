@@ -1,28 +1,29 @@
 import './UserDetailsPage.css'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { NotificationContext } from '../context/FloatinNotificationContext'
 import useGetOneUser from '../hooks/useGetOneUser'
+import { useForm } from 'react-hook-form'
 import LoadingSpinner from '../components/LoadingSpinner'
 import FloatinNotification from '../components/FloatinNotification'
 import Button from '../components/Button'
-import Toggable from '../components/Toggable'
+import InputAvatar from '../components/InputAvatar'
 
 export default function UserDetailsPage() {
    const { isLoading, floatingNotification } = useContext(NotificationContext)
-   const { account,
-      handleChangeCellphone,
-      handleChangeEmail,
-      handleChangeName,
-      handleChangeUsername,
-      handleChangeAvatar,
+   const {
+      account,
+      handleAvatarChange,
       handleSubmitUpdateAccount,
-      name: nameState,
-      username: usernameState,
-      email: emailState,
-      cellphone: cellphoneState,
-      avatarBase64
+      avatarPreview
    } = useGetOneUser()
-   const { name, username, email, cellphone } = account
+   const { register, handleSubmit, formState: { errors }, setValue } = useForm()
+
+   useEffect(() => {
+      setValue('name', account.name)
+      setValue('username', account.username)
+      setValue('email', account.email)
+      setValue('cellphone', account.cellphone)
+   }, [account])
 
    return (
       <main className='container userDetailsPage'>
@@ -39,53 +40,38 @@ export default function UserDetailsPage() {
 
          {
             !isLoading &&
-            <form onSubmit={handleSubmitUpdateAccount}>
+            <form onSubmit={handleSubmit(handleSubmitUpdateAccount)}>
 
-               <div className='inputFile-container'>
-                  <input type="file" name="avatar" onChange={handleChangeAvatar} />
-                  <img src={avatarBase64} alt="avatar de tu usuario" />
-               </div>
+               <InputAvatar register={register} handleAvatarChange={handleAvatarChange} avatarPreview={avatarPreview} />
 
                <div className="formGroup">
-                  <div className='formGroup-accountGroup'>
-                     <span className='accountGroup-name'>Nombre:</span>
-                     <span className='accountGroup-text'>{name}</span>
-                  </div>
-                  <Toggable text='cambiar' shownClassName='inputAccount'>
-                     <input type="text" name='name' value={nameState} onChange={handleChangeName} placeholder='cambiar nombre' />
-                  </Toggable>
+                  <label htmlFor="name">Nombre:</label>
+                  <input
+                     {...register('name', { required: true })}
+                     type="text"
+                  />
                </div>
 
                <div className="formGroup">
-                  <div className='formGroup-accountGroup'>
-                     <span className='accountGroup-name'>Username:</span>
-                     <span className='accountGroup-text'>{username}</span>
-                  </div>
-                  <Toggable text='cambiar' shownClassName='inputAccount'>
-                     <input type="text" name='username' value={usernameState} onChange={handleChangeUsername} placeholder='cambiar username' />
-                  </Toggable>
+                  <label htmlFor="username">Username:</label>
+                  <input
+                     {...register('username', { required: true })}
+                     type="text" />
                </div>
                <div className="formGroup">
-                  <div className='formGroup-accountGroup'>
-                     <span className='accountGroup-name'>Email:</span>
-                     <span className='accountGroup-text'>{email}</span>
-                  </div>
-                  <Toggable text='cambiar' shownClassName='inputAccount'>
-                     <input type="email" name='email' value={emailState} onChange={handleChangeEmail} placeholder='cambiar email' />
-                  </Toggable>
+                  <label htmlFor="email">Email:</label>
+                  <input
+                     {...register('email', { required: true })}
+                     type="email" />
                </div>
                <div className="formGroup">
-                  <div className='formGroup-accountGroup'>
-                     <span className='accountGroup-name'>Celular:</span>
-                     <span className='accountGroup-text'>{cellphone}</span>
-                  </div>
-                  <Toggable text='cambiar' shownClassName='inputAccount'>
-                     <input type="number" name='cellphone' value={cellphoneState} onChange={handleChangeCellphone} placeholder='cambiar numero de celular' />
-                  </Toggable>
+                  <label htmlFor="cellphone">Celular:</label>
+                  <input
+                     {...register('cellphone', { required: true })}
+                     type="number" />
                </div>
 
                <Button type='submit'>Guardar cambios</Button>
-
 
             </form>
          }
