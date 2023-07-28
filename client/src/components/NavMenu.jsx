@@ -3,6 +3,7 @@ import './NavMenu.css'
 import { UserContext } from '../context/UserContext'
 import { Link, useNavigate } from 'react-router-dom'
 import { NotificationContext } from '../context/FloatinNotificationContext'
+import { LOCAL_STORAGE_NAME } from '../helpers/consts'
 
 export default function NavMenu() {
    const { setFloatingNotification } = useContext(NotificationContext)
@@ -14,7 +15,7 @@ export default function NavMenu() {
 
    const handleLogOut = (event) => {
       event.preventDefault()
-      window.localStorage.removeItem('userFromDedoUp')
+      window.localStorage.removeItem(LOCAL_STORAGE_NAME)
       setUser(null)
       navigate('/login')
       setFloatingNotification({message: 'has cerrado sesion correctamente', status: 'success', duration: 3000})
