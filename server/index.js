@@ -7,7 +7,7 @@ require('./connection/mongo.js')
 const cors = require('cors')
 
 // para que encuentre las rutas de navegacion 
-const buildPath = path.join(__dirname, 'client', 'dist');
+const buildPath = path.join(__dirname, 'client', 'build');
 app.use(express.static(buildPath));
 app.get('*', (req, res) => {
    res.sendFile(path.join(buildPath, 'index.html'));
