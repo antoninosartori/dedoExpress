@@ -1,5 +1,7 @@
 const NODE_ENV  = process.env.NODE_ENV
-const baseURL = NODE_ENV === 'production' ? 'https://dedo-express.vercel.app/' : 'http://localhost:3000'
+const PRODUCTION_URL = 'https://dedo-express.vercel.app'
+const DEVELOPMENT_URL = 'http://localhost:3000'
+const baseURL = NODE_ENV === 'production' ? PRODUCTION_URL : DEVELOPMENT_URL 
 export const url = {
    loginPost: `${baseURL}/api/login`,
    createNewUser: `${baseURL}/api/users`,
