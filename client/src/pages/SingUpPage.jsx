@@ -53,6 +53,7 @@ export default function SingUpPage() {
             
             {isLoading && < LoadingSpinner text='creando usuario...' />}
          </form>
+
          {floatingNotification.message &&
             < FloatinNotification
                message={floatingNotification.message}
@@ -60,6 +61,7 @@ export default function SingUpPage() {
                duration={floatingNotification.duration}
             />
          }
+         
       </main>
    )
 }
