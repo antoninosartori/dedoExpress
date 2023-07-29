@@ -17,54 +17,10 @@
    align-items: center;
    width: 100%;
    height: 100%;
+   text-align: center;
 }
 
 .createTravel-buttonText{
    font-size: var(--px6);
    color: var(--bgColor);
 }
-
-.addTravelFixed-container{
-   position: fixed;
-   bottom: var(--px3);
-   right: var(--px3);
-   height: 60px;
-   width: 60px;
-   border-radius: 50%;
-   z-index: 10;
-   box-shadow: var(--boxShadowShort);
-}
-
-.addTravelFixed-relativeContainer{
-   height: 100%;
-   width: 100%;
-   position: relative;
-}
-
-.addTravelFixed-container .toggable-iconContainer{
-   position: absolute;
-   font-size: var(--px6);
-   color: var(--bgColor);
-   line-height: var(--px6);
-   z-index: 50;
-   background-color: var(--secondaryColor);
-   height: 60px;
-   width: 60px;
-   border-radius: 50%;
-   text-align: center;
-}
-
-.addTravelFixed-container_circleLink{
-   position: absolute;
-   background-color: var(--mainColor);
-   border-radius: 50%;
-   height: 60px;
-   width: 60px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   text-align: center;
-   transition: all .1s;
-   z-index: 3;
-}
-

@@ -37,14 +37,6 @@ export default function CreateTravelPage() {
                duration={floatingNotification.duration}
             />
          }
-         {
-            errors.from?.type === 'required' 
-            || errors.to?.type === 'required'
-            || errors.capacity?.type === 'required'
-            || errors.price?.type === 'required'
-            || errors.dateTime?.type === 'required'
-            && < FloatinNotification message='Por favor, completa todos los campos' />
-         }
          <form onSubmit={handleSubmit(handleCreateTravel)}>
 
             <img className='header-image' src={titleIcon} alt="icono del form" />
@@ -54,11 +46,12 @@ export default function CreateTravelPage() {
                <img className='icon' src={fromIcon} alt="desde donde" />
                <input
                   {...register('from', {
-                     required: true,
-                     maxLength: 30,
-                     minLength: 3
+                     required: 'Completa el lugar de salida con una ciudad',
+                     maxLength: { value: 30, message: 'La ciudad de salida debe ser menor a 30 caracteres' },
+                     minLength: { value: 3, message: 'El nombre de la ciudad de salida debe ser mayor a 3 caracteres' }
                   })} type='text' placeholder='¿De donde salis?' autoComplete='off' />
             </div>
+            {errors.from?.message && < FloatinNotification message={errors.from.message} />}
 
             <IconDiv icon1={chevronDown} justify='center' />
 
@@ -66,12 +59,13 @@ export default function CreateTravelPage() {
                <img className='icon' src={toIcon} alt="hasta donde" />
                <input
                   {...register('to', {
-                     required: true,
-                     maxLength: 30,
-                     minLength: 3
+                     required: 'Completa la ciudad de destino',
+                     minLength: { value: 3, message: 'La ciudad de destino debe ser mayor a 3 caracteres' },
+                     maxLength: { value: 30, message: 'La ciudad de destino debe ser menor a 30 caracteres' }
                   })} type="text" placeholder='¿Donde vas?' autoComplete='off'
                />
             </div>
+            {errors.to?.message && < FloatinNotification message={errors.to.message} />}
 
             <IconDiv icon1={chevronDown} justify='center' />
 
@@ -79,12 +73,13 @@ export default function CreateTravelPage() {
                <img className='icon' src={capacityIcon} alt="cuantos podes llevar" />
                <input
                   {...register('capacity', {
-                     required: true,
-                     min: 1,
-                     max: 10
+                     required: 'Completa el campo de lugares disponibles',
+                     min: { value: 1, message: 'El minimo de lugares disponibles es 1'},
+                     max: { value: 9, message: 'El maximo de lugares disponibles es de 9'}
                   })} type="number" placeholder='¿Lugares disponibles?' autoComplete='off' min={1}
                />
             </div>
+            {errors.capacity?.message && < FloatinNotification message={errors.capacity.message} />}
 
             <IconDiv icon1={chevronDown} justify='center' />
 
@@ -92,22 +87,24 @@ export default function CreateTravelPage() {
                <img className='icon' src={priceIcon} alt="precio por persona" />
                <input
                   {...register('price', {
-                     required: true,
-                     max: 50000,
+                     required: 'Completa el campo del precio por persona',
+                     max: {value: 50000, message: 'El precio maximo es de 50.000'},
                      min: 0
                   })}
                   type="number" placeholder='¿Precio por persona?' autoComplete='off' min={0} />
             </div>
+            {errors.price?.message && < FloatinNotification message={errors.price.message} />}
 
             <IconDiv icon1={chevronDown} justify='center' />
 
             <div className='formGroup'>
                <input
                   {...register('dateTime', {
-                     required: true,
+                     required: 'Completa la fecha y hora de salida',
                      /* validate */
                   })} type="datetime-local" placeholder='¿Que dia?' autoComplete='off' />
             </div>
+            {errors.dateTime?.message && < FloatinNotification message={errors.dateTime.message} />}
 
             <Button type='submit'>Crear viaje</Button>
 

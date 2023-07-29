@@ -15,6 +15,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             </FloatinNotificationContext>
          </UserContextState>
       </HashRouter>
-
    </React.StrictMode>,
 )
