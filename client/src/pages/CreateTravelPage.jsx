@@ -49,7 +49,7 @@ export default function CreateTravelPage() {
                      required: 'Completa el lugar de salida con una ciudad',
                      maxLength: { value: 30, message: 'La ciudad de salida debe ser menor a 30 caracteres' },
                      minLength: { value: 3, message: 'El nombre de la ciudad de salida debe ser mayor a 3 caracteres' }
-                  })} type='text' placeholder='¿De donde salis?' autoComplete='off' />
+                  })} type='text' placeholder='¿De donde salis?' autoComplete='off' autoFocus />
             </div>
             {errors.from?.message && < FloatinNotification message={errors.from.message} />}
 

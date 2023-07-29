@@ -34,7 +34,7 @@ export default function SingUpPage() {
                   minLength: { value: 3, message: 'El campo del nombre debe ser mayor a 3 caracteres' },
                   maxLength: { value: 30, message: 'El campo del nombre debe ser menor a 30 caracteres' }
                })}
-               type="text" placeholder='tu nombre' autoComplete='off' />
+               type="text" placeholder='tu nombre' autoComplete='off' autoFocus />
             {errors.name?.message && < FloatinNotification message={errors.name.message} />}
 
             <input

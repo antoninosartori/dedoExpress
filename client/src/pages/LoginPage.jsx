@@ -43,7 +43,7 @@ export default function LoginPage() {
                   {...register('username', {
                      required: true
                   })}
-                  type="text" placeholder='Escribe tu usuario' autoComplete='off' />
+                  type="text" placeholder='Escribe tu usuario' autoComplete='off' autoFocus />
                   
                <div className="formGroup">
                   <input
