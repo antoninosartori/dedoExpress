@@ -46,7 +46,6 @@ export default function UserDetailsPage() {
                <InputAvatar register={register} handleAvatarChange={handleAvatarChange} avatarPreview={avatarPreview} />
                {errors.avatar?.message && < FloatinNotification message={errors.avatar.message} />}
 
-
                <div className="formGroup">
                   <label htmlFor="name">Nombre:</label>
                   <input

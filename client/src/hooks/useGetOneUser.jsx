@@ -10,8 +10,8 @@ export default function useGetOneUser() {
    const { setFloatingNotification, setIsLoading } = useContext(NotificationContext)
    const params = useParams();
    const { userId } = params
-   const [account, setAccount] = useState({})
-   const [avatarPreview, setAvatarPreview] = useState(null);
+   const [account, setAccount] = useState([])
+   const [avatarPreview, setAvatarPreview] = useState('');
    const navigate = useNavigate()
 
    useEffect(() => {
