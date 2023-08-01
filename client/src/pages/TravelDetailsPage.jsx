@@ -34,7 +34,7 @@ export default function TravelDetailsPage() {
    const { floatingNotification, isLoading } = useContext(NotificationContext)
    const navigate = useNavigate()
    const { title, from, to, price, capacity, user, _id: travelId, date, features } = travel
-   const { pet, food, talk, luggage, music } = features
+   
    const { weekday, month, time } = formatDate(date)
   
    useEffect(() => {
@@ -49,7 +49,6 @@ export default function TravelDetailsPage() {
       !user
          ? false
          : userLogged.userId === user[0]._id
-   console.log({travel})
    return (
       <>
          < Header />
@@ -86,11 +85,11 @@ export default function TravelDetailsPage() {
                      <div className='travelDetails-separator travelDetails-features'>
                         <h3>Características</h3>
                         <div className='features-gridContainer'>
-                           < RowItemWithIcon text='Mascotas permitidas' icon={petIcon} toggleTextClassName={!pet ? `feature-false` : ''} toggleIconClassName={!pet ? `feature-false` : ''}  />
-                           <RowItemWithIcon icon={luggageIcon} text='Baúl para equipaje' toggleTextClassName={!luggage ? `feature-false` : ''} toggleIconClassName={!luggage ? `feature-false` : ''} />
-                           <RowItemWithIcon icon={musicIcon} text='Buena música' toggleTextClassName={!music ? `feature-false` : ''} toggleIconClassName={!music ? `feature-false` : ''} />
-                           <RowItemWithIcon icon={fastfoodIcon} text='Permitido comer' toggleTextClassName={!food ? `feature-false` : ''} toggleIconClassName={!food ? `feature-false` : ''} />
-                           <RowItemWithIcon icon={voiceIcon} text='Charlatán' toggleTextClassName={!talk ? `feature-false` : ''} toggleIconClassName={!talk ? `feature-false` : ''}/>
+                           <RowItemWithIcon text='Mascotas permitidas' icon={petIcon} toggleTextClassName={!features?.pet ? `feature-false` : ''} toggleIconClassName={!features?.pet ? `feature-false` : ''}  />
+                           <RowItemWithIcon icon={luggageIcon} text='Baúl para equipaje' toggleTextClassName={!features?.luggage ? `feature-false` : ''} toggleIconClassName={!features?.luggage ? `feature-false` : ''} />
+                           <RowItemWithIcon icon={musicIcon} text='Buena música' toggleTextClassName={!features?.music ? `feature-false` : ''} toggleIconClassName={!features?.music ? `feature-false` : ''} />
+                           <RowItemWithIcon icon={fastfoodIcon} text='Permitido comer' toggleTextClassName={!features?.food ? `feature-false` : ''} toggleIconClassName={!features?.food ? `feature-false` : ''} />
+                           <RowItemWithIcon icon={voiceIcon} text='Charlatán' toggleTextClassName={!features?.talk ? `feature-false` : ''} toggleIconClassName={!features?.talk ? `feature-false` : ''}/>
 
                         </div>
                      </div>
