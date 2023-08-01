@@ -101,6 +101,9 @@ input {
    color: var(--secondaryColor);
 }
 
+input[type='checkbox']:focus{
+   outline: none;
+}
 
 input::placeholder {
    font-family: var(--fontMain);
