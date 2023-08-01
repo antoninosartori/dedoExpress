@@ -28,7 +28,7 @@ travelsRouter.get('/', async (req, res, next) => {
 
 travelsRouter.post('/', tokenExtractor, async (req, res, next) => {
    const { body, userId } = req
-   const { from, to, capacity, price, date } = body
+   const { from, to, capacity, price, date, features } = body
 
    const user = await User.findById(userId)
 
@@ -42,6 +42,7 @@ travelsRouter.post('/', tokenExtractor, async (req, res, next) => {
       capacity,
       price,
       date,
+      features,
       user: userId
    })
 

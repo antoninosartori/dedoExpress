@@ -6,15 +6,25 @@ import useCreateTravelForm from '../hooks/useCreateTravelForm'
 import { NotificationContext } from '../context/FloatinNotificationContext'
 import { UserContext } from '../context/UserContext'
 import Button from '../components/Button'
+import Header from '../components/Header'
 import LoadingSpinner from '../components/LoadingSpinner'
+import RowItemWithIcon from '../components/RowItemWithIcon'
 import FloatinNotification from '../components/FloatinNotification'
+import TextWithTitle from '../components/TextWithTitle'
 import IconDiv from '../components/IconDiv'
 import fromIcon from '../assets/from.svg'
 import toIcon from '../assets/to.svg'
 import capacityIcon from '../assets/people-fill.svg'
 import priceIcon from '../assets/currency-dollar.svg'
 import titleIcon from '../assets/write.svg'
+import petIcon from '../assets/pet_supplies.svg'
 import chevronDown from '../assets/chevron-down.svg'
+import luggageIcon from '../assets/luggage.svg'
+import musicIcon from '../assets/music_note.svg'
+import fastfoodIcon from '../assets/fastfood.svg'
+import voiceIcon from '../assets/voice_selection.svg'
+
+import { validateDate } from '../helpers/validateDate'
 
 export default function CreateTravelPage() {
    const { user } = useContext(UserContext)
@@ -28,87 +38,115 @@ export default function CreateTravelPage() {
    }
 
    return (
-      <main className='container createTravel'>
-         {isLoading && < LoadingSpinner text='creando viaje...' />}
+      <>
+         < Header />
+         <main className='container createTravel'>
+            {isLoading && < LoadingSpinner text='creando viaje...' />}
 
-         {floatingNotification.message &&
-            < FloatinNotification
-               message={floatingNotification.message}
-               duration={floatingNotification.duration}
-            />
-         }
-         <form onSubmit={handleSubmit(handleCreateTravel)}>
-
-            <img className='header-image' src={titleIcon} alt="icono del form" />
-            <h2>Crea tu viaje</h2>
-
-            <div className="formGroup">
-               <img className='icon' src={fromIcon} alt="desde donde" />
-               <input
-                  {...register('from', {
-                     required: 'Completa el lugar de salida con una ciudad',
-                     maxLength: { value: 30, message: 'La ciudad de salida debe ser menor a 30 caracteres' },
-                     minLength: { value: 3, message: 'El nombre de la ciudad de salida debe ser mayor a 3 caracteres' }
-                  })} type='text' placeholder='¿De donde salis?' autoComplete='off' autoFocus />
-            </div>
-            {errors.from?.message && < FloatinNotification message={errors.from.message} />}
-
-            <IconDiv icon1={chevronDown} justify='center' />
-
-            <div className="formGroup">
-               <img className='icon' src={toIcon} alt="hasta donde" />
-               <input
-                  {...register('to', {
-                     required: 'Completa la ciudad de destino',
-                     minLength: { value: 3, message: 'La ciudad de destino debe ser mayor a 3 caracteres' },
-                     maxLength: { value: 30, message: 'La ciudad de destino debe ser menor a 30 caracteres' }
-                  })} type="text" placeholder='¿Donde vas?' autoComplete='off'
+            {floatingNotification.message &&
+               < FloatinNotification
+                  message={floatingNotification.message}
+                  duration={floatingNotification.duration}
                />
-            </div>
-            {errors.to?.message && < FloatinNotification message={errors.to.message} />}
+            }
 
-            <IconDiv icon1={chevronDown} justify='center' />
+            <header>
+               <h2 className='subtitle'>Publicar un viaje</h2>
+               <article>
+                  <TextWithTitle noTitle>
+                     <p>Publica un viaje para que otras personas puedan sumarse y dividir gastos.</p>
+                  </TextWithTitle>
+                  <TextWithTitle noTitle>
+                     <p>Recuerda tener un número de teléfono cargado para que se puedan contactar.</p>
+                  </TextWithTitle>
+               </article>
+            </header>
 
-            <div className="formGroup">
-               <img className='icon' src={capacityIcon} alt="cuantos podes llevar" />
-               <input
-                  {...register('capacity', {
-                     required: 'Completa el campo de lugares disponibles',
-                     min: { value: 1, message: 'El minimo de lugares disponibles es 1'},
-                     max: { value: 9, message: 'El maximo de lugares disponibles es de 9'}
-                  })} type="number" placeholder='¿Lugares disponibles?' autoComplete='off' min={1}
-               />
-            </div>
-            {errors.capacity?.message && < FloatinNotification message={errors.capacity.message} />}
+            <form onSubmit={handleSubmit(handleCreateTravel)}>
 
-            <IconDiv icon1={chevronDown} justify='center' />
+               <div className='form-separator'>
+                  <input
+                     {...register('from', {
+                        required: 'Completa el lugar de salida con una ciudad',
+                        maxLength: { value: 30, message: 'La ciudad de salida debe ser menor a 30 caracteres' },
+                        minLength: { value: 3, message: 'El nombre de la ciudad de salida debe ser mayor a 3 caracteres' }
+                     })} type='text' placeholder='¿Desde dónde salís?' autoComplete='off' autoFocus />
+                  {errors.from?.message && < FloatinNotification message={errors.from.message} />}
 
-            <div className="formGroup">
-               <img className='icon' src={priceIcon} alt="precio por persona" />
-               <input
-                  {...register('price', {
-                     required: 'Completa el campo del precio por persona',
-                     max: {value: 50000, message: 'El precio maximo es de 50.000'},
-                     min: 0
-                  })}
-                  type="number" placeholder='¿Precio por persona?' autoComplete='off' min={0} />
-            </div>
-            {errors.price?.message && < FloatinNotification message={errors.price.message} />}
+                  <input
+                     {...register('to', {
+                        required: 'Completa la ciudad de destino',
+                        minLength: { value: 3, message: 'La ciudad de destino debe ser mayor a 3 caracteres' },
+                        maxLength: { value: 30, message: 'La ciudad de destino debe ser menor a 30 caracteres' }
+                     })} type="text" placeholder='¿Hacia dónde vas?' autoComplete='off'
+                  />
+                  {errors.to?.message && < FloatinNotification message={errors.to.message} />}
 
-            <IconDiv icon1={chevronDown} justify='center' />
+                  <input
+                     {...register('capacity', {
+                        required: 'Completa el campo de lugares disponibles',
+                        min: { value: 1, message: 'El minimo de lugares disponibles es 1' },
+                        max: { value: 9, message: 'El maximo de lugares disponibles es de 9' }
+                     })} type="number" placeholder='¿Cuántas personas quieres llevar?' autoComplete='off' min={1}
+                  />
+                  {errors.capacity?.message && < FloatinNotification message={errors.capacity.message} />}
 
-            <div className='formGroup'>
-               <input
-                  {...register('dateTime', {
-                     required: 'Completa la fecha y hora de salida',
-                     /* validate */
-                  })} type="datetime-local" placeholder='¿Que dia?' autoComplete='off' />
-            </div>
-            {errors.dateTime?.message && < FloatinNotification message={errors.dateTime.message} />}
+                  <input
+                     {...register('price', {
+                        required: 'Completa el campo del precio por persona',
+                        max: { value: 50000, message: 'El precio maximo es de 50.000' },
+                        min: 0
+                     })}
+                     type="number" placeholder='¿Precio por persona?' autoComplete='off' min={0} />
+                  {errors.price?.message && < FloatinNotification message={errors.price.message} />}
 
-            <Button type='submit'>Crear viaje</Button>
+                  <div className="formGroup">
+                     <label className='datetime-label' htmlFor="dateTime">¿Fecha y hora de salida?</label>
+                     <input
+                        {...register('dateTime', {
+                           required: 'Completa la fecha y hora de salida',
+                           validate: value => validateDate(value) || 'Ingresa una fecha proxima'
+                        })} type="datetime-local" placeholder='¿Fecha y hora de salida?' autoComplete='off' />
+                     {errors.dateTime?.message && < FloatinNotification message={errors.dateTime.message} />}
+                  </div>
+               </div>
+               <div className="form-separator">
+                  <TextWithTitle title='Adicionales (opcionales)' >
+                     <p>Marca aquellas características que podrían ser interesantes para las personas que quieran viajar con vos</p>
+                  </TextWithTitle>
 
-         </form>
-      </main>
+                  <div className="ceckbox-inputContainer">
+                     <input {...register('pet')} 
+                        type="checkbox" />
+                     <RowItemWithIcon icon={petIcon} text='Mascotas permitidas' />
+                  </div>
+                  <div className="ceckbox-inputContainer">
+                     <input {...register('luggage')} 
+                        type="checkbox" />
+                     <RowItemWithIcon icon={luggageIcon} text='Baúl para equipaje' />
+                  </div>
+                  <div className="ceckbox-inputContainer">
+                     <input {...register('music')} 
+                        type="checkbox" />
+                     <RowItemWithIcon icon={musicIcon} text='Buena música' />
+                  </div>
+                  <div className="ceckbox-inputContainer">
+                     <input {...register('food')} 
+                        type="checkbox" />
+                     <RowItemWithIcon icon={fastfoodIcon} text='Permitido comer' />
+                  </div>
+                  <div className="ceckbox-inputContainer">
+                     <input {...register('talk')} 
+                        type="checkbox" />
+                     <RowItemWithIcon icon={voiceIcon} text='Charlatán' />
+                  </div>
+               </div>
+
+
+               <Button primary type='submit'>Publicar viaje</Button>
+
+            </form>
+         </main>
+      </>
    )
 }

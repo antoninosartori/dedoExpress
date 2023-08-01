@@ -24,7 +24,7 @@ export default function LoginPage() {
       setShowPassword(!showPassword)
    }
    const passwordType = showPassword ? 'text' : 'password'
-  
+
    useEffect(() => {
       if (user !== null) {
          navigate('/')
@@ -35,43 +35,44 @@ export default function LoginPage() {
    return (
       <main className='container loginPage'>
 
-         <section className='loginPage-section'>
+         <h1 className='title'>Dedo<span>Express</span></h1>
 
-            <form onSubmit={handleSubmit(handleLogin)}>
-               <h2>Iniciar sesion</h2>
+         <form onSubmit={handleSubmit(handleLogin)}>
+
+            <input
+               {...register('username', {
+                  required: true
+               })}
+               type="text" placeholder='Escribe tu usuario' autoComplete='off' autoFocus />
+
+            <div className="formGroup">
                <input
-                  {...register('username', {
+                  {...register('password', {
                      required: true
                   })}
-                  type="text" placeholder='Escribe tu usuario' autoComplete='off' autoFocus />
-                  
-               <div className="formGroup">
-                  <input
-                     {...register('password', {
-                        required: true
-                     })}
-                     type={passwordType} placeholder='Escribe tu contraseña' autoComplete='off' />
-                  <div className='passwordHide-Show_container' onClick={handleClickPassword}>
-                     {showPassword
-                        ? <img src={eyeClose} alt="ocultar contraseña" />
-                        : <img src={eyeOpen} alt="mostrar contraseña" />}
-                  </div>
+                  type={passwordType} placeholder='Escribe tu contraseña' autoComplete='off' />
+               <div className='passwordHide-Show_container' onClick={handleClickPassword}>
+                  {showPassword
+                     ? <img src={eyeClose} alt="ocultar contraseña" />
+                     : <img src={eyeOpen} alt="mostrar contraseña" />}
                </div>
-               <Button type='submit'>Ingresar</Button>
+            </div>
+            <Button type='submit'>Iniciar sesion</Button>
+         </form>
 
-               <Link className='linkToSingUp' to='/singUp'>
-                  <p>¿No tienes cuenta? <strong>¡Registrate!</strong></p>
-               </Link>
+         <div className='loginPage-toSingUpButtonContainer'>
+            <p>¿No tienes una cuenta?</p>
+            <Button type='button' secondary>
+               <Link to='/singUp'>Crear una cuenta</Link>
+            </Button>
+         </div>
 
-               {isLoading && < LoadingSpinner text='iniciando sesion...' />}
-               {floatingNotification.message && < FloatinNotification message={floatingNotification.message} status={floatingNotification.status} duration={floatingNotification.duration} />}
-               {errors.username?.type === 'required' && < FloatinNotification message='Debes ingresar un nombre de usuario' />}
-               {errors.password?.type === 'required' && < FloatinNotification message='Debes ingresar una contraseña' />}
-            </form>
-
-         </section>
-
+         {isLoading && < LoadingSpinner text='iniciando sesion...' />}
+         {floatingNotification.message && < FloatinNotification message={floatingNotification.message} status={floatingNotification.status} duration={floatingNotification.duration} />}
+         {errors.username?.type === 'required' && < FloatinNotification message='Debes ingresar un nombre de usuario' />}
+         {errors.password?.type === 'required' && < FloatinNotification message='Debes ingresar una contraseña' />}
       </main>
+
    )
 }
 

@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
 import TravelContextState from './context/TravelsContext'
-import Header from './components/Header'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import CreateTravelPage from './pages/CreateTravelPage'
@@ -13,9 +12,6 @@ function App() {
 
    return (
       <>
-
-         < Header />
-         {/* < Nav /> */}
          <TravelContextState>
             <Routes>
                <Route path='/' element={ < HomePage /> } />
@@ -28,8 +24,6 @@ function App() {
               
             </Routes>
          </TravelContextState>
-
-         
       </>
    )
 }

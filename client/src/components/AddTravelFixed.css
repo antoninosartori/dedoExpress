@@ -6,7 +6,7 @@
    height: 60px;
    width: 60px;
    background-color: var(--secondaryColor);
-   border-radius: 50%;
+   border-radius: var(--borderRadius);
    z-index: 10;
    box-shadow: var(--boxShadowShort);
 }

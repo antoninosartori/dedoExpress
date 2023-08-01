@@ -11,6 +11,20 @@
    gap: var(--px2);
 }
 
+.form-separator{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 100%;
+   gap: var(--px1);
+}
+
+.form-separator:nth-child(2){
+   border-top: 1px solid #1c140d3f;
+   border-bottom: 1px solid #1c140d3f;
+   padding: var(--px1) 0;
+}
+
 .singUpPage form input:focus{
    outline: var(--inputOutline);
 } 

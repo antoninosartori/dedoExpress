@@ -1,12 +1,15 @@
 .travelCard-container {
    position: relative;
+   display: flex;
+   flex-direction: column;
+   gap: var(--px1);
    width: 100%;
-   padding: var(--px1);
-   background-color: var(--mainColor);
-   /* color: var(--bgColor); */
+   padding: var(--px2);
+   background-color: var(--white);
    color: var(--secondaryColor);
    border-radius: var(--borderRadius);
-   box-shadow: var(--boxShadowLarge);
+   font-size: var(--fsBody);
+   
 }
 
 .travelCard-container .toggable-iconContainer {
@@ -35,8 +38,8 @@
 }
 
 .travelCard-header_userAvatar .avatarImage {
-   width: var(--avatarMedium);
-   height: var(--avatarMedium);
+   width: var(--avatarSmall);
+   height: var(--avatarSmall);
 }
 
 .travelCard-header_userInfo {
@@ -45,20 +48,16 @@
 }
 
 .travelCard-usernameText {
-   padding-right: var(--px2);
+   font-weight: 400;
+   font-size: var(--fsSmall);
 }
 
 .travelCard-locations{
    display: flex;
    align-items: center;
-   gap: 5px;
-   font-size: var(--px2);
-}
-
-.travelCard-locations img{
-   width: 15px;
-   height: 15px;
-   object-fit: cover;
+   gap: 8px;
+   font-weight: 700;
+   text-transform: capitalize;
 }
 
 .travelCard-body {
@@ -68,21 +67,18 @@
    flex-direction: column;
    padding-top: var(--px1);
    gap: 5px;
-   font-size: var(--px1em);
 }
 
-.travelCard-rowGroup {
-   display: flex;
-   align-items: center;
-   gap: 5px;
-}
-
-.travelCard-rowGroup img{
-   width: var(--px1em);
-}
-
-.travelCard-linkToDetails{
-   color: var(--secondaryColor);
+.travelCard-footer{
+   width: 100%;
    display: flex;
    justify-content: flex-end;
+   align-items: center;
+   gap: var(--px1);
+}
+
+.travelCard-container .mainBtn{
+   width: max-content;
+   margin: unset;
+   padding: var(--px1);
 }

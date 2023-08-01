@@ -1,4 +1,5 @@
 .avatarImage{
-   border-radius: 50%;
+   /* border-radius: 50%; */
+   border-radius: var(--borderRadius);
    object-fit: cover;
 }

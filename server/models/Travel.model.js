@@ -7,6 +7,13 @@ const travelSchema = new Schema({
    capacity: Number,
    price: Number,
    date: Date,
+   features: {
+      pet: Boolean,
+      luggage: Boolean,
+      music: Boolean,
+      food: Boolean,
+      talk: Boolean
+   },
    user: [{
          type: Schema.Types.ObjectId,
          ref: 'User'

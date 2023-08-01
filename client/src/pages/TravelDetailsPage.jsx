@@ -9,16 +9,23 @@ import FloatinNotification from '../components/FloatinNotification'
 import LoadingSpinner from '../components/LoadingSpinner'
 import Button from '../components/Button'
 import Avatar from '../components/Avatar'
-import fromIcon from '../assets/from.svg'
-import toIcon from '../assets/to.svg'
-import writeIcon from '../assets/write.svg'
+import Header from '../components/Header'
+import RowItemWithIcon from '../components/RowItemWithIcon'
+import fromIcon from '../assets/location_on.svg'
+import toIcon from '../assets/sports_score.svg'
 //import timeArriveIcon from '../assets/time_arrive.svg'
-import timeTravelIcon from '../assets/time_travel.svg'
-import dateIcon from '../assets/calendar.svg'
-import priceIcon from '../assets/currency-dollar.svg'
-import capacityIcon from '../assets/people-fill.svg'
-import deleteIcon from '../assets/trashWhite.svg'
-import editIcon from '../assets/pencil.svg'
+import calendarTodayIcon from '../assets/calendar_today.svg'
+import priceIcon from '../assets/attach_money.svg'
+import capacityIcon from '../assets/capacity.svg'
+import callIcon from '../assets/call.svg'
+import schedule from '../assets/schedule.svg'
+import writeIcon from '../assets/write.svg'
+import petIcon from '../assets/pet_supplies.svg'
+import luggageIcon from '../assets/luggage.svg'
+import musicIcon from '../assets/music_note.svg'
+import fastfoodIcon from '../assets/fastfood.svg'
+import voiceIcon from '../assets/voice_selection.svg'
+import { formatDate } from '../helpers/formatDate'
 
 export default function TravelDetailsPage() {
    const { user: userLogged } = useContext(UserContext)
@@ -26,19 +33,10 @@ export default function TravelDetailsPage() {
    const { handleTravelDelete } = useGetTravels()
    const { floatingNotification, isLoading } = useContext(NotificationContext)
    const navigate = useNavigate()
-   const { title, from, to, price, capacity, user, _id: travelId, date } = travel
-
-   const actualDate = new Date(date)
-   const actualLocaleDateTime = actualDate.toLocaleDateString('es-AR', {
-      weekday: 'long', 
-      year: 'numeric',
-      month: 'long', 
-      day: 'numeric', 
-      hour: 'numeric', 
-      minute: 'numeric'
-   })
-   const [ day, dayWithMonth, time ] = actualLocaleDateTime.split(', ')
-
+   const { title, from, to, price, capacity, user, _id: travelId, date, features } = travel
+   const { pet, food, talk, luggage, music } = features
+   const { weekday, month, time } = formatDate(date)
+  
    useEffect(() => {
       if (userLogged === null) {
          navigate('/login')
@@ -51,30 +49,15 @@ export default function TravelDetailsPage() {
       !user
          ? false
          : userLogged.userId === user[0]._id
-
+   console.log({travel})
    return (
-      <main className='container travelDetailsPage'>
+      <>
+         < Header />
 
-         {isOwner &&
-            <div className='travelDetails-ownerContainer'>
-               <Link className='updateTravelContainer-withBorder' to={`/updateTravel/${travelId}`}>
-                  <img src={editIcon} alt="Modificar viaje" />
-                  <span>modificar</span>
-               </Link>
-               <div className='deleteTravelContainer-withBorder' onClick={() => handleTravelDelete(travelId)}>
-                  <img
-                     className='deleteTravel-icon'
-                     src={deleteIcon}
-                     alt="borrar este viaje"
-                  />
-                  <span>eliminar viaje</span>
-               </div>
-            </div>
-         }
+         <main className='container travelDetailsPage'>
 
-         <h2 className='title'>Detalles del viaje</h2>
 
-         <section>
+
             {floatingNotification.message &&
                <FloatinNotification
                   message={floatingNotification.message}
@@ -88,92 +71,73 @@ export default function TravelDetailsPage() {
 
             {travel && !isLoading &&
                <>
-                  <article className='travelDetails-container'>
-                     <header className='travelDetails-header'>
-                        <img className='icon' src={writeIcon} alt="titulo del viaje" />
-                        <h3 className='travelDetails-travelTitle'>{title && `'${title}'`}</h3>
-                     </header>
-
-                     <div className="travelDetails-travelInfo">
-                        <div className='travelDetails-row'>
-                           <div className='travelDetails_travelInfo-left'>
-                              <img className='icon' src={fromIcon} alt="lugar de salida" />
-                              <div className='travelInfo-columnGroup'>
-                                 <span>desde</span>
-                                 <h4 className='travelInfo-text leftText'>{from}</h4>
-                              </div>
-                           </div>
-                           <div className='travelDetails_travelInfo-right'>
-                              <div className='travelInfo-columnGroup'>
-                                 <span>hasta</span>
-                                 <h4 className='travelInfo-text rightText'>{to}</h4>
-                              </div>
-                              <img className='icon' src={toIcon} alt="lugar de salida" />
-                           </div>
+                  <h2 className='subtitle'>Detalles del viaje</h2>
+                  <section className='travelDetails-container'>
+                     <div className='travelDetails-separator'>
+                        <div className='travelDetails-travelInfo'>
+                           <RowItemWithIcon icon={fromIcon} text={from} />
+                           <RowItemWithIcon icon={toIcon} text={to} />
+                           <RowItemWithIcon icon={calendarTodayIcon} text={`Sale el ${month}`} />
+                           <RowItemWithIcon icon={schedule} text={`Hora de salida: ${time} hs`} />
+                           <RowItemWithIcon icon={capacityIcon} text={`Lugares disponibles: ${capacity}`} />
+                           <RowItemWithIcon icon={priceIcon} text={`Precio: $${price} por persona`} />
                         </div>
-                        <div className='travelDetails-row'>
-                           <div className='travelDetails_travelInfo-left'>
-                              <img className='icon' src={dateIcon} alt="fecha de salida" />
-                              <div className='travelInfo-columnGroup'>
-                                 <span>fecha</span>
-                                 <h4 className='travelInfo-text leftText'>{`${day}, ${dayWithMonth}`}</h4>
-                              </div>
-                           </div>
-                           <div className='travelDetails_travelInfo-right'>
-                              <div className='travelInfo-columnGroup'>
-                                 <span>hora</span>
-                                 <h4 className='travelInfo-text rightText'>{time}</h4>
-                              </div>
-                              <img className='icon' src={timeTravelIcon} alt="hora de salida" />
-                           </div>
-                        </div>
-                        <div className='travelDetails-row'>
-                           <div className='travelDetails_travelInfo-left'>
-                              <img className='icon' src={capacityIcon} alt="lugares disponibles" />
-                              <div className='travelInfo-columnGroup'>
-                                 <span>lugares</span>
-                                 <h4 className='travelInfo-text leftText'>{capacity}</h4>
-                              </div>
-                           </div>
-                           <div className='travelDetails_travelInfo-right'>
-                              <div className='travelInfo-columnGroup'>
-                                 <span>precio por persona</span>
-                                 <h4 className='travelInfo-text rightText'>{price}</h4>
-                              </div>
-                              <img className='icon' src={priceIcon} alt="precio por persona" />
-                           </div>
-                        </div>
-
                      </div>
+                     <div className='travelDetails-separator travelDetails-features'>
+                        <h3>Características</h3>
+                        <div className='features-gridContainer'>
+                           < RowItemWithIcon text='Mascotas permitidas' icon={petIcon} toggleTextClassName={!pet ? `feature-false` : ''} toggleIconClassName={!pet ? `feature-false` : ''}  />
+                           <RowItemWithIcon icon={luggageIcon} text='Baúl para equipaje' toggleTextClassName={!luggage ? `feature-false` : ''} toggleIconClassName={!luggage ? `feature-false` : ''} />
+                           <RowItemWithIcon icon={musicIcon} text='Buena música' toggleTextClassName={!music ? `feature-false` : ''} toggleIconClassName={!music ? `feature-false` : ''} />
+                           <RowItemWithIcon icon={fastfoodIcon} text='Permitido comer' toggleTextClassName={!food ? `feature-false` : ''} toggleIconClassName={!food ? `feature-false` : ''} />
+                           <RowItemWithIcon icon={voiceIcon} text='Charlatán' toggleTextClassName={!talk ? `feature-false` : ''} toggleIconClassName={!talk ? `feature-false` : ''}/>
 
-                     {user && !isLoading &&
-                        <>
-                           <header className='travelDetails-driverInfo_header'>
-                              < Avatar avatarSrc={user[0].avatar.url} username={user[0].username} />
-                              <h3 className='travelDetails-userTitle'>Detalles del conductor</h3>
-                           </header>
-                           <div className='travelDetails-driverInfo-container'>
-                              <div className='travelDetails-row'>
-                                 <span>usuario</span>
+                        </div>
+                     </div>
+                     {isOwner &&
+                        <div className='travelDetails-ownerContainer'>
+                           <Button type='button' secondary>
+                              Ocultar
+                           </Button>
+                           <Button type='button' secondary>
+                              <Link to={`/updateTravel/${travelId}`}>
+                                 Modificar
+                              </Link>
+                           </Button>
+                           <Button type='button' secondary onClickFunction={() => handleTravelDelete(travelId)}>Eliminar</Button>
+                        </div>
+                     }
+                  </section>
+
+                  {user && !isLoading &&
+                     <>
+                        <h2 className='subtitle'>Datos del conductor</h2>
+                        <section className='travelDetails-driverInfo'>
+                           <div className='travelDetails-driverInfo-flex'>
+                              <div className='travelDetails-driverInfo_avatarContainer'>
+                                 < Avatar avatarSrc={user[0].avatar.url} username={user[0].username} />
+                              </div>
+
+                              <div className='travelDetails-driverInfo-content'>
                                  <h4>{user[0].username}</h4>
-                              </div>
-                              <div className='travelDetails-row'>
-                                 <span>celular</span>
-                                 <a href={`https://api.whatsapp.com/send/?phone=${user[0].cellphone}&text=${defaultText}`} target='_blank' rel='noreferrer'>{user[0].cellphone}</a>
-                              </div>
-                              <div className="travelDetails-row">
-                                 <Button>
-                                    <a href={`https://api.whatsapp.com/send/?phone=${user[0].cellphone}&text=${defaultText}`} target='_blank' rel='noreferrer'>Contactalo</a>
-                                 </Button>
+                                 <RowItemWithIcon icon={callIcon} text={`+${user[0].cellphone}`} />
                               </div>
                            </div>
-                        </>
-                     }
-                  </article>
 
+                           <Button type='button' primary>
+                              <a className='linkToMessage' href={`https://api.whatsapp.com/send/?phone=${user[0].cellphone}&text=${defaultText}`} target='_blank' rel='noreferrer'>
+                                 ¡Me sumo!
+                                 <img src={writeIcon} alt="contacta al conductor" />
+                              </a>
+                           </Button>
+
+                        </section>
+
+                     </>
+                  }
                </>
             }
-         </section>
-      </main>
+         </main >
+      </>
    )
 }

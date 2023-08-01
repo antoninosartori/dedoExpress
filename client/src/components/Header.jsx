@@ -20,7 +20,7 @@ function Header() {
                <img src={backIcon} alt="volver atras" />
             </Link>
             <Link className='header-logo_link' to={returnToHome}>
-               <h1 className='logo-text'>DedoExpress</h1>
+               <h1 className='logo-text'>Dedo<span>Express</span></h1>
             </Link>
          </div>
          {
@@ -30,6 +30,7 @@ function Header() {
             </Toggable>
          }
       </header>
+      
    )
 }
 

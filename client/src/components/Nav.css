@@ -1,0 +1,15 @@
+.navigation-container{
+   font-size: var(--px2);
+   padding: var(--px1);
+}
+
+.navigation-container ul {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.navigation-container ul li a.active{
+   font-weight: 700;
+}

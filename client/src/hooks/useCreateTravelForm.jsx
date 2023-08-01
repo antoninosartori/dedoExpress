@@ -20,11 +20,12 @@ export default function useCreateTravelForm() {
 
    const handleCreateTravel = async (data) => {
       setIsLoading(true)
-
-      const { from, to, capacity, price, dateTime: date } = data
+      const { from, to, capacity, price, dateTime: date, pet, luggage, music, food, talk  } = data
 
       const { token } = user
-      const newTravel = { from, to, capacity, price, date }
+
+      const features = { pet, luggage, music, food, talk}
+      const newTravel = { from, to, capacity, price, date, features }
 
       const config = {
          headers: {

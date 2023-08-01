@@ -23,7 +23,7 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   border-radius: 50%;
+   border-radius: var(--borderRadius);
    background-color: var(--mainColor);
    padding: var(--px1);
 }
@@ -44,9 +44,14 @@
 }
 
 .logo-text{
-   font-size: var(--px3);
-   letter-spacing: 3px;
-   font-weight: 100;
+   font-size: var(--fsTitle);
+   /* letter-spacing: 3px; */
+   font-weight: 700;
+   color: var(--white);
+}
+
+.logo-text span{
+   font-weight: 400;
 }
 
 .logo-fingerUp{
@@ -62,5 +67,5 @@
    width: var(--avatarSmall);
    height: auto;
    object-fit: cover;
-   border-radius: 50%;
+   border-radius: var(--borderRadius);
 }

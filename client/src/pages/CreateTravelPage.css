@@ -8,29 +8,31 @@
    display: flex;
    flex-direction: column;
    align-items: center;
-   gap: var(--px1);
+   gap: var(--px2);
 }
 
-.createTravel form .header-image{
-   width: var(--px4);
-   height: var(--px4);
+.createTravel form .formGroup{
+   background-color: var(--white);
+   padding: 0 var(--px1);
 }
 
-.createTravel input{
-   outline: none;
-   border-radius: 0;
-   padding: 0;
+.createTravel form .formGroup input[type='datetime-local']{
+   width: 90%;
 }
 
-.createTravel .formGroup .formGroup{
-   padding: 0;
-   outline: none;
-}
-
-.createTravel form .formGroup:has(> input:focus){
+.createTravel input:focus{
    outline: var(--inputOutline);
 }
 
-.createTravel .btn-primary{
-   margin-top: var(--px2);
+.ceckbox-inputContainer{
+   width: 100%;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   gap: var(--px1);
+}
+
+.ceckbox-inputContainer input[type='checkbox']{
+   width: var(--fsBody);
+   height: var(--fsBody);
 }

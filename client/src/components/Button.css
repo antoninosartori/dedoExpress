@@ -1,13 +1,21 @@
-.btn-primary{
+.mainBtn{
    display: flex;
    align-items: center;
    justify-content: center;
-   padding: var(--px1) var(--px2);
+   padding: var(--fsBody);
    border-radius: var(--borderRadius);
-   font-size: var(--px2);
-   width: max-content;
+   font-size: var(--fsBody);
+   width: 100%;
    margin: 0 auto;
+   font-weight: 700;
+}
+
+.btn-primary{
+   background-color: var(--mainColor);
+   color: var(--secondaryColor);
+}
+
+.btn-secondary{
    background-color: var(--secondaryColor);
-   color: var(--bgColor);
-   font-size: var(--px2);
+   color: var(--white);
 }

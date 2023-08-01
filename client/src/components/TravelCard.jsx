@@ -1,18 +1,26 @@
 import './TravelCard.css'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
+import useTimeAgo from '../hooks/useTimeAgo'
 import { NotificationContext } from '../context/FloatinNotificationContext'
+import FloatinNotification from '../components/FloatinNotification'
+import Avatar from './Avatar'
+import Toggable from '../components/Toggable'
+import Button from '../components/Button'
 import travelIcon from '../assets/travel.svg'
 import userIcon from '../assets/account_.svg'
 import calendarIcon from '../assets/calendar.svg'
 import timeIcon from '../assets/alarm.svg'
-import priceIcon from '../assets/currency-dollar.svg'
-import capacityIcon from '../assets/people-fill.svg'
+import priceIcon from '../assets/attach_money.svg'
+import capacityIcon from '../assets/capacity.svg'
 import chevronIcon from '../assets/chevron-down.svg'
-import rightChevronIcon from '../assets/chevron-double-right.svg'
-import Toggable from '../components/Toggable'
-import FloatinNotification from '../components/FloatinNotification'
-import Avatar from './Avatar'
+import rigthArrow from '../assets/arrow_right_alt.svg'
+import calendarTodayIcon from '../assets/calendar_today.svg'
+import schedule from '../assets/schedule.svg'
+import RowItemWithIcon from './RowItemWithIcon'
+
+
+
 
 export default function TravelCard({ travel, ...restOfProps }) {
    const { floatingNotification } = useContext(NotificationContext)
@@ -21,15 +29,11 @@ export default function TravelCard({ travel, ...restOfProps }) {
    const { _id: userId, username, cellphone, avatar } = user[0]
    const { url: avatarUrl } = avatar
 
-   const dateTime = 
-      date 
-         ? new Date(date).toLocaleDateString('es-AR', {
-            weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric'
-         })
-         : null
-      
-   const [ day, dayNumberAndMonth, time] = dateTime.split(', ')
-   
+   const { formattedDate, timeAgo } = useTimeAgo(new Date(date).getTime())
+   const [weekday, month, time] = formattedDate.split(', ')
+
+   const defaultText = user ? `Hola ${user[0].username}, me gustaria viajar con vos a ${to}.` : ''
+
    return (
       <>
 
@@ -48,41 +52,33 @@ export default function TravelCard({ travel, ...restOfProps }) {
                   < Avatar avatarSrc={avatarUrl} username={username} />
                </div>
                <div className='travelCard-header_userInfo'>
-                  <h3 className='travelCard-usernameText'>{username}</h3>
                   <p className='travelCard-locations'>
                      {from}
-                     <img src={rightChevronIcon} alt="hacia donde" />
+                     <img src={rigthArrow} alt="hacia donde" />
                      {to}
                   </p>
+                  <h3 className='travelCard-usernameText'>{username}</h3>
+                  {/* <p>{timeAgo}</p> */}
                </div>
             </header>
 
             <Toggable icon={chevronIcon} initialState>
                <div className="travelCard-body">
-                     <div className="travelCard-rowGroup">
-                        <img src={calendarIcon} alt="" />
-                        <span>sale:</span>
-                        <span className='bold'>{`${day}, ${dayNumberAndMonth}`}</span>
-                     </div>
-                     <div className="travelCard-rowGroup">
-                        <img src={timeIcon} alt="" />
-                        <span>hora:</span>
-                        <span className='bold'>{time}hs</span>
-                     </div>
-                     <div className="travelCard-rowGroup">
-                        <img src={capacityIcon} alt="" />
-                        <span>lugares disponibles:</span>
-                        <span className='bold'>{capacity}</span>
-                     </div>
-                     <div className="travelCard-rowGroup">
-                        <img src={priceIcon} alt="" />
-                        <span>precio por persona:</span>
-                        <span className='bold'>${price}</span>
-                     </div>
-                     <Link className='travelCard-linkToDetails bold' to={`/travelDetails/${travelId}`}>ver detalles</Link>
+                  <RowItemWithIcon icon={calendarTodayIcon} text={`Sale el ${month}`} />
+                  <RowItemWithIcon icon={schedule} text={`Hora de salida: ${time} hs`} />
+                  <RowItemWithIcon icon={capacityIcon} text={`Lugares disponibles: ${capacity}`} />
+                  <RowItemWithIcon icon={priceIcon} text={`Precio: $${price} por persona`} />
                </div>
+               
             </Toggable>
-
+            <footer className='travelCard-footer'>
+                  <Button type='button' primary>
+                     <Link  to={`/travelDetails/${travelId}`}>Ver detalles</Link>
+                  </Button>
+                  <Button type='button' secondary>
+                     <a href={`https://api.whatsapp.com/send/?phone=${user[0].cellphone}&text=${defaultText}`} target='_blank' rel='noreferrer'>¡Me sumo!</a>
+                  </Button>
+               </footer>
          </article>
       </>
    )

@@ -11,11 +11,13 @@ import SearchFormHome from '../components/SearchFormHome'
 import FloatinNotification from '../components/FloatinNotification'
 import TravelCard from '../components/TravelCard'
 import EmptyComponent from '../components/EmptyComponent'
+/* import Nav from '../components/Nav' */
+import Header from '../components/Header'
 
 export default function HomePage() {
    const { allTravels } = useContext(TravelContext)
    const { user } = useContext(UserContext)
-   const { floatingNotification, isLoading } = useContext(NotificationContext) 
+   const { floatingNotification, isLoading } = useContext(NotificationContext)
    const { getInitialAllTravel } = useGetTravels()
    const [travels, setTravels] = useState(allTravels)
    const navigate = useNavigate()
@@ -30,34 +32,45 @@ export default function HomePage() {
    }, [allTravels])
 
    useEffect(() => {
-      if(user === null){
+      if (user === null) {
          navigate('/login')
       }
    }, [user])
-   
+
 
    return (
-      <main className='container homePage'>
-         { floatingNotification.message && < FloatinNotification message={floatingNotification.message} status={floatingNotification.status} duration={floatingNotification.duration} /> }
-         
-         < SearchFormHome />
+      <>
+         < Header />
+         <main className='container homePage'>
+            {floatingNotification.message && < FloatinNotification message={floatingNotification.message} status={floatingNotification.status} duration={floatingNotification.duration} />}
 
-         {isLoading && < LoadingSpinner text='cargando viajes' />}
+            {/* <section>
+            <Nav />
 
-         {travels.length !== 0 && !isLoading &&
-            <section className='travels-container'>
-               {
-                  travels.map(travel => (
-                     < TravelCard key={travel._id} travel={travel}  />
-                  ))
-               }
-            </section>
-         }
-         {travels.length === 0 && !isLoading &&
-            < EmptyComponent />
-         }
+            < SearchFormHome />
+         </section> */}
 
-         < AddTravelFixed />
-      </main>
+            < SearchFormHome />
+
+            <h2 className='subtitle'>Viajes disponibles</h2>
+
+            {isLoading && < LoadingSpinner text='cargando viajes' />}
+
+            {travels.length !== 0 && !isLoading &&
+               <section className='travels-container'>
+                  {
+                     travels.map(travel => (
+                        < TravelCard key={travel._id} travel={travel} />
+                     ))
+                  }
+               </section>
+            }
+            {travels.length === 0 && !isLoading &&
+               < EmptyComponent />
+            }
+
+            < AddTravelFixed />
+         </main>
+      </>
    )
 }

@@ -4,17 +4,21 @@
    gap: var(--px1);
 }
 
-.searchFormHome-form .formGroup {
-   box-shadow: var(--boxShadowShort);
-}
-
-.searchFormHome-form .formGroup:has(> input:focus){
+.searchFormHome-form input:focus{
    outline: var(--inputOutline);
 }
+/* .searchFormHome-form .formGroup {
+   box-shadow: var(--boxShadowShort);
+} */
 
-.searchFormHome-form input{
+/* .searchFormHome-form .formGroup:has(> input:focus){
+   outline: var(--inputOutline);
+} */
+
+/* .searchFormHome-form input{
    outline: none;
    padding: 0;
    border-radius: 0;
-}
+} */
+
 

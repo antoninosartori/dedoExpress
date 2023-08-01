@@ -11,16 +11,18 @@ export default function SearchFormHome() {
 
    return (
       <form className='searchFormHome-form' onSubmit={handleSubmitSearch}>
-         <div className="formGroup">
+        {/*  <div className="formGroup">
             <img className='icon' src={fromIcon} alt="¿Donde estas?" />
             <input type="text" placeholder='¿Donde estas?' onChange={handleChangeFromInput} autoComplete='off' />
-         </div>
+         </div> */}
+         <input type="text" placeholder='¿Dónde estas?' onChange={handleChangeFromInput} autoComplete='off' />
+         <input type="text" placeholder='¿A dónde quieres ir?' onChange={handleChangeToInput} autoComplete='off' />
 
-         <div className="formGroup">
+         {/* <div className="formGroup">
             <img className='icon' src={toIcon} alt="¿Donde queres llegar?" />
             <input type="text" placeholder='¿Donde queres llegar?' onChange={handleChangeToInput} autoComplete='off' />
-         </div>
-         <Button type='submit'>Buscar</Button>
+         </div> */}
+         <Button primary type='submit'>Buscar viajes</Button>
       </form>
    )
 }
