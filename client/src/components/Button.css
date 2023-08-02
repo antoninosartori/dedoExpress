@@ -8,6 +8,8 @@
    width: 100%;
    margin: 0 auto;
    font-weight: 700;
+   cursor: pointer;
+   transition: opacity .1s;
 }
 
 .btn-primary{

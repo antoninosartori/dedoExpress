@@ -192,6 +192,12 @@ input::placeholder {
    box-shadow: var(--boxShwdowNormal);
 }
 
+.hover:hover{
+   opacity: .8;
+   transition: opacity .1s;
+   cursor: pointer;
+}
+
 /* desktop */
 @media screen and (min-width: 768px){
    form{

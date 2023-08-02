@@ -17,7 +17,7 @@ function Header() {
       <header className='pageHeader'>
          <nav className='pageHeader-nav'>
             <div className='header-logo_container'>
-               <Link className='backArrow' onClick={() => navigate(-1)}>
+               <Link className='backArrow hover' onClick={() => navigate(-1)}>
                   <img src={backIcon} alt="volver atras" />
                </Link>
                <Link className='header-logo_link' to={returnToHome}>

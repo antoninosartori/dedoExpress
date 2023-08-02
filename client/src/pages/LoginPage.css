@@ -5,6 +5,25 @@
    gap: var(--marginVerticalToComponents);
 }
 
+.loginPage header{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: var(--px1);
+}
+
+.loginPage header p {
+   font-size: var(--fsHeadline);
+}
+
+.loginPage header p span{
+   font-weight: 700;
+}
+
+.loginPage header img{
+   height: var(--px6);
+}
+
 .loginPage h1{
    font-weight: 700;
 }

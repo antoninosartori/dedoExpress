@@ -10,6 +10,8 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import FloatinNotification from '../components/FloatinNotification'
 import eyeClose from '../assets/eye-slash.svg'
 import eyeOpen from '../assets/eye-fill.svg'
+/* import mateIcon from '../assets/mate.svg' */
+import thermoIcon from '../assets/thermo.svg'
 
 
 export default function LoginPage() {
@@ -26,7 +28,7 @@ export default function LoginPage() {
    const passwordType = showPassword ? 'text' : 'password'
 
    useEffect(() => {
-      window.scrollTo(0,0)
+      window.scrollTo(0, 0)
    }, [])
 
    useEffect(() => {
@@ -39,7 +41,11 @@ export default function LoginPage() {
    return (
       <main className='container loginPage'>
 
-         <h1 className='title'>Dedo<span>Express</span></h1>
+         <header>
+            <h1 className='title'>Dedo<span>Express</span></h1>
+            <img src={thermoIcon} alt="imagen de mate" />
+            <p>Compartí y <span>viajá</span></p>
+         </header>
 
          <form onSubmit={handleSubmit(handleLogin)}>
 
@@ -57,8 +63,8 @@ export default function LoginPage() {
                   type={passwordType} placeholder='Escribe tu contraseña' autoComplete='off' />
                <div className='passwordHide-Show_container' onClick={handleClickPassword}>
                   {showPassword
-                     ? <img src={eyeClose} alt="ocultar contraseña" />
-                     : <img src={eyeOpen} alt="mostrar contraseña" />}
+                     ? <img className='hover' src={eyeClose} alt="ocultar contraseña" />
+                     : <img className='hover' src={eyeOpen} alt="mostrar contraseña" />}
                </div>
             </div>
             <Button type='submit'>Iniciar sesion</Button>
