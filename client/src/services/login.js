@@ -21,4 +21,9 @@ const updateAccount = async (userId, body, credentials) => {
    return data
 }
 
-export { loginPost, createUser, getOneUser, updateAccount }
+const changePassword = async (userId, body, credentials) => {
+   const { data } = await axios.put(`${url.changePassword}${userId}`, body , credentials)
+   return data
+} 
+
+export { loginPost, createUser, getOneUser, updateAccount, changePassword}

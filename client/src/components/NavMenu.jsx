@@ -1,5 +1,5 @@
-import { useContext } from 'react'
 import './NavMenu.css'
+import { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
 import { Link, useNavigate } from 'react-router-dom'
 import { NotificationContext } from '../context/FloatinNotificationContext'
@@ -31,7 +31,7 @@ export default function NavMenu() {
          <ul>
             <li>
                <Link to={linkToUserDetails}>
-                  {user.username}
+                  Mi cuenta
                </Link>
             </li>
             { user && 

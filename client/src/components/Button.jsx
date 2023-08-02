@@ -1,6 +1,6 @@
 import './Button.css'
-export default function Button ({children, btnType, primary, secondary, onClickFunction}){
-   const buttonType = btnType ?? ''
+export default function Button ({children, type, primary, secondary, onClickFunction}){
+   const buttonType = type ?? 'button'
    const colors = secondary ? 'mainBtn btn-secondary' : 'mainBtn btn-primary'
    const handleClick = onClickFunction ?? null
    return(

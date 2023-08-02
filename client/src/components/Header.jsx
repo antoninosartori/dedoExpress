@@ -15,22 +15,25 @@ function Header() {
 
    return (
       <header className='pageHeader'>
-         <div className='header-logo_container'>
-            <Link className='backArrow' onClick={() => navigate(-1)}>
-               <img src={backIcon} alt="volver atras" />
-            </Link>
-            <Link className='header-logo_link' to={returnToHome}>
-               <h1 className='logo-text'>Dedo<span>Express</span></h1>
-            </Link>
-         </div>
-         {
-            user &&
-            <Toggable shownClassName='header-navMenu' animationClassName='translate(100%)' icon={avatar}>
-               < NavMenu />
-            </Toggable>
-         }
+         <nav className='pageHeader-nav'>
+            <div className='header-logo_container'>
+               <Link className='backArrow' onClick={() => navigate(-1)}>
+                  <img src={backIcon} alt="volver atras" />
+               </Link>
+               <Link className='header-logo_link' to={returnToHome}>
+                  <h1 className='logo-text'>Dedo<span>Express</span></h1>
+               </Link>
+            </div>
+            <Link className='createTravel-navLink' to='/createTravel'>Crear viaje</Link>
+            {
+               user &&
+               <Toggable shownClassName='header-navMenu' animationClassName='translate(100%)' icon={avatar}>
+                  < NavMenu />
+               </Toggable>
+            }
+         </nav>
       </header>
-      
+
    )
 }
 

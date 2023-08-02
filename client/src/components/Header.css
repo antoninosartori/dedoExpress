@@ -12,6 +12,13 @@
    z-index: 100;
 }
 
+.pageHeader-nav{
+   display: flex;
+   align-items: center;
+   width: 100%;
+   max-width: 992px;
+}
+
 .header-logo_container{
    display: flex;
    flex-grow: 1;
@@ -54,13 +61,8 @@
    font-weight: 400;
 }
 
-.logo-fingerUp{
-   font-size: var(--px3);
-}
-
 .pageHeader .toggable-iconContainer{
    display: flex;
-   
 }
 
 .pageHeader .toggable-iconImg{
@@ -68,4 +70,17 @@
    height: auto;
    object-fit: cover;
    border-radius: var(--borderRadius);
+}
+
+.createTravel-navLink{
+   display: none;
+}
+
+@media screen and (min-width: 768px){
+   .createTravel-navLink{
+      display: block;
+      text-decoration: none;
+      margin-right: var(--px1);
+      color: var(--white)
+   }
 }

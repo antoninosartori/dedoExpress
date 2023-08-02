@@ -75,7 +75,7 @@ export default function TravelDetailsPage() {
             {travel && !isLoading &&
                <>
                   <h2 className='subtitle'>Detalles del viaje</h2>
-                  <section className='travelDetails-container'>
+                  <section className='travelDetails-container shadow'>
                      <div className='travelDetails-separator'>
                         <div className='travelDetails-travelInfo'>
                            <RowItemWithIcon icon={fromIcon} text={from} />
@@ -116,11 +116,10 @@ export default function TravelDetailsPage() {
                      <>
                         <h2 className='subtitle'>Datos del conductor</h2>
                         <section className='travelDetails-driverInfo'>
-                           <div className='travelDetails-driverInfo-flex'>
+                           <div className='travelDetails-driverInfo-flex shadow'>
                               <div className='travelDetails-driverInfo_avatarContainer'>
                                  < Avatar avatarSrc={user[0].avatar.url} username={user[0].username} />
                               </div>
-
                               <div className='travelDetails-driverInfo-content'>
                                  <h4>{user[0].username}</h4>
                                  <RowItemWithIcon icon={callIcon} text={`+${user[0].cellphone}`} />

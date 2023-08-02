@@ -7,9 +7,11 @@ export const url = {
    createNewUser: `${baseURL}/api/users`,
    getOneUser: `${baseURL}/api/users/`,
    putUser: `${baseURL}/api/users/`,
+   changePassword: `${baseURL}/api/users/password/`,
    getAllTravels: `${baseURL}/api/travels`,
    getOneTravel: `${baseURL}/api/travels/`,
    deleteOneTravel: `${baseURL}/api/travels/`,
    createNewTravel: `${baseURL}/api/travels`,
    updateTravel: `${baseURL}/api/travels/`,
 }
+

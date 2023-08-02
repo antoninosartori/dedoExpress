@@ -23,3 +23,9 @@
    font-size: var(--px6);
    color: var(--bgColor);
 }
+
+@media screen and (min-width: 768px){
+   .createTravel-button{
+      display: none;
+   }
+}

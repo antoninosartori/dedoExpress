@@ -10,6 +10,7 @@ import Button from '../components/Button'
 import InputAvatar from '../components/InputAvatar'
 import { REGEX_EMAIL } from '../helpers/consts'
 import ErrorMessage from '../components/ErrorMessage'
+import { Link } from 'react-router-dom'
 
 export default function UserDetailsPage() {
    const { isLoading, floatingNotification } = useContext(NotificationContext)
@@ -20,7 +21,6 @@ export default function UserDetailsPage() {
       avatarPreview
    } = useGetOneUser()
    const { register, handleSubmit, formState: { errors }, setValue } = useForm()
-
    useEffect(() => {
       window.scrollTo(0, 0)
    }, [])
@@ -53,7 +53,7 @@ export default function UserDetailsPage() {
 
                   <InputAvatar register={register} handleAvatarChange={handleAvatarChange} avatarPreview={avatarPreview} />
                   {errors.avatar?.message && < ErrorMessage errorMessage={errors.avatar?.message} />}
-                 
+
                   <div className="formGroup">
                      <label htmlFor="name">Nombre:</label>
                      <input
@@ -105,8 +105,11 @@ export default function UserDetailsPage() {
                   </div>
                   {errors.cellphone?.message && < ErrorMessage errorMessage={errors.cellphone?.message} />}
 
-                  <Button primary type='submit'>Guardar cambios</Button>
+                  <Button type='button' secondary>
+                     <Link className='changePassword-link' to={`/user/${account?._id}/changePassword`}>Cambiar contraseña</Link>
+                  </Button>
 
+                  <Button primary type='submit'>Guardar cambios</Button>
                </form>
             }
 

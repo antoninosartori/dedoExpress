@@ -85,20 +85,20 @@ export default function useGetOneUser() {
          }
       }
 
+      
       try {
-         console.log({ newUserInfo })
          const newUser = await updateAccount(userId, newUserInfo, credentials)
-         console.log({ newUser })
          setAccount(newUser)
-         await setUser({ ...user, name: name, username: username, avatar: newUser.updatedUser.avatar })
+         await setUser({ ...user, name: name, username: username, avatar: newUser.avatar })
          setIsLoading(false)
          setFloatingNotification({
             message: 'Has actualizado tu usuario correctamente',
             status: 'success',
             duration: 3000
          })
+         navigate('/')
       } catch (err) {
-         console.log(err)
+         console.error({err})
          setIsLoading(false)
          setFloatingNotification({
             message: 'No hemos podido actualizar tu usuario, intenta nuevamente',
@@ -130,11 +130,6 @@ export default function useGetOneUser() {
    }
 
    return {
-      /* name, username, email, cellphone, avatarBase64,
-      handleChangeName: event => setName(event.target.value),
-      handleChangeUsername: event => setUsername(event.target.value), 
-      handleChangeEmail: event => setEmail(event.target.value), 
-      handleChangeCellphone: event => setCellphone(event.target.value), */
       account,
       handleSubmitUpdateAccount,
       handleAvatarChange,

@@ -15,14 +15,17 @@ export default function useCreateUser() {
       const { name, username, email, password, cellphone } = data
       
       const newUser = {
-         name, username, email, password, cellphone, avatarBase64: avatarPreview
+         name, username, email, password, cellphone, avatarBase64: avatarPreview ?? `https://unavatar.io/${email}`
       }
 
       try {
          await createUser(newUser)
          navigate('/login')
          setIsLoading(false)
-         setFloatingNotification({ message: 'se ha creado tu usuario correctamente', status: 'success', duration: 3000 })
+         setFloatingNotification({ 
+            message: 'se ha creado tu usuario correctamente', 
+            status: 'success', 
+            duration: 3000 })
       } catch (err) {
          navigate('/singUp')
          setIsLoading(false)

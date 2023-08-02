@@ -7,10 +7,6 @@ import FloatinNotification from '../components/FloatinNotification'
 import Avatar from './Avatar'
 import Toggable from '../components/Toggable'
 import Button from '../components/Button'
-import travelIcon from '../assets/travel.svg'
-import userIcon from '../assets/account_.svg'
-import calendarIcon from '../assets/calendar.svg'
-import timeIcon from '../assets/alarm.svg'
 import priceIcon from '../assets/attach_money.svg'
 import capacityIcon from '../assets/capacity.svg'
 import chevronIcon from '../assets/chevron-down.svg'
@@ -45,7 +41,7 @@ export default function TravelCard({ travel, ...restOfProps }) {
             />
          }
 
-         <article className='travelCard-container'>
+         <article className='travelCard-container shadow'>
 
             <header className='travelCard-header'>
                <div className='travelCard-header_userAvatar'>
