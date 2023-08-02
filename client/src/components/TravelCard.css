@@ -80,5 +80,5 @@
 .travelCard-container .mainBtn{
    width: max-content;
    margin: unset;
-   padding: var(--px1);
+   padding: var(--px1) var(--fsBody);
 }

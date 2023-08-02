@@ -31,7 +31,8 @@
    align-items: center;
    justify-content: center;
    border-radius: var(--borderRadius);
-   background-color: var(--mainColor);
+   /* background-color: var(--mainColor); */
+   background-color: var(--white);
    padding: var(--px1);
 }
 

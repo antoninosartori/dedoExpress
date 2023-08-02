@@ -14,7 +14,8 @@
 
 .btn-primary{
    background-color: var(--mainColor);
-   color: var(--secondaryColor);
+   /* color: var(--secondaryColor); */
+   color: var(--white);
 }
 
 .btn-secondary{

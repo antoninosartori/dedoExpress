@@ -7,8 +7,8 @@
    right: var(--px3);
    height: 60px;
    width: 60px;
-   background-color: var(--secondaryColor);
-   border-radius: var(--borderRadius);
+   background-color: var(--mainColor);
+   border-radius: 50%;
    z-index: 10;
    /* box-shadow: var(--boxShadowShort); */
 }
