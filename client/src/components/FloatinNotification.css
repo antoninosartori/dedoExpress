@@ -10,13 +10,9 @@
    transition: 1s all;
    color: var(--white);
    text-align: center;
+   font-weight: 700;
    top: 0;
    left: 0;
-}
-
-
-.fl-notification-animation{
-   transition: 1s all;
 }
 
 .fl-notification-warning {
@@ -34,12 +30,15 @@
 
 .fl-notification-warning .notification-text {
    color: var(--black);
+   font-weight: 700;
 }
 
 .fl-notification-success .notification-text {
    color: var(--white);
+   font-weight: 700;
 }
 
 .fl-notification-error .notification-text {
    color: var(--white);
+   font-weight: 700;
 }

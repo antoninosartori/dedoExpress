@@ -4,10 +4,10 @@ import useUpdateTravel from '../hooks/useUpdateTravel'
 import useGetOneTravel from '../hooks/useGetOneTravel'
 import { useForm } from 'react-hook-form'
 import { validateDate } from '../helpers/validateDate'
-import FloatinNotification from '../components/FloatinNotification'
 import Header from '../components/Header'
 import Button from '../components/Button'
 import TextWithTitle from '../components/TextWithTitle'
+import ErrorMessage from '../components/ErrorMessage'
 import RowItemWithIcon from '../components/RowItemWithIcon'
 import petIcon from '../assets/pet_supplies.svg'
 import luggageIcon from '../assets/luggage.svg'
@@ -21,6 +21,10 @@ export default function UpdateTravelPage() {
    const { handleSumbitUpdateTravel } = useUpdateTravel()
 
    useEffect(() => {
+      window.scrollTo(0, 0)
+   }, [])
+
+   useEffect(() => {
       setValue('from', travel.from)
       setValue('to', travel.to)
       setValue('capacity', travel.capacity)
@@ -31,8 +35,6 @@ export default function UpdateTravelPage() {
       setValue('talk', travel.features?.talk)
       setValue('music', travel.features?.music)
    }, [travel._id])
-
-   console.log({ travel })
 
    return (
       <>
@@ -60,7 +62,7 @@ export default function UpdateTravelPage() {
                         })}
                         type="text" autoComplete='off' placeholder='Lugar de salida' />
                   </div>
-                  {errors.from?.message && < FloatinNotification message={errors.from.message} />}
+                  {errors.from?.message && < ErrorMessage errorMessage={errors.from?.message} />}
 
                   <div className="formGroup">
                      <label htmlFor="to">¿Hacia dónde vas?</label>
@@ -72,7 +74,7 @@ export default function UpdateTravelPage() {
                         })}
                         type="text" autoComplete='off' placeholder='Lugar de destino' />
                   </div>
-                  {errors.to?.message && < FloatinNotification message={errors.to.message} />}
+                  {errors.to?.message && < ErrorMessage errorMessage={errors.to?.message} />}
 
                   <div className="formGroup">
                      <label htmlFor="capacity">¿Cuántas personas quieres llevar?</label>
@@ -84,7 +86,7 @@ export default function UpdateTravelPage() {
                         })}
                         type="number" autoComplete='off' min={1} placeholder='Lugares disponibles' />
                   </div>
-                  {errors.capacity?.message && < FloatinNotification message={errors.capacity.message} />}
+                  {errors.capacity?.message && < ErrorMessage errorMessage={errors.capacity?.message} />}
 
                   <div className="formGroup">
                      <label htmlFor="price">¿Precio por persona?</label>
@@ -96,7 +98,7 @@ export default function UpdateTravelPage() {
                         })}
                         type="number" autoComplete='off' min={0} placeholder='Precio por persona' />
                   </div>
-                  {errors.price?.message && < FloatinNotification message={errors.price.message} />}
+                  {errors.price?.message && < ErrorMessage errorMessage={errors.price?.message} />}
 
                   <div className="formGroup">
                      <label htmlFor="dateTime">¿Fecha y hora de salida?</label>
@@ -108,7 +110,7 @@ export default function UpdateTravelPage() {
                         type="datetime-local" placeholder='Fecha y hora de salida' />
                   </div>
                </div>
-               {errors.dateTime?.message && < FloatinNotification message={errors.dateTime.message} />}
+               {errors.dateTime?.message && < ErrorMessage errorMessage={errors.dateTime?.message} />}
 
                <div className="form-separator">
                   <TextWithTitle title='Adicionales (opcionales)' >

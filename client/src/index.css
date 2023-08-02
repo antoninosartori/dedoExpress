@@ -22,6 +22,11 @@
    --fsHeadline: 16px;
    --fsBody: 14px;
    --fsSmall: 12px;
+   /* --fsTitle: 30px;
+   --fsSubTitle: 20px;
+   --fsHeadline: 18px;
+   --fsBody: 16px;
+   --fsSmall: 14px;  */
    /* medidas generales */
    --px1em: 16px;
    --px1: 10px;
@@ -96,7 +101,7 @@ input {
    width: 100%;
    border-radius: var(--borderRadius);
    font-family: var(--fontMain);
-   font-size: var(--fsBody);
+   font-size: var(--fsHeadline);
    background-color: var(--white);
    color: var(--secondaryColor);
 }
@@ -182,6 +187,7 @@ input::placeholder {
 .justify-evenly{
    justify-content: space-evenly;
 }
+
 /* desktop */
 @media screen and (min-width: 768px){
    .searchFormHome-form{

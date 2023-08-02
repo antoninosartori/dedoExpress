@@ -26,6 +26,10 @@ export default function LoginPage() {
    const passwordType = showPassword ? 'text' : 'password'
 
    useEffect(() => {
+      window.scrollTo(0,0)
+   }, [])
+
+   useEffect(() => {
       if (user !== null) {
          navigate('/')
       }

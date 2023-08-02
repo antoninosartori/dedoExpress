@@ -1,6 +1,5 @@
 import './InputAvatar.css'
 import addAvatarIcon from '../assets/addAvatar.svg'
-import defaultAvatar from '../assets/account.svg'
 
 export default function InputAvatar({ register, handleAvatarChange, avatarPreview }) {
    return (

@@ -1,0 +1,14 @@
+.error-message-container{
+   display: flex;
+   justify-content: flex-start;
+   align-items:  center;
+   width: 100%;
+}
+
+
+.error-message{
+   font-size: var(--fsSmall);
+   font-weight: 700;
+   text-align: left;
+   color: var(--red);
+}

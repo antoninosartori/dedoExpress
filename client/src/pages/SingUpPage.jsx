@@ -12,6 +12,7 @@ import FloatinNotification from '../components/FloatinNotification'
 import InputAvatar from '../components/InputAvatar'
 import { REGEX_EMAIL, REGEX_PASSWORD } from '../helpers/consts'
 import TextWithTitle from '../components/TextWithTitle'
+import ErrorMessage from '../components/ErrorMessage'
 
 export default function SingUpPage() {
    const { user } = useContext(UserContext)
@@ -19,6 +20,10 @@ export default function SingUpPage() {
    const { register, handleSubmit, formState: { errors }, watch } = useForm()
    const { handleCreateUser, handleAvatarChange, avatarPreview } = useCreateUser()
    const navigate = useNavigate()
+
+   useEffect(() => {
+      window.scrollTo(0,0)
+   },[])
 
    useEffect(() => {
       if (!user === null) {
@@ -41,8 +46,8 @@ export default function SingUpPage() {
                            message: 'Debes introducir un email valido'
                         }
                      })}
-                     type="email" placeholder='Ingresá tu correo' autoComplete='off' />
-                  {errors.email?.message && < FloatinNotification message={errors.email.message} />}
+                     type="email" placeholder='Ingresá tu correo' autoComplete='off' autoFocus />
+                  {errors.email?.message && <ErrorMessage errorMessage={errors.email?.message} />}
 
                   <input
                      {...register('username', {
@@ -51,7 +56,7 @@ export default function SingUpPage() {
                         maxLength: { value: 30, message: 'El campo del username debe ser menor a 30 caracteres' }
                      })}
                      type="text" placeholder='Ingresá tu usuario' autoComplete='off' />
-                  {errors.username?.message && < FloatinNotification message={errors.username.message} />}
+                  {errors.username?.message && < ErrorMessage errorMessage={errors.username?.message} />}
 
                   <input
                      {...register('password', {
@@ -59,7 +64,7 @@ export default function SingUpPage() {
                         validate: value => REGEX_PASSWORD.test(value) || 'La contraseña debe tener entre 8 y 16 caracteres, al menos una mayuscula, una minuscula y un numero'
                      })}
                      type="password" placeholder='Ingresá tu contraseña' autoComplete='off' />
-                  {errors.password?.message && < FloatinNotification message={errors.password.message} />}
+                  {errors.password?.message && < ErrorMessage errorMessage={errors.password?.message} />}
 
                   <input
                      {...register('repeatedPassword', {
@@ -67,7 +72,7 @@ export default function SingUpPage() {
                         validate: value => value === watch('password') || 'Las contraseñas no coinciden'
                      })}
                      type="password" placeholder='Repetí tu contraseña' autoComplete='off' />
-                  {errors.repeatedPassword?.message && < FloatinNotification message={errors.repeatedPassword.message} />}
+                  {errors.repeatedPassword?.message && < ErrorMessage errorMessage={errors.repeatedPassword?.message} />}
 
                </div>
 
@@ -75,15 +80,15 @@ export default function SingUpPage() {
                   <TextWithTitle title='Datos del perfil'>
                      <p className='textWithTitle-text'>Estos datos le servirán a las personas para contactarte cuando publiques un viaje.</p>
                   </TextWithTitle>
-                 
+
                   <input
                      {...register('name', {
                         required: 'El campo del nombre esta vacio',
                         minLength: { value: 3, message: 'El campo del nombre debe ser mayor a 3 caracteres' },
                         maxLength: { value: 30, message: 'El campo del nombre debe ser menor a 30 caracteres' }
                      })}
-                     type="text" placeholder='Ingresá tu nombre' autoComplete='off' autoFocus />
-                  {errors.name?.message && < FloatinNotification message={errors.name.message} />}
+                     type="text" placeholder='Ingresá tu nombre' autoComplete='off' />
+                  {errors.name?.message && < ErrorMessage errorMessage={errors.name?.message} />}
 
                   <input
                      {...register('cellphone', {
@@ -92,10 +97,10 @@ export default function SingUpPage() {
                         minLength: { value: 10, message: 'El numero de telefono no puede tener menos de 10 digitos' }
                      })}
                      type="number" placeholder='Ingresá tu número de celular' autoComplete='off' />
-                  {errors.cellphone?.message && < FloatinNotification message={errors.cellphone.message} />}
+                  {errors.cellphone?.message && < ErrorMessage errorMessage={errors.cellphone?.message} />}
 
                   < InputAvatar register={register} handleAvatarChange={handleAvatarChange} avatarPreview={avatarPreview} />
-                  {errors.avatar?.message && < FloatinNotification message={errors.avatar.message} />}
+                  {errors.avatar?.message && < ErrorMessage errorMessage={errors.avatar?.message} />}
 
                </div>
 

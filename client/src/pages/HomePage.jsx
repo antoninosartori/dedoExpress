@@ -25,6 +25,7 @@ export default function HomePage() {
    useEffect(() => {
       const initialTravels = getInitialAllTravel()
       setTravels(initialTravels)
+      window.scrollTo(0,0)
    }, [])
 
    useEffect(() => {

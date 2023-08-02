@@ -1,5 +1,5 @@
 import './CreateTravelPage.css'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import useCreateTravelForm from '../hooks/useCreateTravelForm'
@@ -10,6 +10,7 @@ import Header from '../components/Header'
 import LoadingSpinner from '../components/LoadingSpinner'
 import RowItemWithIcon from '../components/RowItemWithIcon'
 import FloatinNotification from '../components/FloatinNotification'
+import ErrorMessage from '../components/ErrorMessage'
 import TextWithTitle from '../components/TextWithTitle'
 import petIcon from '../assets/pet_supplies.svg'
 import luggageIcon from '../assets/luggage.svg'
@@ -25,6 +26,10 @@ export default function CreateTravelPage() {
    const { floatingNotification, isLoading } = useContext(NotificationContext)
    const navigate = useNavigate()
    const { register, handleSubmit, formState: { errors } } = useForm()
+
+   useEffect(() => {
+      window.scrollTo(0,0)
+   }, [])
 
    if (user === null) {
       navigate('/login')
@@ -64,7 +69,7 @@ export default function CreateTravelPage() {
                         maxLength: { value: 30, message: 'La ciudad de salida debe ser menor a 30 caracteres' },
                         minLength: { value: 3, message: 'El nombre de la ciudad de salida debe ser mayor a 3 caracteres' }
                      })} type='text' placeholder='¿Desde dónde salís?' autoComplete='off' autoFocus />
-                  {errors.from?.message && < FloatinNotification message={errors.from.message} />}
+                  {errors.from?.message && < ErrorMessage errorMessage={errors.from?.message} />}
 
                   <input
                      {...register('to', {
@@ -73,7 +78,7 @@ export default function CreateTravelPage() {
                         maxLength: { value: 30, message: 'La ciudad de destino debe ser menor a 30 caracteres' }
                      })} type="text" placeholder='¿Hacia dónde vas?' autoComplete='off'
                   />
-                  {errors.to?.message && < FloatinNotification message={errors.to.message} />}
+                  {errors.to?.message && < ErrorMessage errorMessage={errors.to?.message} />}
 
                   <input
                      {...register('capacity', {
@@ -82,7 +87,7 @@ export default function CreateTravelPage() {
                         max: { value: 9, message: 'El maximo de lugares disponibles es de 9' }
                      })} type="number" placeholder='¿Cuántas personas quieres llevar?' autoComplete='off' min={1}
                   />
-                  {errors.capacity?.message && < FloatinNotification message={errors.capacity.message} />}
+                  {errors.capacity?.message && < ErrorMessage errorMessage={errors.capacity?.message} />}
 
                   <input
                      {...register('price', {
@@ -91,7 +96,7 @@ export default function CreateTravelPage() {
                         min: 0
                      })}
                      type="number" placeholder='¿Precio por persona?' autoComplete='off' min={0} />
-                  {errors.price?.message && < FloatinNotification message={errors.price.message} />}
+                  {errors.price?.message && < ErrorMessage errorMessage={errors.price?.message} />}
 
                   <div className="formGroup">
                      <label className='datetime-label' htmlFor="dateTime">¿Fecha y hora de salida?</label>
@@ -100,8 +105,8 @@ export default function CreateTravelPage() {
                            required: 'Completa la fecha y hora de salida',
                            validate: value => validateDate(value) || 'Ingresa una fecha proxima'
                         })} type="datetime-local" placeholder='¿Fecha y hora de salida?' autoComplete='off' />
-                     {errors.dateTime?.message && < FloatinNotification message={errors.dateTime.message} />}
                   </div>
+                  {errors.dateTime?.message && < ErrorMessage errorMessage={errors.dateTime?.message} />}
                </div>
                <div className="form-separator">
                   <TextWithTitle title='Adicionales (opcionales)' >

@@ -9,6 +9,7 @@ import Header from '../components/Header'
 import Button from '../components/Button'
 import InputAvatar from '../components/InputAvatar'
 import { REGEX_EMAIL } from '../helpers/consts'
+import ErrorMessage from '../components/ErrorMessage'
 
 export default function UserDetailsPage() {
    const { isLoading, floatingNotification } = useContext(NotificationContext)
@@ -19,6 +20,10 @@ export default function UserDetailsPage() {
       avatarPreview
    } = useGetOneUser()
    const { register, handleSubmit, formState: { errors }, setValue } = useForm()
+
+   useEffect(() => {
+      window.scrollTo(0, 0)
+   }, [])
 
    useEffect(() => {
       setValue('name', account.name)
@@ -47,8 +52,8 @@ export default function UserDetailsPage() {
                <form onSubmit={handleSubmit(handleSubmitUpdateAccount)}>
 
                   <InputAvatar register={register} handleAvatarChange={handleAvatarChange} avatarPreview={avatarPreview} />
-                  {errors.avatar?.message && < FloatinNotification message={errors.avatar.message} />}
-
+                  {errors.avatar?.message && < ErrorMessage errorMessage={errors.avatar?.message} />}
+                 
                   <div className="formGroup">
                      <label htmlFor="name">Nombre:</label>
                      <input
@@ -60,7 +65,7 @@ export default function UserDetailsPage() {
                         type="text"
                      />
                   </div>
-                  {errors.name?.message && < FloatinNotification message={errors.name.message} />}
+                  {errors.name?.message && < ErrorMessage errorMessage={errors.name?.message} />}
 
                   <div className="formGroup">
                      <label htmlFor="username">Username:</label>
@@ -72,7 +77,7 @@ export default function UserDetailsPage() {
                         })}
                         type="text" />
                   </div>
-                  {errors.username?.message && < FloatinNotification message={errors.username.message} />}
+                  {errors.username?.message && < ErrorMessage errorMessage={errors.username?.message} />}
 
                   <div className="formGroup">
                      <label htmlFor="email">Email:</label>
@@ -86,7 +91,7 @@ export default function UserDetailsPage() {
                         })}
                         type="email" />
                   </div>
-                  {errors.email?.message && < FloatinNotification message={errors.email.message} />}
+                  {errors.email?.message && <ErrorMessage errorMessage={errors.email?.message} />}
 
                   <div className="formGroup">
                      <label htmlFor="cellphone">Celular:</label>
@@ -98,7 +103,7 @@ export default function UserDetailsPage() {
                         })}
                         type="number" />
                   </div>
-                  {errors.cellphone?.message && < FloatinNotification message={errors.cellphone.message} />}
+                  {errors.cellphone?.message && < ErrorMessage errorMessage={errors.cellphone?.message} />}
 
                   <Button primary type='submit'>Guardar cambios</Button>
 

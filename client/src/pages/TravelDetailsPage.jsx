@@ -38,6 +38,10 @@ export default function TravelDetailsPage() {
    const { weekday, month, time } = formatDate(date)
   
    useEffect(() => {
+      window.scrollTo(0,0)
+   },[])
+
+   useEffect(() => {
       if (userLogged === null) {
          navigate('/login')
       }
