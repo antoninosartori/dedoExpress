@@ -27,7 +27,7 @@ export default function useGetTravels() {
          .catch(err => {
             console.log(err)
             setFloatingNotification({ 
-               message: err.response.data.error,
+               message: 'Error al traer todos los viajes',
                status: 'error',
                duration: 3000 
             })

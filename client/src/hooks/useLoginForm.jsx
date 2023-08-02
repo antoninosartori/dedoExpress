@@ -24,7 +24,7 @@ export default function useLoginForm(){
          setFloatingNotification({message: 'sesion iniciada correctamente', status: 'success', duration: 3000})
       } catch (err) {
          setIsLoading(false)
-         setFloatingNotification({message: err.response?.data?.error, status: 'error', duration: 3000})
+         setFloatingNotification({message: 'Lo siento, ha ocurrido un error. Intente nuevamente', status: 'error', duration: 3000})
          console.log(err)
       }
    }
