@@ -65,7 +65,9 @@ export default function ChangePasswordPage() {
 
                <input {...register('newPassword', {
                   required: 'Por favor, introduce una contraseña',
-                  validate: value => REGEX_PASSWORD.test(value) || 'La contraseña debe tener entre 8 y 16 caracteres, al menos una mayuscula, una minuscula y un numero'
+                  validate: { regex: value => REGEX_PASSWORD.test(value) || 'La contraseña debe tener entre 8 y 16 caracteres, al menos una mayuscula, una minuscula y un numero', 
+                     samePassword: value => value !== watch('actualPassword') || 'Tu nueva contraseña debe ser distinta a la actual'
+                  }
                })} 
                   type="password" placeholder='Ingresá tu nueva contraseña'/>
                {errors.newPassword?.message && < ErrorMessage errorMessage={errors.newPassword?.message} />}
