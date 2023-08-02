@@ -1,18 +1,19 @@
 .floatinNotification-container {
-   width: 90%;
+   width: 100vw;
+   height: var(--headerHeight);
    position: absolute;
-   bottom: calc(var(--headerHeight) + var(--marginVerticalToComponents));
    display: flex;
    align-items: center;
    justify-content: center;
-   z-index: 100;
+   z-index: 200;
    padding: var(--px2);
    transition: 1s all;
-   border-radius: var(--borderRadius);
-   outline: var(--inputOutline);
    color: var(--white);
    text-align: center;
+   top: 0;
+   left: 0;
 }
+
 
 .fl-notification-animation{
    transition: 1s all;
