@@ -1,7 +1,7 @@
 .floatinNotification-container {
+   position: fixed;
    width: 100vw;
    height: var(--headerHeight);
-   position: absolute;
    display: flex;
    align-items: center;
    justify-content: center;

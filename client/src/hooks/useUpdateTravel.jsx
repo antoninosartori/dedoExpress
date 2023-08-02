@@ -12,9 +12,11 @@ export default function useUpdateTravel() {
    const navigate = useNavigate()
 
    const handleSumbitUpdateTravel = async (data) => {
+      console.log({data})
       setIsLoading(true)
-      const { from, to, capacity, price, dateTime: date } = data
-      const newTravelInfo = { from, to, capacity, price, date }
+      const { from, to, capacity, price, dateTime: date, pet, food, music, luggage, talk } = data
+      const features = { pet, food, music, luggage, talk }
+      const newTravelInfo = { from, to, capacity, price, date, features }
 
       const token = user === null
          ? null
