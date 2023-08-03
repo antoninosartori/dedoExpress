@@ -26,7 +26,6 @@ export default function CreateTravelPage() {
    const { floatingNotification, isLoading } = useContext(NotificationContext)
    const navigate = useNavigate()
    const { register, handleSubmit, formState: { errors } } = useForm()
-
    useEffect(() => {
       window.scrollTo(0,0)
    }, [])

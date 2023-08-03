@@ -32,6 +32,7 @@ export default function useTimeAgo(timestamp) {
    const formattedDate = new Intl.DateTimeFormat(locale, {
       weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'
    }).format(date)
+   
    return {
       formattedDate,
       timeAgo

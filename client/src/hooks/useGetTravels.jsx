@@ -22,7 +22,7 @@ export default function useGetTravels() {
 
       getAllTravels({})
          .then(data => {
-            setAllTravels(data.reverse())
+            setAllTravels(data.sort((a,b) => b.date - a.date))
          })
          .catch(err => {
             console.log(err)

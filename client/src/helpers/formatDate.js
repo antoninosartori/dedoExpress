@@ -15,3 +15,21 @@ export const formatDate = date => {
       time
    }
 }
+
+export const formatDay = dateInNumber => {
+   const { weekday, month, time } = formatDate(new Date())
+   const dayInNumber = Number(month.split(' ')[0])
+   const results = dateInNumber - dayInNumber
+   if(results === 0){
+      return 'hoy'
+   }
+   if(results === 1){
+      return 'mañana'
+   }
+   if(results === -1){
+      return 'ayer'
+   } else{
+      return null
+   }
+   
+}

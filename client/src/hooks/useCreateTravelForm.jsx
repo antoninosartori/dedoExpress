@@ -7,11 +7,9 @@ import { NotificationContext } from "../context/FloatinNotificationContext"
 export default function useCreateTravelForm() {
    const { user } = useContext(UserContext)
    const { setFloatingNotification, setIsLoading } = useContext(NotificationContext)
+   
    const navigate = useNavigate()
    
-   /* const actualDateInMiniSeconds = new Date().getTime()
-   const dateInputInMilisecond = dateTime ? new Date(dateTime).getTime() : null */
-
    useEffect(() => {
       if (user === null) {
          navigate('/login')
@@ -20,7 +18,8 @@ export default function useCreateTravelForm() {
 
    const handleCreateTravel = async (data) => {
       setIsLoading(true)
-      const { from, to, capacity, price, dateTime: date, pet, luggage, music, food, talk  } = data
+      const { from, to, capacity, price, dateTime, pet, luggage, music, food, talk  } = data
+      const date = new Date(dateTime).getTime()
 
       const { token } = user
 

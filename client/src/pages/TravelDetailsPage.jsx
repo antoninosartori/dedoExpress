@@ -13,7 +13,6 @@ import Header from '../components/Header'
 import RowItemWithIcon from '../components/RowItemWithIcon'
 import fromIcon from '../assets/location_on.svg'
 import toIcon from '../assets/sports_score.svg'
-//import timeArriveIcon from '../assets/time_arrive.svg'
 import calendarTodayIcon from '../assets/calendar_today.svg'
 import priceIcon from '../assets/attach_money.svg'
 import capacityIcon from '../assets/capacity.svg'
@@ -33,7 +32,7 @@ export default function TravelDetailsPage() {
    const { handleTravelDelete } = useGetTravels()
    const { floatingNotification, isLoading } = useContext(NotificationContext)
    const navigate = useNavigate()
-   const { title, from, to, price, capacity, user, _id: travelId, date, features } = travel
+   const { from, to, price, capacity, user, _id: travelId, date, features } = travel
    
    const { weekday, month, time } = formatDate(date)
   

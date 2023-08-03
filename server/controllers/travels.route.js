@@ -7,12 +7,12 @@ travelsRouter.get('/', async (req, res, next) => {
    const { from, to } = req.query;
    const query = {};
    if (from) {
-     query.from = from.toLowerCase();
+      query.from = from.toLowerCase();
    }
    if (to) {
-     query.to = to.toLowerCase();
+      query.to = to.toLowerCase();
    }
- 
+
    try {
       const travels = await Travel
          .find(query).populate('user', {
@@ -90,7 +90,7 @@ travelsRouter.delete('/:travelId', tokenExtractor, async (req, res, next) => {
 
       user.travels = await user.travels.filter(id => id.toString() !== travelId)
       await user.save()
-      
+
       res.status(204).json({ result: 'travel deleted' })
    } catch (err) {
       next(err)

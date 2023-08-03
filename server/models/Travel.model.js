@@ -6,7 +6,7 @@ const travelSchema = new Schema({
    to: { type: String, require: true },
    capacity: Number,
    price: Number,
-   date: Date,
+   date: Number,
    features: {
       pet: Boolean,
       luggage: Boolean,

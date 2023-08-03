@@ -7,6 +7,5 @@
    gap: var(--px4);
 }
 .emptyComponent-container p {
-   font-size: var(--px2);
-   font-style: oblique;
+   font-size: var(--fsBody);
 }

@@ -14,6 +14,7 @@ import rigthArrow from '../assets/arrow_right_alt.svg'
 import calendarTodayIcon from '../assets/calendar_today.svg'
 import schedule from '../assets/schedule.svg'
 import RowItemWithIcon from './RowItemWithIcon'
+import { formatDay } from '../helpers/formatDate'
 
 
 
@@ -25,8 +26,10 @@ export default function TravelCard({ travel, ...restOfProps }) {
    const { _id: userId, username, cellphone, avatar } = user[0]
    const { url: avatarUrl } = avatar
 
-   const { formattedDate, timeAgo } = useTimeAgo(new Date(date).getTime())
+   const { formattedDate, timeAgo } = useTimeAgo(date)
    const [weekday, month, time] = formattedDate.split(', ')
+   const dayInNumber = Number(month.split(' ')[0])
+   const dayInfo = formatDay(dayInNumber)
 
    const defaultText = user ? `Hola ${user[0].username}, me gustaria viajar con vos a ${to}.` : ''
 
@@ -54,8 +57,12 @@ export default function TravelCard({ travel, ...restOfProps }) {
                      {to}
                   </p>
                   <h3 className='travelCard-usernameText'>{username}</h3>
-                  {/* <p>{timeAgo}</p> */}
                </div>
+               {dayInfo &&
+                  <div className='travelCard-dayInfo'>
+                     <span>{dayInfo}</span>
+                  </div>
+               }
             </header>
 
             <Toggable icon={chevronIcon} initialState>
@@ -65,16 +72,16 @@ export default function TravelCard({ travel, ...restOfProps }) {
                   <RowItemWithIcon icon={capacityIcon} text={`Lugares disponibles: ${capacity}`} />
                   <RowItemWithIcon icon={priceIcon} text={`Precio: $${price} por persona`} />
                </div>
-               
+
             </Toggable>
             <footer className='travelCard-footer'>
-                  <Button type='button' primary>
-                     <Link  to={`/travelDetails/${travelId}`}>Ver detalles</Link>
-                  </Button>
-                  <Button type='button' secondary>
-                     <a href={`https://api.whatsapp.com/send/?phone=${user[0].cellphone}&text=${defaultText}`} target='_blank' rel='noreferrer'>¡Me sumo!</a>
-                  </Button>
-               </footer>
+               <Button type='button' primary>
+                  <Link to={`/travelDetails/${travelId}`}>Ver detalles</Link>
+               </Button>
+               <Button type='button' secondary>
+                  <a href={`https://api.whatsapp.com/send/?phone=${user[0].cellphone}&text=${defaultText}`} target='_blank' rel='noreferrer'>¡Me sumo!</a>
+               </Button>
+            </footer>
          </article>
       </>
    )

@@ -45,6 +45,7 @@
 .travelCard-header_userInfo {
    display: flex;
    flex-direction: column;
+   flex-grow: 1;
 }
 
 .travelCard-usernameText {
@@ -58,6 +59,13 @@
    gap: 8px;
    font-weight: 700;
    text-transform: capitalize;
+}
+
+.travelCard-dayInfo{
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+   font-size: var(--fsBody);
 }
 
 .travelCard-body {
