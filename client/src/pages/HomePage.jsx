@@ -28,20 +28,28 @@ export default function HomePage() {
    const navigate = useNavigate()
 
    useEffect(() => {
+      if (user === null) {
+         navigate('/login')
+      }
       getInitialAllTravel().then(setTravelsToShow)
       window.scrollTo(0,0)
-   }, [])
+   }, [user])
+
+/*    useEffect(() => {
+      getInitialAllTravel().then(setTravelsToShow)
+      window.scrollTo(0,0)
+   }, []) */
 
    useEffect(() => {
       const filteredTravel = allTravels.filter(travel => (travel.date - new Date().getTime() < filters.max) && (travel.date - new Date().getTime() > filters.min))
       setTravelsToShow(filteredTravel)
    }, [filters, allTravels])
 
-   useEffect(() => {
+/*    useEffect(() => {
       if (user === null) {
          navigate('/login')
       }
-   }, [user])
+   }, [user]) */
 
    const handleChangeFilters = (event) => {
       const min = event.target.min

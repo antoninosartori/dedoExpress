@@ -22,3 +22,4 @@
 .updateTravelPage form .formGroup input:focus{
    outline: var(--inputOutline);
 }
+

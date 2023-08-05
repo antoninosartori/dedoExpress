@@ -53,7 +53,7 @@ export default function LoginPage() {
                {...register('username', {
                   required: true
                })}
-               type="text" placeholder='Escribe tu usuario' autoComplete='off' autoFocus />
+               type="text" placeholder='Escribe tu usuario' autoComplete='off' />
 
             <div className="formGroup">
                <input
@@ -67,7 +67,13 @@ export default function LoginPage() {
                      : <img className='hover' src={eyeOpen} alt="mostrar contraseña" />}
                </div>
             </div>
-            <Button type='submit'>Iniciar sesion</Button>
+
+            <Button primary type='submit'>Iniciar sesion</Button>
+
+            <Link to='/forgotten-password'>
+               <p>¿Olvidaste tu contraseña?</p>
+            </Link>
+
          </form>
 
          <div className='loginPage-toSingUpButtonContainer'>

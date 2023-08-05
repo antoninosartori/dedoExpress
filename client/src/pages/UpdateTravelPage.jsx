@@ -14,12 +14,13 @@ import luggageIcon from '../assets/luggage.svg'
 import musicIcon from '../assets/music_note.svg'
 import fastfoodIcon from '../assets/fastfood.svg'
 import voiceIcon from '../assets/voice_selection.svg'
+import { useNavigate } from 'react-router-dom'
 
 export default function UpdateTravelPage() {
    const { register, handleSubmit, formState: { errors }, setValue } = useForm()
    const { travel } = useGetOneTravel()
    const { handleSumbitUpdateTravel } = useUpdateTravel()
-
+   const navigate = useNavigate()
    useEffect(() => {
       window.scrollTo(0, 0)
    }, [])
@@ -144,7 +145,10 @@ export default function UpdateTravelPage() {
                   </div>
                </div>
 
-               <Button>Modificar viaje</Button>
+               <div className='column-separation'>
+                  <Button type='submit' primary >Modificar viaje</Button>
+                  <Button type='button' onClickFunction={() => navigate(-1)} secondary >Cancelar</Button>
+               </div>
 
             </form>
          </main>
