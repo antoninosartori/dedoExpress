@@ -17,12 +17,13 @@ export default function useGetTravels() {
    const location = useLocation();
    const token = user ? user.token : ''
 
-   const getInitialAllTravel = () => {
+   const getInitialAllTravel = async () => {
       setIsLoading(true)
 
-      getAllTravels({})
+      const data = await getAllTravels({})
          .then(data => {
             setAllTravels(data.sort((a,b) => b.date - a.date))
+            return data
          })
          .catch(err => {
             console.log(err)
@@ -33,6 +34,7 @@ export default function useGetTravels() {
             })
          })
          .finally(() => setIsLoading(false))
+      return data
    }
 
    const validateParams = (from, to) => {
@@ -58,10 +60,10 @@ export default function useGetTravels() {
 
    const handleSubmitSearch = (event) => {
       event.preventDefault()
-
+      setIsLoading(true)
       validateParams(fromInput, toInput)
       const params = location.search
-      setIsLoading(true)
+      
       getAllTravelsWithParams(params)
          .then(data => {
             setAllTravels(data)

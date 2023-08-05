@@ -1,5 +1,5 @@
 import './HomePage.css'
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useGetTravels from '../hooks/useGetTravels'
 import { UserContext } from '../context/UserContext'
@@ -11,59 +11,45 @@ import SearchFormHome from '../components/SearchFormHome'
 import FloatinNotification from '../components/FloatinNotification'
 import TravelCard from '../components/TravelCard'
 import EmptyComponent from '../components/EmptyComponent'
-/* import Nav from '../components/Nav' */
 import Header from '../components/Header'
-import { formatDate } from '../helpers/formatDate'
-import { ONE_WEEK_IN_MS } from '../helpers/consts'
+import TravelFilters from '../components/TravelFilters'
+import useFilters from '../hooks/useFilters'
+import { ONE_DAY_IN_MS } from '../helpers/consts'
 
 export default function HomePage() {
    const { allTravels } = useContext(TravelContext)
    const { user } = useContext(UserContext)
    const { floatingNotification, isLoading } = useContext(NotificationContext)
    const { getInitialAllTravel } = useGetTravels()
-   const [travels, setTravels] = useState(allTravels)
+   /* const { filters } = useFilters() */
+   const [travelsToShow, setTravelsToShow] = useState([])
+   const [filters, setFilters] = useState({
+      min: 0,
+      max: ONE_DAY_IN_MS
+   })
    const navigate = useNavigate()
 
    /* sirve??? 👇 */
    useEffect(() => {
-      const initialTravels = getInitialAllTravel()
-      setTravels(initialTravels)
+      getInitialAllTravel().then(setTravelsToShow)
+      window.scrollTo(0,0)
    }, [])
 
-   useEffect(() => {
-      setTravels(allTravels)
+/*    useEffect(() => {
+      setTravelsToShow(allTravels)
       window.scrollTo(0,0)
-   }, [allTravels])
+   }, [filters]) */
+
+   useEffect(() => {
+      const filteredTravel = allTravels.filter(travel => (travel.date - new Date().getTime() < filters.max) && (travel.date - new Date().getTime() > filters.min))
+      setTravelsToShow(filteredTravel)
+   }, [filters, allTravels])
 
    useEffect(() => {
       if (user === null) {
          navigate('/login')
       }
    }, [user])
-
-
-   const handleChangeFilters = (event) => {
-      const value = event.target.value
-      
-      let filter = ''
-      if(value === 'all'){
-         return setTravels(allTravels)
-      }
-      if(value === 'thisWeek'){
-         const today = new Date().getTime()
-         const filteredTravels = allTravels.filter(travel => travel.date - today <= ONE_WEEK_IN_MS  )
-         return setTravels(filteredTravels)
-      }
-      if(value === 'today'){
-         filter = Number(formatDate(new Date()).month.split(' ')[0])
-      }
-      if(value === 'tomorrow'){
-         filter = Number(formatDate(new Date()).month.split(' ')[0]) + 1
-         // problemas con los 30 o 31
-      }
-      const filteredTravels = allTravels.filter(travel => Number(formatDate(travel.date).month.split(' ')[0]) === filter )
-      setTravels(filteredTravels)
-   }
 
    return (
       <>
@@ -81,37 +67,21 @@ export default function HomePage() {
 
             <h2 className='subtitle'>Viajes disponibles</h2>
 
-            <div className='filterTravel-container shadow' onChange={handleChangeFilters}>
-               <div className='formGroup'>
-                  <input type='radio' name="filter" value='all' />
-                  <label htmlFor="filter">Todos</label>
-               </div>
-               <div className='formGroup'>
-                  <input  type='radio' name="filter" value='today' />
-                  <label htmlFor="filter">Hoy</label>
-               </div>
-               <div className='formGroup'>
-                  <input  type='radio' name="filter" value='tomorrow' />
-                  <label htmlFor="filter">Mañana</label>
-               </div>
-               <div className='formGroup'>
-                  <input  type='radio' name="filter" value='thisWeek' />
-                  <label htmlFor="filter">Esta semana</label>
-               </div>
-            </div>
+            < TravelFilters setFilters={setFilters} />
 
             {isLoading && < LoadingSpinner text='cargando viajes' />}
 
-            {travels.length !== 0 && !isLoading &&
+            {travelsToShow.length !== 0 && !isLoading &&
                <section className='travels-container'>
                   {
-                     travels.map(travel => (
-                        < TravelCard key={travel._id} travel={travel} />
-                     ))
+                     travelsToShow
+                        .map(travel => (
+                           < TravelCard key={travel._id} travel={travel} />
+                        ))
                   }
                </section>
             }
-            {travels.length === 0 && !isLoading &&
+            {travelsToShow.length === 0 && !isLoading &&
                < EmptyComponent />
             }
 
