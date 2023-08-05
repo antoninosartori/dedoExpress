@@ -58,11 +58,11 @@ export default function TravelCard({ travel, ...restOfProps }) {
                   </p>
                   <h3 className='travelCard-usernameText'>{username}</h3>
                </div>
-               {dayInfo &&
+               {/* {dayInfo &&
                   <div className='travelCard-dayInfo'>
                      <span>{dayInfo}</span>
                   </div>
-               }
+               } */}
             </header>
 
             <Toggable icon={chevronIcon} initialState>
