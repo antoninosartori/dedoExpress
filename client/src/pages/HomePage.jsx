@@ -1,5 +1,5 @@
 import './HomePage.css'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useGetTravels from '../hooks/useGetTravels'
 import { UserContext } from '../context/UserContext'
@@ -13,7 +13,6 @@ import TravelCard from '../components/TravelCard'
 import EmptyComponent from '../components/EmptyComponent'
 import Header from '../components/Header'
 import TravelFilters from '../components/TravelFilters'
-import useFilters from '../hooks/useFilters'
 import { ONE_DAY_IN_MS } from '../helpers/consts'
 
 export default function HomePage() {
@@ -21,7 +20,6 @@ export default function HomePage() {
    const { user } = useContext(UserContext)
    const { floatingNotification, isLoading } = useContext(NotificationContext)
    const { getInitialAllTravel } = useGetTravels()
-   /* const { filters } = useFilters() */
    const [travelsToShow, setTravelsToShow] = useState([])
    const [filters, setFilters] = useState({
       min: 0,
@@ -29,16 +27,10 @@ export default function HomePage() {
    })
    const navigate = useNavigate()
 
-   /* sirve??? 👇 */
    useEffect(() => {
       getInitialAllTravel().then(setTravelsToShow)
       window.scrollTo(0,0)
    }, [])
-
-/*    useEffect(() => {
-      setTravelsToShow(allTravels)
-      window.scrollTo(0,0)
-   }, [filters]) */
 
    useEffect(() => {
       const filteredTravel = allTravels.filter(travel => (travel.date - new Date().getTime() < filters.max) && (travel.date - new Date().getTime() > filters.min))
@@ -50,6 +42,15 @@ export default function HomePage() {
          navigate('/login')
       }
    }, [user])
+
+   const handleChangeFilters = (event) => {
+      const min = event.target.min
+      const max = event.target.max
+      setFilters({
+         min, 
+         max
+      })
+   }
 
    return (
       <>
@@ -67,7 +68,7 @@ export default function HomePage() {
 
             <h2 className='subtitle'>Viajes disponibles</h2>
 
-            < TravelFilters setFilters={setFilters} />
+            < TravelFilters handleChange={handleChangeFilters} />
 
             {isLoading && < LoadingSpinner text='cargando viajes' />}
 
