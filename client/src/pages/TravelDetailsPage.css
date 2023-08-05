@@ -94,6 +94,26 @@
   gap: var(--px1);
 }
 
+@media screen and (min-width: 768px){
+   .travelDetails-container{
+      flex-direction: row;
+      flex-wrap: wrap;
+   }
+   .travelDetails-separator{
+      min-width: 40%;
+   }
+   .travelDetails-ownerContainer{
+      width: 100%;
+      justify-content: flex-start;
+   }
+   .travelDetails-driverInfo{
+      flex-direction: row;
+   }
+   .travelDetails-driverInfo .mainBtn{
+      height: max-content;
+   }
+}
+
 
 
 

@@ -11,3 +11,14 @@
    flex-direction: column;
    gap: var(--px2);
 }
+
+@media screen and (min-width: 768px){
+   .homePage form{
+      flex-direction: row;
+   }
+   .homePage .travels-container{
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+   }
+}

@@ -140,7 +140,10 @@ export default function CreateTravelPage() {
                </div>
 
 
-               <Button primary type='submit'>Publicar viaje</Button>
+               <div className="column-separation">
+                  <Button primary type='submit'>Publicar viaje</Button>
+                  <Button onClickFunction={() => navigate(-1)} secondary type='button'>Volver atrás</Button>
+               </div>
 
             </form>
          </main>

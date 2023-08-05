@@ -80,6 +80,8 @@ export default function ChangePasswordPage() {
                {errors.repeatedNewPassword?.message && < ErrorMessage errorMessage={errors.repeatedNewPassword?.message} />}
 
                <Button primary type='submit'>Cambiar contraseña</Button>
+               <Button onClickFunction={() => {navigate(-1)}} secondary type='button'>Volver atrás</Button>
+
             </form>
             {isLoading && < LoadingSpinner text='creando viaje...' />}
 
