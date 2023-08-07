@@ -60,6 +60,17 @@ export default function HomePage() {
       })
    }
 
+   if(floatingNotification.message === 'Error al traer todos los viajes'){
+      return(
+         <>
+            < Header />
+            <main className='container homePage'>
+               <p>Lo siento, ha ocurrido un error. No hemos podido conectar la aplicación con el servidor. Intente nuevamente mas tarde.</p>
+            </main>
+         </>
+      )
+   }
+
    return (
       <>
          < Header />
@@ -80,6 +91,10 @@ export default function HomePage() {
 
             {isLoading && < LoadingSpinner text='cargando viajes' />}
 
+            {travelsToShow.length === 0 && !isLoading &&
+               < EmptyComponent />
+            }
+
             {travelsToShow.length !== 0 && !isLoading &&
                <section className='travels-container'>
                   {
@@ -90,9 +105,7 @@ export default function HomePage() {
                   }
                </section>
             }
-            {travelsToShow.length === 0 && !isLoading &&
-               < EmptyComponent />
-            }
+            
 
             < AddTravelFixed />
          </main>

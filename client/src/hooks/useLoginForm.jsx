@@ -26,8 +26,9 @@ export default function useLoginForm(){
          navigate('/')
          setFloatingNotification({message: 'sesion iniciada correctamente', status: 'success', duration: 3000})
       } catch (err) {
+         const errorMessage = err?.response?.status === 401 ? 'Usuario o contraseña inválida' : 'Lo siento, ha ocurrido un error. Intente nuevamente' 
          setIsLoading(false)
-         setFloatingNotification({message: 'Lo siento, ha ocurrido un error. Intente nuevamente', status: 'error', duration: 3000})
+         setFloatingNotification({message: errorMessage, status: 'error', duration: 3000})
          console.log(err)
       }
    }
