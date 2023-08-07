@@ -72,3 +72,17 @@
    justify-content: center;
    gap: var(--px1);
 }
+
+@media screen and (min-width: 768px){
+   .loginPage{
+      align-items: center;
+   }
+   .loginPage form{
+      max-width: var(--widthForInput_Buttons);
+      width: 100%;
+   }
+   .loginPage .loginPage-toSingUpButtonContainer{
+      max-width: var(--widthForInput_Buttons);
+      width: 100%;
+   }
+}

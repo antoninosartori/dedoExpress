@@ -31,12 +31,13 @@
 @media screen and (min-width: 768px) {
    .header-navMenu {
       top: var(--headerHeight);
-      height:max-content;
-   }
-   .pageHeader-nav .toggable-iconImg{
+      left:0;
+      height: max-content;
+      background-color: transparent;
    }
    .header-navMenu nav ul{
-      font-size: var(--fsBody);
+      background-color: var(--white);
+      border-bottom-left-radius: var(--borderRadius);
+      border-bottom-right-radius: var(--borderRadius);
    }
-   
 }

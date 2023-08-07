@@ -2,24 +2,21 @@ import './NavMenu.css'
 import { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
 import { Link, useNavigate } from 'react-router-dom'
-import { NotificationContext } from '../context/FloatinNotificationContext'
-import { LOCAL_STORAGE_NAME } from '../helpers/consts'
 
-export default function NavMenu() {
-   const { setFloatingNotification } = useContext(NotificationContext)
-   const { user, setUser } = useContext(UserContext)
+export default function NavMenu({handleLogOut}) {
+   const { user, } = useContext(UserContext)
    const navigate = useNavigate()
    if(user === null){
       navigate('/login')
    } 
 
-   const handleLogOut = (event) => {
+/*    const handleLogOut = (event) => {
       event.preventDefault()
       window.localStorage.removeItem(LOCAL_STORAGE_NAME)
       setUser(null)
       navigate('/login')
       setFloatingNotification({message: 'has cerrado sesion correctamente', status: 'success', duration: 3000})
-   }
+   } */
 
    const linkToUserDetails = 
       !user 

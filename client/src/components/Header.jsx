@@ -6,12 +6,24 @@ import Toggable from './Toggable'
 import NavMenu from './NavMenu';
 import backIcon from '../assets/chevron-down.svg'
 import defaultIcon from '../assets/account.svg'
+import { NotificationContext } from '../context/FloatinNotificationContext'
+import { LOCAL_STORAGE_NAME } from '../helpers/consts'
 
 function Header() {
-   const { user } = useContext(UserContext)
+   const { user, setUser } = useContext(UserContext)
+   const { setFloatingNotification } = useContext(NotificationContext)
    const navigate = useNavigate()
    const returnToHome = user !== null ? '/' : '/login'
    const avatar = user ? user.avatar.url : defaultIcon
+   
+
+   const handleLogOut = (event) => {
+      event.preventDefault()
+      window.localStorage.removeItem(LOCAL_STORAGE_NAME)
+      setUser(null)
+      navigate('/login')
+      setFloatingNotification({ message: 'has cerrado sesion correctamente', status: 'success', duration: 3000 })
+   }
 
    return (
       <header className='pageHeader'>
@@ -24,12 +36,13 @@ function Header() {
                   <h1 className='logo-text'>Dedo<span>Express</span></h1>
                </Link>
             </div>
-            <Link className='createTravel-navLink' to='/createTravel'>Crear viaje</Link>
             {
                user &&
-               <Toggable shownClassName='header-navMenu' animationClassName='translate(100%)' icon={avatar}>
-                  < NavMenu />
-               </Toggable>
+               <>
+                  <Toggable shownClassName='header-navMenu' animationClassName='translate(100%)' icon={avatar}>
+                     < NavMenu handleLogOut={handleLogOut} />
+                  </Toggable>
+               </>
             }
          </nav>
       </header>

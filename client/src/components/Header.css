@@ -77,6 +77,10 @@
    display: none;
 }
 
+.desktop-navMenu{
+   display: none;
+}
+
 @media screen and (min-width: 768px){
    .createTravel-navLink{
       display: block;

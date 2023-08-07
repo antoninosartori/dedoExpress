@@ -28,3 +28,29 @@
 .singUpPage form input:focus{
    outline: var(--inputOutline);
 } 
+
+@media screen and (min-width: 768px){
+   .singUpPage form{
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+   }
+   .singUpPage form .form-separator{
+      width: 45%;
+      flex-grow: 1;
+   }
+   .singUpPage form .form-separator:nth-child(2){
+      border: 0;
+      order: 1;
+   }
+   .singUpPage form .form-separator:nth-child(1){
+      order: 2;
+   }
+   .singUpPage form .mainBtn{
+      margin-top: var(--px4);
+      order: 3;
+      max-width: var(--widthForInput_Buttons);
+   }
+
+}

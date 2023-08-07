@@ -80,6 +80,7 @@
    --paddingX: var(--px2);
    --paddingY: var(--px2);
    --borderRadius: var(--px2);
+   --widthForInput_Buttons: 500px;
 }
 
 * {
@@ -236,4 +237,8 @@ input::placeholder {
 }
 
 /* desktop */
-/* @media screen and (min-width: 768px) */ 
+@media screen and (min-width: 768px){
+   main.container {
+      padding: calc(var(--headerHeight) + var(--marginVerticalToComponents)) 0;
+   }
+}

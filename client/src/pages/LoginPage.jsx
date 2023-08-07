@@ -10,7 +10,6 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import FloatinNotification from '../components/FloatinNotification'
 import eyeClose from '../assets/eye-slash.svg'
 import eyeOpen from '../assets/eye-fill.svg'
-/* import mateIcon from '../assets/mate.svg' */
 import thermoIcon from '../assets/thermo.svg'
 
 
