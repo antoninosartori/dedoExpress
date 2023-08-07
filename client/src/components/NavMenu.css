@@ -31,13 +31,13 @@
 @media screen and (min-width: 768px) {
    .header-navMenu {
       top: var(--headerHeight);
-      left:0;
       height: max-content;
       background-color: transparent;
    }
    .header-navMenu nav ul{
-      background-color: var(--white);
+      background-color: var(--mainColor);
       border-bottom-left-radius: var(--borderRadius);
       border-bottom-right-radius: var(--borderRadius);
+      box-shadow: var(--boxShadowNormal);
    }
 }

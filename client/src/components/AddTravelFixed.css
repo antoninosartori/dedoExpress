@@ -1,4 +1,4 @@
-.createTravel-button{
+.createTravel-button {
    position: fixed;
    display: flex;
    justify-content: center;
@@ -13,7 +13,7 @@
    /* box-shadow: var(--boxShadowShort); */
 }
 
-.createTravel-buttonLink{
+.createTravel-buttonLink {
    display: flex;
    justify-content: center;
    align-items: center;
@@ -24,8 +24,10 @@
    color: var(--bgColor);
 }
 
-@media screen and (min-width: 768px){
-   .createTravel-button{
-      display: none;
+@media screen and (min-width: 768px) {
+   .createTravel-button {
+      right: calc(var(--containerWidth) / 2);
+      height: 80px;
+      width: 80px;
    }
 }

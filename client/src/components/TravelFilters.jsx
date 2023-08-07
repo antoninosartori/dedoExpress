@@ -15,7 +15,7 @@ export default function TravelFilters({handleChange}) {
          </div>
          <div className='formGroup hover'>
             <input type='radio' name="filter" min={ONE_DAY_IN_MS + 1} max={ONE_DAY_IN_MS * 2} />
-            <label htmlFor="filter">Mañana</label>
+            <label htmlFor="filter">Próximos</label>
          </div>
          <div className='formGroup hover'>
             <input type='radio' name="filter" min={0} max={ONE_DAY_IN_MS * 7} />

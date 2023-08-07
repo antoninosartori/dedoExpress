@@ -22,3 +22,7 @@
    background-color: var(--secondaryColor);
    color: var(--white);
 }
+
+.mainBtn a {
+   width: 100%;
+}

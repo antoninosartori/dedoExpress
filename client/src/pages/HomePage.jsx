@@ -32,36 +32,36 @@ export default function HomePage() {
          navigate('/login')
       }
       getInitialAllTravel().then(setTravelsToShow)
-      window.scrollTo(0,0)
+      window.scrollTo(0, 0)
    }, [user])
 
-/*    useEffect(() => {
-      getInitialAllTravel().then(setTravelsToShow)
-      window.scrollTo(0,0)
-   }, []) */
+   /*    useEffect(() => {
+         getInitialAllTravel().then(setTravelsToShow)
+         window.scrollTo(0,0)
+      }, []) */
 
    useEffect(() => {
       const filteredTravel = allTravels.filter(travel => (travel.date - new Date().getTime() < filters.max) && (travel.date - new Date().getTime() > filters.min))
       setTravelsToShow(filteredTravel)
    }, [filters, allTravels])
 
-/*    useEffect(() => {
-      if (user === null) {
-         navigate('/login')
-      }
-   }, [user]) */
+   /*    useEffect(() => {
+         if (user === null) {
+            navigate('/login')
+         }
+      }, [user]) */
 
    const handleChangeFilters = (event) => {
       const min = event.target.min
       const max = event.target.max
       setFilters({
-         min, 
+         min,
          max
       })
    }
 
-   if(floatingNotification.message === 'Error al traer todos los viajes'){
-      return(
+   if (floatingNotification.message === 'Error al traer todos los viajes') {
+      return (
          <>
             < Header />
             <main className='container homePage'>
@@ -75,12 +75,12 @@ export default function HomePage() {
       <>
          < Header />
          <main className='container homePage'>
-            {floatingNotification.message && 
-               < FloatinNotification 
-                  message={floatingNotification.message} 
-                  status={floatingNotification.status} 
-                  duration={floatingNotification.duration} 
-                  />
+            {floatingNotification.message &&
+               < FloatinNotification
+                  message={floatingNotification.message}
+                  status={floatingNotification.status}
+                  duration={floatingNotification.duration}
+               />
             }
 
             < SearchFormHome />
@@ -105,9 +105,9 @@ export default function HomePage() {
                   }
                </section>
             }
-            
 
             < AddTravelFixed />
+
          </main>
       </>
    )

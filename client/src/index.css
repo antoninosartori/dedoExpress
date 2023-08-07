@@ -239,6 +239,6 @@ input::placeholder {
 /* desktop */
 @media screen and (min-width: 768px){
    main.container {
-      padding: calc(var(--headerHeight) + var(--marginVerticalToComponents)) 0;
+      padding: calc(var(--headerHeight) + var(--marginVerticalToComponents)) 2px;
    }
 }
