@@ -16,7 +16,14 @@ export default function useUpdateTravel() {
       setIsLoading(true)
       const { from, to, capacity, price, dateTime: date, pet, food, music, luggage, talk } = data
       const features = { pet, food, music, luggage, talk }
-      const newTravelInfo = { from, to, capacity, price, date, features }
+      const newTravelInfo = { 
+         from: from.trim().toLowerCase(), 
+         to: to.trim().toLowerCase(), 
+         capacity, 
+         price, 
+         date, 
+         features 
+      }
 
       const token = user === null
          ? null

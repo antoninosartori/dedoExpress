@@ -15,7 +15,12 @@ export default function useCreateUser() {
       const { name, username, email, password, cellphone } = data
       
       const newUser = {
-         name, username, email, password, cellphone, avatarBase64: avatarPreview ?? `https://unavatar.io/${email}`
+         name: name.trim(), 
+         username: username.trim(), 
+         email: email.trim().toLowerCase(), 
+         password: password.trim(), 
+         cellphone: cellphone.trim(), 
+         avatarBase64: avatarPreview ?? `https://unavatar.io/${email}`
       }
 
       try {

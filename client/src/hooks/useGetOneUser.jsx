@@ -63,7 +63,11 @@ export default function useGetOneUser() {
       const { name, username, email, cellphone } = data
 
       const newUserInfo = {
-         name, username, email, cellphone, avatarBase64: avatarPreview
+         name: name.trim(), 
+         username: username.trim(), 
+         email: email.toLowerCase(), 
+         cellphone, 
+         avatarBase64: avatarPreview
       }
 
       const token =

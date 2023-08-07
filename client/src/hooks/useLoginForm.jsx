@@ -15,7 +15,10 @@ export default function useLoginForm(){
       setIsLoading(true)
       try {
          const { username, password } = data
-         const credentials = { username ,password }
+         const credentials = { 
+            username: username.trim(),
+            password: password.trim() 
+         }
          const user = await loginPost(credentials)
          window.localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(user))
          setUser(user)

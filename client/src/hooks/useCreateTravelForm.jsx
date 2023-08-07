@@ -24,7 +24,14 @@ export default function useCreateTravelForm() {
       const { token } = user
 
       const features = { pet, luggage, music, food, talk}
-      const newTravel = { from, to, capacity, price, date, features }
+      const newTravel = { 
+         from: from.trim().toLowerCase(), 
+         to: to.trim().toLowerCase(), 
+         capacity, 
+         price, 
+         date, 
+         features
+      }
 
       const config = {
          headers: {

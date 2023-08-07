@@ -111,8 +111,8 @@ export default function useGetTravels() {
 
    return {
       handleSubmitSearch,
-      handleChangeFromInput: event => setFromInput(event.target.value),
-      handleChangeToInput: event => setToInput(event.target.value),
+      handleChangeFromInput: event => setFromInput(event.target.value.toLowerCase()),
+      handleChangeToInput: event => setToInput(event.target.value.toLowerCase()),
       getInitialAllTravel,
       handleTravelDelete
    }
