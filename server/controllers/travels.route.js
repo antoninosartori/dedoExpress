@@ -37,8 +37,8 @@ travelsRouter.post('/', tokenExtractor, async (req, res, next) => {
    }
 
    const newTravel = new Travel({
-      from: from.toLowerCase(),
-      to: to.toLowerCase(),
+      from: from.toLowerCase().trim().replace('%',' '),
+      to: to.toLowerCase().trim().replace('%',' '),
       capacity,
       price,
       date,
