@@ -92,9 +92,6 @@
 }
 
 @media screen and (min-width: 768px){
-   .travelCard-container{
-      max-width: 300px;
-   }
    .travelCard-container .toggable-iconContainer {
       display: none;
    }

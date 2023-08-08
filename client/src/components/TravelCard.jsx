@@ -16,9 +16,6 @@ import schedule from '../assets/schedule.svg'
 import RowItemWithIcon from './RowItemWithIcon'
 import { formatDay } from '../helpers/formatDate'
 
-
-
-
 export default function TravelCard({ travel, ...restOfProps }) {
    const { floatingNotification } = useContext(NotificationContext)
 
@@ -79,7 +76,9 @@ export default function TravelCard({ travel, ...restOfProps }) {
                   <Link to={`/travelDetails/${travelId}`}>Ver detalles</Link>
                </Button>
                <Button type='button' secondary>
-                  <a href={`https://api.whatsapp.com/send/?phone=${user[0].cellphone}&text=${defaultText}`} target='_blank' rel='noreferrer'>¡Me sumo!</a>
+                  <a href={`https://api.whatsapp.com/send/?phone=${user[0].cellphone}&text=${defaultText}`} target='_blank' rel='noreferrer'>
+                     ¡Me sumo!
+                  </a>
                </Button>
             </footer>
          </article>

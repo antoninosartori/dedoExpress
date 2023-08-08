@@ -5,6 +5,7 @@ import useGetTravels from '../hooks/useGetTravels'
 import { UserContext } from '../context/UserContext'
 import { NotificationContext } from '../context/FloatinNotificationContext'
 import { TravelContext } from '../context/TravelsContext'
+import { ONE_DAY_IN_MS } from '../helpers/consts'
 import AddTravelFixed from '../components/AddTravelFixed'
 import LoadingSpinner from '../components/LoadingSpinner'
 import SearchFormHome from '../components/SearchFormHome'
@@ -13,7 +14,6 @@ import TravelCard from '../components/TravelCard'
 import EmptyComponent from '../components/EmptyComponent'
 import Header from '../components/Header'
 import TravelFilters from '../components/TravelFilters'
-import { ONE_DAY_IN_MS } from '../helpers/consts'
 
 export default function HomePage() {
    const { allTravels } = useContext(TravelContext)
@@ -35,21 +35,10 @@ export default function HomePage() {
       window.scrollTo(0, 0)
    }, [user])
 
-   /*    useEffect(() => {
-         getInitialAllTravel().then(setTravelsToShow)
-         window.scrollTo(0,0)
-      }, []) */
-
    useEffect(() => {
       const filteredTravel = allTravels.filter(travel => (travel.date - new Date().getTime() < filters.max) && (travel.date - new Date().getTime() > filters.min))
       setTravelsToShow(filteredTravel)
    }, [filters, allTravels])
-
-   /*    useEffect(() => {
-         if (user === null) {
-            navigate('/login')
-         }
-      }, [user]) */
 
    const handleChangeFilters = (event) => {
       const min = event.target.min

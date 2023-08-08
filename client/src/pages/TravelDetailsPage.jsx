@@ -18,7 +18,7 @@ import priceIcon from '../assets/attach_money.svg'
 import capacityIcon from '../assets/capacity.svg'
 import callIcon from '../assets/call.svg'
 import schedule from '../assets/schedule.svg'
-import writeIcon from '../assets/write.svg'
+import whatsappIcon from '../assets/whatsapp.svg'
 import petIcon from '../assets/pet_supplies.svg'
 import luggageIcon from '../assets/luggage.svg'
 import musicIcon from '../assets/music_note.svg'
@@ -98,9 +98,9 @@ export default function TravelDetailsPage() {
                      </div>
                      {isOwner &&
                         <div className='travelDetails-ownerContainer'>
-                           <Button type='button' secondary>
+                           {/* <Button type='button' secondary>
                               Ocultar
-                           </Button>
+                           </Button> */}
                            <Button type='button' secondary>
                               <Link to={`/updateTravel/${travelId}`}>
                                  Modificar
@@ -128,7 +128,7 @@ export default function TravelDetailsPage() {
                            <Button type='button' primary>
                               <a className='linkToMessage' href={`https://api.whatsapp.com/send/?phone=${user[0].cellphone}&text=${defaultText}`} target='_blank' rel='noreferrer'>
                                  ¡Me sumo!
-                                 <img src={writeIcon} alt="contacta al conductor" />
+                                 <img src={whatsappIcon} alt="contacta al conductor" />
                               </a>
                            </Button>
 

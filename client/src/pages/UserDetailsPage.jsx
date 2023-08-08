@@ -21,6 +21,7 @@ export default function UserDetailsPage() {
       avatarPreview
    } = useGetOneUser()
    const { register, handleSubmit, formState: { errors }, setValue } = useForm()
+
    useEffect(() => {
       window.scrollTo(0, 0)
    }, [])
@@ -31,6 +32,8 @@ export default function UserDetailsPage() {
       setValue('email', account.email)
       setValue('cellphone', account.cellphone)
    }, [account])
+
+   console.log({account})
 
    return (
       <>
