@@ -66,7 +66,7 @@ travelsRouter.put('/:travelId', tokenExtractor, async (req, res, next) => {
       res.status(401).json({ error: 'without authorization' })
    }
 
-   const newTravelInfo = { from, to, capacity, price, date, features }
+   const newTravelInfo = { from: from.toLowerCase(), to: to.toLowerCase(), capacity, price, date, features }
 
    try {
       const updateTravel = await Travel.findByIdAndUpdate(travelId, newTravelInfo, { new: true })
