@@ -12,10 +12,11 @@ export default function useUpdateTravel() {
    const navigate = useNavigate()
 
    const handleSumbitUpdateTravel = async (data) => {
-      console.log({data})
       setIsLoading(true)
-      const { from, to, capacity, price, dateTime: date, pet, food, music, luggage, talk } = data
+      const { from, to, capacity, price, dateTime, pet, food, music, luggage, talk } = data
       const features = { pet, food, music, luggage, talk }
+      const date = new Date(dateTime).getTime()
+
       const newTravelInfo = { 
          from: from.trim().toLowerCase(), 
          to: to.trim().toLowerCase(), 
@@ -25,9 +26,10 @@ export default function useUpdateTravel() {
          features 
       }
 
-      const token = user === null
-         ? null
-         : user.token
+      const token =
+         user !== null
+            ? user.token
+            : ''
 
       const config = {
          headers: {

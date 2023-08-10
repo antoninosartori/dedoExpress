@@ -67,11 +67,11 @@ travelsRouter.put('/:travelId', tokenExtractor, async (req, res, next) => {
    }
 
    const newTravelInfo = { from: from.toLowerCase(), to: to.toLowerCase(), capacity, price, date, features }
-
    try {
       const updateTravel = await Travel.findByIdAndUpdate(travelId, newTravelInfo, { new: true })
       res.status(201).json(updateTravel)
    } catch (err) {
+      console.log(err)
       next(err)
    }
 })

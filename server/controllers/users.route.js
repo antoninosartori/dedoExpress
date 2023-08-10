@@ -117,9 +117,6 @@ usersRouter.put('/:userId', tokenExtractor, async (req, res, next) => {
       ]
    })
 
-   /* const saltsOrRounds = 10
-   const passwordHash = await bcrypt.hash(password,saltsOrRounds) */
-
    const newUserInfo = {
       name,
       username,
