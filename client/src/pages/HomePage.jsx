@@ -37,7 +37,7 @@ export default function HomePage() {
 
    useEffect(() => {
       const filteredTravel = allTravels.filter(travel => (travel.date - new Date().getTime() < filters.max) && (travel.date - new Date().getTime() > filters.min))
-      setTravelsToShow(filteredTravel)
+      setTravelsToShow(filteredTravel.sort((a,b) => a.date - b.date))
    }, [filters, allTravels])
 
    const handleChangeFilters = (event) => {
