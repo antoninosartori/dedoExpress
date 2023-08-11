@@ -18,21 +18,19 @@ import musicIcon from '../assets/music_note.svg'
 import fastfoodIcon from '../assets/fastfood.svg'
 import voiceIcon from '../assets/voice_selection.svg'
 
-import { validateDate } from '../helpers/validateDate'
-
 export default function CreateTravelPage() {
    const { user } = useContext(UserContext)
    const { handleCreateTravel } = useCreateTravelForm()
    const { floatingNotification, isLoading } = useContext(NotificationContext)
    const navigate = useNavigate()
    const { register, handleSubmit, formState: { errors } } = useForm()
-   useEffect(() => {
-      window.scrollTo(0,0)
-   }, [])
 
-   if (user === null) {
-      navigate('/login')
-   }
+   useEffect(() => {
+      window.scrollTo(0, 0)
+      if (user === null) {
+         navigate('/login')
+      }
+   }, [user])
 
    return (
       <>
@@ -97,15 +95,30 @@ export default function CreateTravelPage() {
                      type="number" placeholder='¿Precio por persona?' autoComplete='off' min={0} />
                   {errors.price?.message && < ErrorMessage errorMessage={errors.price?.message} />}
 
-                  <div className="formGroup">
+                  {/* <div className="formGroup">
                      <label className='datetime-label' htmlFor="dateTime">¿Fecha y hora de salida?</label>
                      <input
                         {...register('dateTime', {
                            required: 'Completa la fecha y hora de salida',
                            validate: value => validateDate(value) || 'Ingresa una fecha proxima'
                         })} type="datetime-local" placeholder='¿Fecha y hora de salida?' autoComplete='off' />
+                  </div> */}
+                  <div className="formGroup">
+                     <input
+                        {...register('Date', {
+                           required: 'Completá la fecha de salida'
+                        })}
+                        type="date" />
+                     {errors.Date?.message && < ErrorMessage errorMessage={errors.Date?.message} />}
+
+                     <input
+                        {...register('time', {
+                           required: 'Completá la hora de salida'
+                        })}
+                        type="time" />
+                     {errors.time?.message && < ErrorMessage errorMessage={errors.time?.message} />}
                   </div>
-                  {errors.dateTime?.message && < ErrorMessage errorMessage={errors.dateTime?.message} />}
+
                </div>
                <div className="form-separator">
                   <TextWithTitle title='Adicionales (opcionales)' >
@@ -113,27 +126,27 @@ export default function CreateTravelPage() {
                   </TextWithTitle>
 
                   <div className="ceckbox-inputContainer">
-                     <input {...register('pet')} 
+                     <input {...register('pet')}
                         type="checkbox" />
                      <RowItemWithIcon icon={petIcon} text='Mascotas permitidas' />
                   </div>
                   <div className="ceckbox-inputContainer">
-                     <input {...register('luggage')} 
+                     <input {...register('luggage')}
                         type="checkbox" />
                      <RowItemWithIcon icon={luggageIcon} text='Baúl para equipaje' />
                   </div>
                   <div className="ceckbox-inputContainer">
-                     <input {...register('music')} 
+                     <input {...register('music')}
                         type="checkbox" />
                      <RowItemWithIcon icon={musicIcon} text='Buena música' />
                   </div>
                   <div className="ceckbox-inputContainer">
-                     <input {...register('food')} 
+                     <input {...register('food')}
                         type="checkbox" />
                      <RowItemWithIcon icon={fastfoodIcon} text='Permitido comer' />
                   </div>
                   <div className="ceckbox-inputContainer">
-                     <input {...register('talk')} 
+                     <input {...register('talk')}
                         type="checkbox" />
                      <RowItemWithIcon icon={voiceIcon} text='Charlatán' />
                   </div>

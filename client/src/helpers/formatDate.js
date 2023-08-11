@@ -33,3 +33,8 @@ export const formatDay = dateInNumber => {
    }
    
 }
+
+export const formatDateTime = (date, time) => {
+   const datetime = `${date} ${time}`
+   return new Date(datetime).getTime()
+}

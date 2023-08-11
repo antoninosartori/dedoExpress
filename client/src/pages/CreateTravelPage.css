@@ -12,8 +12,9 @@
 }
 
 .createTravel form .formGroup{
-   background-color: var(--white);
-   padding: 0 var(--px1);
+   justify-content: space-between;
+   background-color: transparent;
+   padding: 0;
 }
 
 .createTravel form .formGroup input[type='datetime-local']{

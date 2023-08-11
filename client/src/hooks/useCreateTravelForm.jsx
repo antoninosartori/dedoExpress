@@ -3,6 +3,8 @@ import { postNewTravel } from '../services/travels'
 import { UserContext } from "../context/UserContext"
 import { useNavigate } from "react-router-dom"
 import { NotificationContext } from "../context/FloatinNotificationContext"
+import { formatDateTime } from "../helpers/formatDate"
+import { validateDate } from '../helpers/validateDate'
 
 export default function useCreateTravelForm() {
    const { user } = useContext(UserContext)
@@ -17,9 +19,15 @@ export default function useCreateTravelForm() {
    }, [user])
 
    const handleCreateTravel = async (data) => {
+      const { from, to, capacity, price, Date, time, pet, luggage, music, food, talk  } = data
+      const date = formatDateTime(Date,time)
+      const isFutureDate = validateDate(date)
+
+      if(!isFutureDate){
+         return setFloatingNotification({message: 'La fecha debe ser futura'})
+      }
+
       setIsLoading(true)
-      const { from, to, capacity, price, dateTime, pet, luggage, music, food, talk  } = data
-      const date = new Date(dateTime).getTime()
 
       const { token } = user
 

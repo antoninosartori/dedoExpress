@@ -1,7 +1,6 @@
-export const validateDate = date => {
-   const selectedDate = new Date(date).getTime()
+export const validateDate = timestamp => {
    const now = new Date().getTime()
-   if(selectedDate < now){ 
+   if(timestamp < now){ 
       return false 
    } else {
       return true

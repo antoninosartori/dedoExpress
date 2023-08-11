@@ -19,6 +19,12 @@
    gap: 5px;
 }
 
+.updateTravelPage form .formGroup:last-child{
+   flex-direction: row;
+   align-items: center;
+   gap: var(--px1);
+}
+
 .updateTravelPage form .formGroup input:focus{
    outline: var(--inputOutline);
 }
