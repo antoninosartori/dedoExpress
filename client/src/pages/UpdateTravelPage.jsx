@@ -1,5 +1,5 @@
 import './UpdateTravelPage.css'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import useUpdateTravel from '../hooks/useUpdateTravel'
 import useGetOneTravel from '../hooks/useGetOneTravel'
 import { useForm } from 'react-hook-form'
@@ -25,6 +25,9 @@ export default function UpdateTravelPage() {
    const { travel } = useGetOneTravel()
    const { handleSumbitUpdateTravel } = useUpdateTravel()
    const navigate = useNavigate()
+   const [inputTypeDate, setInputTypeDate] = useState(false)
+   const [inputTypeTime, setInputTypeTime] = useState(false)
+
    useEffect(() => {
       window.scrollTo(0, 0)
    }, [])
@@ -116,28 +119,25 @@ export default function UpdateTravelPage() {
                         </div>
                         {errors.price?.message && < ErrorMessage errorMessage={errors.price?.message} />}
 
-                        {/* <div className="formGroup">
-                     <label htmlFor="dateTime">¿Fecha y hora de salida?</label>
-                     <input
-                        {...register('dateTime', {
-                           required: 'Por favor, confirma la fecha y hora de salida',
-                           validate: value => validateDate(value) || 'Ingresa una fecha futura'
-                        })}
-                        type="datetime-local" placeholder='Fecha y hora de salida' />
-                  </div> */}
                         <div className="formGroup">
                            <input
                               {...register('Date', {
                                  required: 'Completá la fecha de salida'
                               })}
-                              type="date" />
+                              type={inputTypeDate ? 'date': 'text'} 
+                              onFocus={() => setInputTypeDate(true)}
+                              placeholder='Elegí una fecha de salida'
+                              />
                            {errors.Date?.message && < ErrorMessage errorMessage={errors.Date?.message} />}
 
                            <input
                               {...register('time', {
                                  required: 'Completá la hora de salida'
                               })}
-                              type="time" />
+                              type={inputTypeTime ? 'time' : 'text'}
+                              onFocus={() => setInputTypeTime(true)}
+                              placeholder='Indicá una hora de salida'
+                              />
                            {errors.time?.message && < ErrorMessage errorMessage={errors.time?.message} />}
                         </div>
                      </div>

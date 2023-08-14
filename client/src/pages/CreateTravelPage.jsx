@@ -1,5 +1,5 @@
 import './CreateTravelPage.css'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import useCreateTravelForm from '../hooks/useCreateTravelForm'
@@ -24,6 +24,8 @@ export default function CreateTravelPage() {
    const { floatingNotification, isLoading } = useContext(NotificationContext)
    const navigate = useNavigate()
    const { register, handleSubmit, formState: { errors } } = useForm()
+   const [inputTypeDate, setInputTypeDate] = useState(false)
+   const [inputTypeTime, setInputTypeTime] = useState(false)
 
    useEffect(() => {
       window.scrollTo(0, 0)
@@ -108,14 +110,20 @@ export default function CreateTravelPage() {
                         {...register('Date', {
                            required: 'Completá la fecha de salida'
                         })}
-                        type="date" />
+                        type={inputTypeDate ? 'date' : 'text'} 
+                        placeholder='Elegí una fecha de salida'
+                        onFocus={() => setInputTypeDate(true)}
+                        />
                      {errors.Date?.message && < ErrorMessage errorMessage={errors.Date?.message} />}
 
                      <input
                         {...register('time', {
                            required: 'Completá la hora de salida'
                         })}
-                        type="time" />
+                        placeholder='Indicá la hora de salida'
+                        type={inputTypeTime ? 'time' : 'text'}
+                        onFocus={() => setInputTypeTime(true)}
+                        />
                      {errors.time?.message && < ErrorMessage errorMessage={errors.time?.message} />}
                   </div>
 

@@ -7,7 +7,7 @@
    background-color: var(--mainColor);
    color: var(--secondaryColor);
    z-index: 100;
-   transition: transform .6s;
+   transition: transform .3s;
 }
 
 .header-navMenu nav {

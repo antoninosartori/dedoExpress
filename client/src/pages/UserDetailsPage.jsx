@@ -33,8 +33,6 @@ export default function UserDetailsPage() {
       setValue('cellphone', account.cellphone)
    }, [account])
 
-   console.log({account})
-
    return (
       <>
          < Header />
