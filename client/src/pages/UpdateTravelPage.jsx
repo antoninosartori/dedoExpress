@@ -126,6 +126,7 @@ export default function UpdateTravelPage() {
                               })}
                               type={inputTypeDate ? 'date': 'text'} 
                               onFocus={() => setInputTypeDate(true)}
+                              onBlur={() => setInputTypeDate(false)}
                               placeholder='Elegí una fecha de salida'
                               />
                            {errors.Date?.message && < ErrorMessage errorMessage={errors.Date?.message} />}
@@ -136,6 +137,7 @@ export default function UpdateTravelPage() {
                               })}
                               type={inputTypeTime ? 'time' : 'text'}
                               onFocus={() => setInputTypeTime(true)}
+                              onBlur={() => setInputTypeTime(false)}
                               placeholder='Indicá una hora de salida'
                               />
                            {errors.time?.message && < ErrorMessage errorMessage={errors.time?.message} />}
