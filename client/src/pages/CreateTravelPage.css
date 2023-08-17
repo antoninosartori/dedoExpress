@@ -11,15 +11,11 @@
    gap: var(--px2);
 }
 
-.createTravel form .formGroup{
+/* .createTravel form .formGroup{
    justify-content: space-between;
    background-color: transparent;
    padding: 0;
-}
-
-.createTravel form .formGroup input[type='datetime-local']{
-   width: 90%;
-}
+} */
 
 .createTravel input:focus{
    outline: var(--inputOutline);
@@ -36,4 +32,10 @@
 .ceckbox-inputContainer input[type='checkbox']{
    width: var(--fsBody);
    height: var(--fsBody);
+}
+
+@media screen and (min-width: 768px) {
+   .createTravel form .form-separator{
+      align-items: flex-start;
+   }
 }

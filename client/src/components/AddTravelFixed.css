@@ -26,7 +26,7 @@
 
 @media screen and (min-width: 768px) {
    .createTravel-button {
-      right: calc(var(--containerWidth) / 2);
+      /* right: calc(var(--containerWidth) / 2); */
       height: 80px;
       width: 80px;
    }

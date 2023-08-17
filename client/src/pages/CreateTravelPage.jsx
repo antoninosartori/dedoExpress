@@ -105,29 +105,29 @@ export default function CreateTravelPage() {
                            validate: value => validateDate(value) || 'Ingresa una fecha proxima'
                         })} type="datetime-local" placeholder='¿Fecha y hora de salida?' autoComplete='off' />
                   </div> */}
-                  <div className="formGroup">
-                     <input
-                        {...register('Date', {
-                           required: 'Completá la fecha de salida'
-                        })}
-                        type={inputTypeDate ? 'date' : 'text'} 
-                        placeholder='Elegí una fecha de salida'
-                        onFocus={() => setInputTypeDate(true)}
-                        onBlur={() => setInputTypeDate(false)}
-                        />
-                     {errors.Date?.message && < ErrorMessage errorMessage={errors.Date?.message} />}
+                  {/* <div className="formGroup"> */}
+                  <input
+                     {...register('Date', {
+                        required: 'Completá la fecha de salida'
+                     })}
+                     type={inputTypeDate ? 'date' : 'text'}
+                     placeholder='Elegí una fecha de salida'
+                     onFocus={() => setInputTypeDate(true)}
+                     onBlur={() => setInputTypeDate(false)}
+                  />
+                  {errors.Date?.message && < ErrorMessage errorMessage={errors.Date?.message} />}
 
-                     <input
-                        {...register('time', {
-                           required: 'Completá la hora de salida'
-                        })}
-                        placeholder='Indicá la hora de salida'
-                        type={inputTypeTime ? 'time' : 'text'}
-                        onFocus={() => setInputTypeTime(true)}
-                        onBlur={() => setInputTypeTime(false)}
-                        />
-                     {errors.time?.message && < ErrorMessage errorMessage={errors.time?.message} />}
-                  </div>
+                  <input
+                     {...register('time', {
+                        required: 'Completá la hora de salida'
+                     })}
+                     placeholder='Indicá la hora de salida'
+                     type={inputTypeTime ? 'time' : 'text'}
+                     onFocus={() => setInputTypeTime(true)}
+                     onBlur={() => setInputTypeTime(false)}
+                  />
+                  {errors.time?.message && < ErrorMessage errorMessage={errors.time?.message} />}
+                  {/* </div> */}
 
                </div>
                <div className="form-separator">
