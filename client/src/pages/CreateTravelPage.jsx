@@ -113,7 +113,6 @@ export default function CreateTravelPage() {
                            {...register('time', {
                               required: 'Completá la hora de salida'
                            })}
-                           placeholder='Indicá la hora de salida'
                            type='time'
                         />
                      </div>
