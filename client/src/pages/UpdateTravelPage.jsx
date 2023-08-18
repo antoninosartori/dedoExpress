@@ -25,8 +25,6 @@ export default function UpdateTravelPage() {
    const { travel } = useGetOneTravel()
    const { handleSumbitUpdateTravel } = useUpdateTravel()
    const navigate = useNavigate()
-   const [inputTypeDate, setInputTypeDate] = useState(false)
-   const [inputTypeTime, setInputTypeTime] = useState(false)
 
    useEffect(() => {
       window.scrollTo(0, 0)
@@ -120,28 +118,29 @@ export default function UpdateTravelPage() {
                         {errors.price?.message && < ErrorMessage errorMessage={errors.price?.message} />}
 
                         <div className="formGroup">
+                           <label htmlFor="date">¿Fecha de salida?</label>
                            <input
                               {...register('Date', {
                                  required: 'Completá la fecha de salida'
                               })}
-                              type={inputTypeDate ? 'date': 'text'} 
-                              onFocus={() => setInputTypeDate(true)}
-                              onBlur={() => setInputTypeDate(false)}
+                              type='date'
                               placeholder='Elegí una fecha de salida'
-                              />
+                           />
                            {errors.Date?.message && < ErrorMessage errorMessage={errors.Date?.message} />}
-
+                        </div>
+                        
+                        <div className="formGroup">
+                           <label htmlFor="time">Hora de salida?</label>
                            <input
                               {...register('time', {
                                  required: 'Completá la hora de salida'
                               })}
-                              type={inputTypeTime ? 'time' : 'text'}
-                              onFocus={() => setInputTypeTime(true)}
-                              onBlur={() => setInputTypeTime(false)}
+                              type='time'
                               placeholder='Indicá una hora de salida'
-                              />
+                           />
                            {errors.time?.message && < ErrorMessage errorMessage={errors.time?.message} />}
                         </div>
+
                      </div>
                      {errors.dateTime?.message && < ErrorMessage errorMessage={errors.dateTime?.message} />}
 

@@ -69,5 +69,6 @@
    .createTravel form .formGroup .input-group input {
       position: static;
       max-width: 140px;
+      padding-left: 0px;
    }
 }
