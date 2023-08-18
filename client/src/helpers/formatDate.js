@@ -35,6 +35,6 @@ export const formatDay = dateInNumber => {
 }
 
 export const formatDateTime = (date, time) => {
-   const datetime = `${date} ${time}`
+   const datetime = `${date}T${time}`
    return new Date(datetime).getTime()
 }

@@ -8,6 +8,7 @@ export default function InputAvatar({ register, handleAvatarChange, avatarPrevie
             <input
                {...register('avatar')}
                type="file"
+               accept='image/png, image/jpeg'
                onChange={handleAvatarChange} />
             <img src={avatarPreview ? avatarPreview : addAvatarIcon} alt="avatar de tu usuario" />
          </div>
