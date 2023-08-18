@@ -11,11 +11,29 @@
    gap: var(--px2);
 }
 
-/* .createTravel form .formGroup{
-   justify-content: space-between;
+.createTravel form .formGroup{
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
    background-color: transparent;
    padding: 0;
-} */
+}
+
+.createTravel form .formGroup .input-group {
+   display: flex;
+   align-items: center;
+   width: 100%;
+   justify-content: space-between;
+   border-radius: var(--borderRadius);
+   padding-left: var(--fsBody);
+   background-color: var(--white);
+}
+
+.createTravel form input[type='date'], .createTravel form input[type='time'] {
+   max-width: 140px;
+   outline: none;
+}
+
 
 .createTravel input:focus{
    outline: var(--inputOutline);

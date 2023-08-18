@@ -1,5 +1,5 @@
 import './CreateTravelPage.css'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import useCreateTravelForm from '../hooks/useCreateTravelForm'
@@ -24,8 +24,6 @@ export default function CreateTravelPage() {
    const { floatingNotification, isLoading } = useContext(NotificationContext)
    const navigate = useNavigate()
    const { register, handleSubmit, formState: { errors } } = useForm()
-   const [inputTypeDate, setInputTypeDate] = useState(false)
-   const [inputTypeTime, setInputTypeTime] = useState(false)
 
    useEffect(() => {
       window.scrollTo(0, 0)
@@ -97,37 +95,30 @@ export default function CreateTravelPage() {
                      type="number" placeholder='¿Precio por persona?' autoComplete='off' min={0} />
                   {errors.price?.message && < ErrorMessage errorMessage={errors.price?.message} />}
 
-                  {/* <div className="formGroup">
-                     <label className='datetime-label' htmlFor="dateTime">¿Fecha y hora de salida?</label>
-                     <input
-                        {...register('dateTime', {
-                           required: 'Completa la fecha y hora de salida',
-                           validate: value => validateDate(value) || 'Ingresa una fecha proxima'
-                        })} type="datetime-local" placeholder='¿Fecha y hora de salida?' autoComplete='off' />
-                  </div> */}
-                  {/* <div className="formGroup"> */}
-                  <input
-                     {...register('Date', {
-                        required: 'Completá la fecha de salida'
-                     })}
-                     type={inputTypeDate ? 'date' : 'text'}
-                     placeholder='Elegí una fecha de salida'
-                     onFocus={() => setInputTypeDate(true)}
-                     onBlur={() => setInputTypeDate(false)}
-                  />
-                  {errors.Date?.message && < ErrorMessage errorMessage={errors.Date?.message} />}
+                  <div className="formGroup">
+                     <div className='input-group'>
+                        <span>Elegí la fecha de salida</span>
+                        <input
+                           {...register('Date', {
+                              required: 'Completá la fecha de salida'
+                           })}
+                           type='date'
+                        />
+                     </div>
+                     {errors.Date?.message && < ErrorMessage errorMessage={errors.Date?.message} />}
 
-                  <input
-                     {...register('time', {
-                        required: 'Completá la hora de salida'
-                     })}
-                     placeholder='Indicá la hora de salida'
-                     type={inputTypeTime ? 'time' : 'text'}
-                     onFocus={() => setInputTypeTime(true)}
-                     onBlur={() => setInputTypeTime(false)}
-                  />
-                  {errors.time?.message && < ErrorMessage errorMessage={errors.time?.message} />}
-                  {/* </div> */}
+                     <div className='input-group'>
+                        <span>Indicá la hora de salida</span>
+                        <input
+                           {...register('time', {
+                              required: 'Completá la hora de salida'
+                           })}
+                           placeholder='Indicá la hora de salida'
+                           type='time'
+                        />
+                     </div>
+                     {errors.time?.message && < ErrorMessage errorMessage={errors.time?.message} />}
+                  </div>
 
                </div>
                <div className="form-separator">
@@ -161,7 +152,6 @@ export default function CreateTravelPage() {
                      <RowItemWithIcon icon={voiceIcon} text='Charlatán' />
                   </div>
                </div>
-
 
                <div className="column-separation">
                   <Button primary type='submit'>Publicar viaje</Button>
