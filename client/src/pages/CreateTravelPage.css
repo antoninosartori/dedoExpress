@@ -32,6 +32,10 @@
 }
 
 .createTravel form .formGroup .input-group input{
+   display: flex;
+   justify-content: flex-end;
+   width: 100%;
+   height: 100%;
    outline: none;
    position: absolute;
    background-color: transparent;
