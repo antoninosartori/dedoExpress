@@ -20,6 +20,7 @@
 }
 
 .createTravel form .formGroup .input-group {
+   position: relative;
    display: flex;
    align-items: center;
    width: 100%;
@@ -27,13 +28,17 @@
    border-radius: var(--borderRadius);
    padding-left: var(--fsBody);
    background-color: var(--white);
+   padding: var(--fsBody);
 }
 
-.createTravel form input[type='date'], .createTravel form input[type='time'] {
-   max-width: 140px;
+.createTravel form .formGroup .input-group input{
    outline: none;
+   position: absolute;
+   background-color: transparent;
+   left: 0;
+   text-align: right;
+   padding: 0 var(--fsBody);
 }
-
 
 .createTravel input:focus{
    outline: var(--inputOutline);
@@ -55,5 +60,9 @@
 @media screen and (min-width: 768px) {
    .createTravel form .form-separator{
       align-items: flex-start;
+   }
+   .createTravel form .formGroup .input-group input {
+      position: static;
+      max-width: 140px;
    }
 }
