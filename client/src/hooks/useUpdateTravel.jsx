@@ -52,7 +52,6 @@ export default function useUpdateTravel() {
             status: 'success',
             duration: 3000
          })
-         console.log({updatedTravel})
          navigate(`/travelDetails/${travelId}`)
       } catch (err) {
          setFloatingNotification({
