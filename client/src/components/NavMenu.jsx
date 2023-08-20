@@ -32,10 +32,17 @@ export default function NavMenu({handleLogOut}) {
                </Link>
             </li>
             { user && 
-               <Link onClick={handleLogOut}>
+               <li>
+                  <Link onClick={handleLogOut}>
                   Cerrar sesion
                </Link>
+               </li>
             } 
+            <li>
+               <Link to='/help'>
+                  Ayuda
+               </Link>
+            </li>
          </ul>
       </nav>
    )

@@ -10,6 +10,7 @@ import UpdateTravelPage from './pages/UpdateTravelPage'
 import ChangePasswordPage from './pages/ChangePasswordPage'
 import ForgottenPassword from './pages/ForgottenPassword'
 import NotFound from './pages/NotFound'
+import HelpPage from './pages/HelpPage'
 
 function App() {
    
@@ -22,6 +23,7 @@ function App() {
                <Route path='/singUp' element={< SingUpPage />} />
                <Route path='/forgotten-password' element={< ForgottenPassword />} />
                <Route path='/createTravel' element={< CreateTravelPage />} />
+               <Route path='/help' element={< HelpPage />} />
                <Route path='/travelDetails/:travelId' element={< TravelDetailsPage />} />
                <Route path='/updateTravel/:travelId' element={< UpdateTravelPage />} />
                <Route path='/user/:userId/changePassword' element={< ChangePasswordPage />} />
