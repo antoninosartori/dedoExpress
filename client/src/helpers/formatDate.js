@@ -42,14 +42,9 @@ export const formatDateTime = (date, time) => {
    const { name, version } = userBrowser
    const browserVersion = Number(version.split('.')[0])
 
-   /* if (name.toLowerCase() === 'safari' && browserVersion >= SAFARI_VERSION_SPLIT) {
-      datetime = `${date} ${time}`
-      return new Date(datetime).getTime() */
    if (name.toLowerCase() === 'safari' && browserVersion >= SAFARI_VERSION_SPLIT) {
-      // Parse date and time components separately
-      const [year, month, day] = date.split('-');
-      const [hour, minute] = time.split(':');
-      return new Date(year, month - 1, day, hour, minute).getTime();
+      const dateEdited = date.replace(/-/g, "/")
+      return new Date(`${dateEdited}T${time}:00.000Z`).getTime()
    } else {
       const datetime = `${date}T${time}:00.000Z`
       return new Date(datetime).getTime() + THREE_HOURS_IN_MS
