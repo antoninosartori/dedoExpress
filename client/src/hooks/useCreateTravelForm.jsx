@@ -57,8 +57,13 @@ export default function useCreateTravelForm() {
          })
          navigate('/')
       } catch (err) {
-         setFloatingNotification({
+         /* setFloatingNotification({
             message: 'no se ha podido crear tu viaje, intenta nuevamente',
+            status: 'error',
+            duration: 3000
+         }) */
+         setFloatingNotification({
+            message: err.message,
             status: 'error',
             duration: 3000
          })
