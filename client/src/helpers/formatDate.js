@@ -41,13 +41,17 @@ export const formatDateTime = (date, time) => {
    const userBrowser = browser.getBrowser()
    const { name, version } = userBrowser
    const browserVersion = Number(version.split('.')[0])
-   let datetime
 
-   if (name.toLowerCase() === 'safari' && browserVersion >= SAFARI_VERSION_SPLIT) {
+   /* if (name.toLowerCase() === 'safari' && browserVersion >= SAFARI_VERSION_SPLIT) {
       datetime = `${date} ${time}`
-      return new Date(datetime).getTime()
+      return new Date(datetime).getTime() */
+   if (name.toLowerCase() === 'safari' && browserVersion >= SAFARI_VERSION_SPLIT) {
+      // Parse date and time components separately
+      const [year, month, day] = date.split('-');
+      const [hour, minute] = time.split(':');
+      return new Date(year, month - 1, day, hour, minute).getTime();
    } else {
-      datetime = `${date}T${time}:00.000Z`
+      const datetime = `${date}T${time}:00.000Z`
       return new Date(datetime).getTime() + THREE_HOURS_IN_MS
    }
 }
