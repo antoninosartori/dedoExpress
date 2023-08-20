@@ -15,6 +15,9 @@ import EmptyComponent from '../components/EmptyComponent'
 import Header from '../components/Header'
 import TravelFilters from '../components/TravelFilters'
 
+
+import Bowser from "bowser";
+
 export default function HomePage() {
    const { allTravels } = useContext(TravelContext)
    const { user } = useContext(UserContext)
@@ -25,19 +28,25 @@ export default function HomePage() {
       min: 0,
       max: ONE_DAY_IN_MS
    })
+   const [browser, setBrowser] = useState({})
    const navigate = useNavigate()
 
    useEffect(() => {
       if (user === null) {
          navigate('/login')
       }
+
+      const browser = Bowser.getParser(window.navigator.userAgent);
+      const userBrowser = browser.getBrowser()
+      setBrowser(userBrowser)
+
       getInitialAllTravel().then(setTravelsToShow)
       window.scrollTo(0, 0)
    }, [user])
 
    useEffect(() => {
       const filteredTravel = allTravels.filter(travel => (travel.date - new Date().getTime() < filters.max) && (travel.date - new Date().getTime() > filters.min))
-      setTravelsToShow(filteredTravel.sort((a,b) => a.date - b.date))
+      setTravelsToShow(filteredTravel.sort((a, b) => a.date - b.date))
    }, [filters, allTravels])
 
    const handleChangeFilters = (event) => {
@@ -75,7 +84,8 @@ export default function HomePage() {
             < SearchFormHome />
 
             <h2 className='subtitle'>Viajes disponibles</h2>
-
+            <p>{browser.name}</p>
+            <p>{browser.version}</p>
             < TravelFilters handleChange={handleChangeFilters} />
 
             {isLoading && < LoadingSpinner text='cargando viajes' />}

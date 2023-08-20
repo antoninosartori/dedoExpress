@@ -1,5 +1,6 @@
 import { THREE_HOURS_IN_MS } from "./consts"
-
+import Bowser from "bowser";
+const browser = Bowser.getParser(window.navigator.userAgent);
 export const formatDate = date => {
    const newDate = new Date(date).toLocaleDateString('es-AR', {
       weekday: 'long', 
@@ -37,7 +38,18 @@ export const formatDay = dateInNumber => {
 }
 
 export const formatDateTime = (date, time) => {
-   const datetime = `${date}T${time}:00.000Z`
+   const userBrowser = browser.getBrowser()
+   const { name, version } = userBrowser
+   const browserVersion = Number(version.split('.')[0])
+   let datetime
+
+   if( name.toLowerCase() === 'safari' && browserVersion <= 10){
+      alert(name, version)
+   } else{
+      console.log('no entro al if')
+   }
+   // if version safari es > algo ... else datatime = `${date}T${time}:00.000Z`
+   datetime = `${date}T${time}:00.000Z`
    // esta en la hora UTC
    // le sumamos las 3 horas restantes de Argentina
    return new Date(datetime).getTime() + THREE_HOURS_IN_MS
