@@ -12,21 +12,21 @@ import ForgottenPassword from './pages/ForgottenPassword'
 import NotFound from './pages/NotFound'
 
 function App() {
-
+   
    return (
       <>
          <TravelContextState>
             <Routes>
-               <Route path='/' element={ < HomePage /> } />
-               <Route path='/login' element={ < LoginPage /> } />
-               <Route path='/singUp' element={ < SingUpPage /> } />
-               <Route path='/forgotten-password' element={ < ForgottenPassword /> } />
-               <Route path='/createTravel' element={< CreateTravelPage /> } />
-               <Route path='/travelDetails/:travelId' element={ < TravelDetailsPage /> } />
-               <Route path='/updateTravel/:travelId' element={ < UpdateTravelPage /> } />
-               <Route path='/user/:userId/changePassword' element={ < ChangePasswordPage /> } />
-               <Route path='/user/:userId' element={ < UserDetailsPage /> } />
-               <Route path='*' element={ < NotFound /> } />
+               <Route path='/' element={< HomePage />} />
+               <Route path='/login' element={< LoginPage />} />
+               <Route path='/singUp' element={< SingUpPage />} />
+               <Route path='/forgotten-password' element={< ForgottenPassword />} />
+               <Route path='/createTravel' element={< CreateTravelPage />} />
+               <Route path='/travelDetails/:travelId' element={< TravelDetailsPage />} />
+               <Route path='/updateTravel/:travelId' element={< UpdateTravelPage />} />
+               <Route path='/user/:userId/changePassword' element={< ChangePasswordPage />} />
+               <Route path='/user/:userId' element={< UserDetailsPage />} />
+               <Route path='*' element={< NotFound />} />
             </Routes>
          </TravelContextState>
       </>

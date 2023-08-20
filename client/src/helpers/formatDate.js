@@ -37,7 +37,7 @@ export const formatDay = dateInNumber => {
 }
 
 export const formatDateTime = (date, time) => {
-   const datetime = `${date}T${time}Z`
+   const datetime = `${date}T${time}:00.000Z`
    // esta en la hora UTC
    // le sumamos las 3 horas restantes de Argentina
    return new Date(datetime).getTime() + THREE_HOURS_IN_MS
