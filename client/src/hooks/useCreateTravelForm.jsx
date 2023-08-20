@@ -63,7 +63,7 @@ export default function useCreateTravelForm() {
             duration: 3000
          }) */
          setFloatingNotification({
-            message: err.name + '' + err.message,
+            message: err.response.data || err.message,
             status: 'error',
             duration: 3000
          })
