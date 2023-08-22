@@ -7,11 +7,11 @@ import { formatDateTime } from "../helpers/formatDate"
 import { validateDate } from '../helpers/validateDate'
 
 export default function useCreateTravelForm() {
-   const { user } = useContext(UserContext)
+   const { user, hasToSplitUI } = useContext(UserContext)
    const { setFloatingNotification, setIsLoading } = useContext(NotificationContext)
-   
+
    const navigate = useNavigate()
-   
+
    useEffect(() => {
       if (user === null) {
          navigate('/login')
@@ -19,27 +19,46 @@ export default function useCreateTravelForm() {
    }, [user])
 
    const handleCreateTravel = async (data) => {
-      const { from, to, capacity, price, Date, time, pet, luggage, music, food, talk  } = data
-      const date = formatDateTime(Date,time)
-      const isFutureDate = validateDate(date)
+      let newTravel
+      if (hasToSplitUI) {
+         const { from, to, capacity, price, dateTime, pet, luggage, music, food, talk } = data
+         const date = new Date(dateTime).getTime()
+         const isFutureDate = validateDate(date)
+         if (!isFutureDate) {
+            return setFloatingNotification({ message: 'La fecha debe ser futura' })
+         }
+         const features = { pet, luggage, music, food, talk }
+         newTravel = {
+            from: from.trim().toLowerCase(),
+            to: to.trim().toLowerCase(),
+            capacity,
+            price,
+            date,
+            features
+         }
+      }
+      if (!hasToSplitUI) {
+         const { from, to, capacity, price, Date, time, pet, luggage, music, food, talk } = data
+         const date = formatDateTime(Date, time)
+         const isFutureDate = validateDate(date)
 
-      if(!isFutureDate){
-         return setFloatingNotification({message: 'La fecha debe ser futura'})
+         if (!isFutureDate) {
+            return setFloatingNotification({ message: 'La fecha debe ser futura' })
+         }
+         const features = { pet, luggage, music, food, talk }
+         newTravel = {
+            from: from.trim().toLowerCase(),
+            to: to.trim().toLowerCase(),
+            capacity,
+            price,
+            date,
+            features
+         }
       }
 
       setIsLoading(true)
 
       const { token } = user
-
-      const features = { pet, luggage, music, food, talk}
-      const newTravel = { 
-         from: from.trim().toLowerCase(), 
-         to: to.trim().toLowerCase(), 
-         capacity, 
-         price, 
-         date, 
-         features
-      }
 
       const config = {
          headers: {
@@ -57,13 +76,8 @@ export default function useCreateTravelForm() {
          })
          navigate('/')
       } catch (err) {
-         /* setFloatingNotification({
-            message: 'no se ha podido crear tu viaje, intenta nuevamente',
-            status: 'error',
-            duration: 3000
-         }) */
          setFloatingNotification({
-            message: err.response.data || err.message,
+            message: 'no se ha podido crear tu viaje, intenta nuevamente',
             status: 'error',
             duration: 3000
          })

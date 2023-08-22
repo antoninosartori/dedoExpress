@@ -19,7 +19,7 @@ import fastfoodIcon from '../assets/fastfood.svg'
 import voiceIcon from '../assets/voice_selection.svg'
 
 export default function CreateTravelPage() {
-   const { user } = useContext(UserContext)
+   const { user, hasToSplitUI } = useContext(UserContext)
    const { handleCreateTravel } = useCreateTravelForm()
    const { floatingNotification, isLoading } = useContext(NotificationContext)
    const navigate = useNavigate()
@@ -31,6 +31,8 @@ export default function CreateTravelPage() {
          navigate('/login')
       }
    }, [user])
+
+   
 
    return (
       <>
@@ -95,29 +97,42 @@ export default function CreateTravelPage() {
                      type="number" placeholder='¿Precio por persona?' autoComplete='off' min={0} />
                   {errors.price?.message && < ErrorMessage errorMessage={errors.price?.message} />}
 
-                  <div className="formGroup">
-                     <div className='input-group'>
-                        <span>Elegí la fecha de salida</span>
-                        <input
-                           {...register('Date', {
-                              required: 'Completá la fecha de salida'
-                           })}
-                           type='date'
-                        />
-                     </div>
-                     {errors.Date?.message && < ErrorMessage errorMessage={errors.Date?.message} />}
+                  {
+                     hasToSplitUI 
+                        ? 
+                           <>
+                              <input 
+                                 {...register('dateTime', {
+                                    required: 'Completá la fecha de salida'
+                                 })}
+                                 type="datetime-local" 
+                              />
+                              {errors.dateTime?.message && < ErrorMessage errorMessage={errors.dateTime?.message} />}
+                           </>
+                        : <div className="formGroup">
+                           <div className='input-group'>
+                              <span>Elegí la fecha de salida</span>
+                              <input
+                                 {...register('Date', {
+                                    required: 'Completá la fecha de salida'
+                                 })}
+                                 type='date'
+                              />
+                           </div>
+                           {errors.Date?.message && < ErrorMessage errorMessage={errors.Date?.message} />}
 
-                     <div className='input-group'>
-                        <span>Indicá la hora de salida</span>
-                        <input
-                           {...register('time', {
-                              required: 'Completá la hora de salida'
-                           })}
-                           type='time'
-                        />
-                     </div>
-                     {errors.time?.message && < ErrorMessage errorMessage={errors.time?.message} />}
-                  </div>
+                           <div className='input-group'>
+                              <span>Indicá la hora de salida</span>
+                              <input
+                                 {...register('time', {
+                                    required: 'Completá la hora de salida'
+                                 })}
+                                 type='time'
+                              />
+                           </div>
+                           {errors.time?.message && < ErrorMessage errorMessage={errors.time?.message} />}
+                        </div>
+                  }
 
                </div>
                <div className="form-separator">
