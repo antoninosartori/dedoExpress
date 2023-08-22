@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { NotificationContext } from "../context/FloatinNotificationContext"
 import { getOneUser, updateAccount } from "../services/login"
 import { blobToBase64, urlToBlob } from "../helpers/urlBlob"
+import { LOCAL_STORAGE_NAME } from "../helpers/consts"
 
 export default function useGetOneUser() {
    const { user, setUser } = useContext(UserContext)
@@ -51,6 +52,10 @@ export default function useGetOneUser() {
             setAvatarPreview(base64)
          })
          .catch(err => {
+            if(err.config.xsrfHeaderName === "X-XSRF-TOKEN"){
+               window.localStorage.removeItem(LOCAL_STORAGE_NAME)
+               return navigate('/login')
+            }
             setFloatingNotification({ message: err.response, status: 'error', duration: 5000 })
             console.log(err)
          })
@@ -101,12 +106,21 @@ export default function useGetOneUser() {
          })
          navigate('/')
       } catch (err) {
-         console.error({err})
+         if(err.response.data.error === "jwt expired"){
+            setFloatingNotification({
+               message: 'por favor, inicia sesion nuevamente',
+               status: 'error',
+               duration: 3000
+            })
+            window.localStorage.removeItem(LOCAL_STORAGE_NAME)
+            setUser(null)
+         }
          setFloatingNotification({
             message: 'No hemos podido actualizar tu usuario, intenta nuevamente',
             status: 'error',
             duration: 3000
          })
+         console.error(err)
       } finally{
          setIsLoading(false)
       }

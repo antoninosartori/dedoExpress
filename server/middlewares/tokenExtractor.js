@@ -7,15 +7,17 @@ const tokenExtractor = (req, res, next) => {
       token = authorization.substring(7)
    }
 
-   const decodedToken = jwt.verify(token, process.env.SECRET_WORD)
-
-   if (!token || !decodedToken._id) {
-      return res.status(401).json({ error: 'invalid token or invalid authorization' })
+   try {
+      const decodedToken = jwt.verify(token, process.env.SECRET_WORD)
+      if (!token || !decodedToken._id) {
+         return res.status(401).json({ error: 'invalid token or invalid authorization' })
+      }
+      const { _id: userId } = decodedToken
+      req.userId = userId
+      next()
+   } catch (error) {
+      res.status(401).json({error: error.message})
    }
-   
-   const { _id: userId } = decodedToken
-   req.userId = userId
-   next()
 }
 
 module.exports = tokenExtractor

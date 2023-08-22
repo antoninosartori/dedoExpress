@@ -4,9 +4,10 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { TravelContext } from "../context/TravelsContext";
 import { NotificationContext } from "../context/FloatinNotificationContext";
 import { UserContext } from "../context/UserContext";
+import { LOCAL_STORAGE_NAME } from "../helpers/consts";
 
 export default function useGetTravels() {
-   const { user } = useContext(UserContext)
+   const { user, setUser } = useContext(UserContext)
    const { setAllTravels } = useContext(TravelContext)
    const { setFloatingNotification, setIsLoading } = useContext(NotificationContext)
    const navigate = useNavigate();
@@ -26,6 +27,15 @@ export default function useGetTravels() {
             return data
          })
          .catch(err => {
+            if(err.response.data.error === "jwt expired"){
+               setFloatingNotification({
+                  message: 'por favor, inicia sesion nuevamente',
+                  status: 'error',
+                  duration: 3000
+               })
+               window.localStorage.removeItem(LOCAL_STORAGE_NAME)
+               setUser(null)
+            }
             console.log(err)
             setFloatingNotification({ 
                message: 'Error al traer todos los viajes',

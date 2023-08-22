@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom"
 import { NotificationContext } from "../context/FloatinNotificationContext"
 import { formatDateTime } from "../helpers/formatDate"
 import { validateDate } from '../helpers/validateDate'
+import { LOCAL_STORAGE_NAME } from "../helpers/consts"
 
 export default function useCreateTravelForm() {
-   const { user, hasToSplitUI } = useContext(UserContext)
+   const { user, hasToSplitUI, setUser } = useContext(UserContext)
    const { setFloatingNotification, setIsLoading } = useContext(NotificationContext)
 
    const navigate = useNavigate()
@@ -80,6 +81,16 @@ export default function useCreateTravelForm() {
          })
          navigate('/')
       } catch (err) {
+         // token expirado
+         if(err.response.data.error === "jwt expired"){
+            setFloatingNotification({
+               message: 'por favor, inicia sesion nuevamente',
+               status: 'error',
+               duration: 3000
+            })
+            window.localStorage.removeItem(LOCAL_STORAGE_NAME)
+            setUser(null)
+         }
          setFloatingNotification({
             message: 'no se ha podido crear tu viaje, intenta nuevamente',
             status: 'error',
