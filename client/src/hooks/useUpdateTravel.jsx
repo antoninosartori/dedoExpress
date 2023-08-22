@@ -7,31 +7,54 @@ import { formatDateTime } from "../helpers/formatDate"
 import { validateDate } from "../helpers/validateDate"
 
 export default function useUpdateTravel() {
-   const { user } = useContext(UserContext)
+   const { user, hasToSplitUI } = useContext(UserContext)
    const { setFloatingNotification, setIsLoading } = useContext(NotificationContext)
    const params = useParams()
    const { travelId } = params
    const navigate = useNavigate()
 
    const handleSumbitUpdateTravel = async (data) => {
-     
-      const { from, to, capacity, price, Date, time , pet, food, music, luggage, talk } = data
-      const features = { pet, food, music, luggage, talk }
-      const date = formatDateTime(Date,time)
-      const isFutureDate = validateDate(date)
-      if(!isFutureDate){
-         return setFloatingNotification({message: 'La fecha debe ser futura'})
-      }
-      setIsLoading(true)
+      let newTravelInfo
 
-      const newTravelInfo = { 
-         from: from.trim().toLowerCase(), 
-         to: to.trim().toLowerCase(), 
-         capacity, 
-         price, 
-         date, 
-         features 
+      if (hasToSplitUI) {
+         const { from, to, capacity, price, dateTime, pet, luggage, music, food, talk } = data
+         const date = new Date(dateTime).getTime()
+         const isFutureDate = validateDate(date)
+         if (!isFutureDate) {
+            return setFloatingNotification({ message: 'La fecha debe ser futura' })
+         }
+         const features = { pet, luggage, music, food, talk }
+         newTravelInfo = {
+            from: from.trim().toLowerCase(),
+            to: to.trim().toLowerCase(),
+            capacity,
+            price,
+            date,
+            features
+         }
       }
+
+      if (!hasToSplitUI) {
+         const { from, to, capacity, price, Date, time , pet, food, music, luggage, talk } = data
+         const date = formatDateTime(Date,time)
+         const isFutureDate = validateDate(date)
+
+         if(!isFutureDate){
+            return setFloatingNotification({message: 'La fecha debe ser futura'})
+         }
+
+         const features = { pet, food, music, luggage, talk }
+         newTravelInfo = { 
+            from: from.trim().toLowerCase(), 
+            to: to.trim().toLowerCase(), 
+            capacity, 
+            price, 
+            date, 
+            features 
+         }
+      }
+      
+      setIsLoading(true)
 
       const token =
          user !== null
@@ -63,6 +86,7 @@ export default function useUpdateTravel() {
          setIsLoading(false)
       }
    }
+   
    return {
       handleSumbitUpdateTravel
    }

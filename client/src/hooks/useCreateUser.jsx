@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import { createUser } from "../services/login"
 import { useNavigate } from "react-router-dom"
 import { NotificationContext } from "../context/FloatinNotificationContext"
+import { LIMIT_TO_UPLOAD } from "../helpers/consts"
 
 export default function useCreateUser() {
    const { setFloatingNotification, setIsLoading } = useContext(NotificationContext)
@@ -47,7 +48,7 @@ export default function useCreateUser() {
 
    const handleAvatarChange = (event) => {
       const file = event.target.files[0];
-      if (file && file.size > 400000) {
+      if (file && file.size > LIMIT_TO_UPLOAD) {
          setFloatingNotification({
             message: 'La imagen es demasiado grande, prueba con otra mas pequeña',
             status: 'error',
