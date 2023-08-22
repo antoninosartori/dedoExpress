@@ -34,8 +34,8 @@ export default function useCreateTravelForm() {
          newTravel = {
             from: from.trim().toLowerCase(),
             to: to.trim().toLowerCase(),
-            capacity,
-            price,
+            capacity: Number(capacity),
+            price: Number(price),
             date,
             features
          }
@@ -54,8 +54,8 @@ export default function useCreateTravelForm() {
          newTravel = {
             from: from.trim().toLowerCase(),
             to: to.trim().toLowerCase(),
-            capacity,
-            price,
+            capacity: Number(capacity),
+            price: Number(price),
             date,
             features
          }
