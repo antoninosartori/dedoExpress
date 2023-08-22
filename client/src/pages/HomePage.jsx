@@ -23,7 +23,7 @@ export default function HomePage() {
    const [travelsToShow, setTravelsToShow] = useState([])
    const [filters, setFilters] = useState({
       min: 0,
-      max: ONE_DAY_IN_MS
+      max: ONE_DAY_IN_MS * 7
    })
    const navigate = useNavigate()
 
