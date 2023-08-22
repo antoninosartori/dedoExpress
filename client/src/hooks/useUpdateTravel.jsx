@@ -8,34 +8,14 @@ import { validateDate } from "../helpers/validateDate"
 import { LOCAL_STORAGE_NAME } from "../helpers/consts"
 
 export default function useUpdateTravel() {
-   const { user, setUser, hasToSplitUI } = useContext(UserContext)
+   const { user, setUser } = useContext(UserContext)
    const { setFloatingNotification, setIsLoading } = useContext(NotificationContext)
    const params = useParams()
    const { travelId } = params
    const navigate = useNavigate()
 
    const handleSumbitUpdateTravel = async (data) => {
-      let newTravelInfo
 
-      if (hasToSplitUI) {
-         const { from, to, capacity, price, dateTime, pet, luggage, music, food, talk } = data
-         const date = new Date(dateTime).getTime()
-         const isFutureDate = validateDate(date)
-         if (!isFutureDate) {
-            return setFloatingNotification({ message: 'La fecha debe ser futura' })
-         }
-         const features = { pet, luggage, music, food, talk }
-         newTravelInfo = {
-            from: from.trim().toLowerCase(),
-            to: to.trim().toLowerCase(),
-            capacity: Number(capacity),
-            price: Number(price),
-            date,
-            features
-         }
-      }
-
-      if (!hasToSplitUI) {
          const { from, to, capacity, price, Date, time , pet, food, music, luggage, talk } = data
          const date = formatDateTime(Date,time)
          const isFutureDate = validateDate(date)
@@ -45,7 +25,7 @@ export default function useUpdateTravel() {
          }
 
          const features = { pet, food, music, luggage, talk }
-         newTravelInfo = { 
+         const newTravelInfo = { 
             from: from.trim().toLowerCase(),
             to: to.trim().toLowerCase(),
             capacity: Number(capacity),
@@ -53,7 +33,6 @@ export default function useUpdateTravel() {
             date, 
             features 
          }
-      }
       
       setIsLoading(true)
 

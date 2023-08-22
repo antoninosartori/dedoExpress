@@ -47,7 +47,7 @@ export default function TravelDetailsPage() {
    }, [userLogged])
 
    const defaultText = user ? `Hola ${user[0].username}, me gustaria viajar con vos a ${to}.` : ''
-
+   
    const isOwner =
       !user
          ? false
@@ -99,9 +99,6 @@ export default function TravelDetailsPage() {
                      </div>
                      {isOwner &&
                         <div className='travelDetails-ownerContainer'>
-                           {/* <Button type='button' secondary>
-                              Ocultar
-                           </Button> */}
                            <Button type='button' secondary>
                               <Link to={`/updateTravel/${travelId}`}>
                                  Modificar
@@ -121,7 +118,10 @@ export default function TravelDetailsPage() {
                                  < Avatar avatarSrc={user[0].avatar.url} username={user[0].username} />
                               </div>
                               <div className='travelDetails-driverInfo-content'>
-                                 <h4>{user[0].username}</h4>
+                                 <div className='travelDetails-driverInfo-content__username'>
+                                    <h4>{user[0]?.name}</h4>
+                                    <p>@{user[0].username}</p>
+                                 </div>
                                  <RowItemWithIcon icon={callIcon} text={`+${user[0].cellphone}`} />
                               </div>
                            </div>

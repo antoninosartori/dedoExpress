@@ -89,6 +89,15 @@
    justify-content: space-between;
 }
 
+.travelDetails-driverInfo-content__username{
+   display: flex;
+   width: 100%;
+   flex-wrap: wrap;
+   gap: 4px;
+   align-items: center;
+   justify-content: flex-start;
+}
+
 .linkToMessage{
    display: flex;
   gap: var(--px1);

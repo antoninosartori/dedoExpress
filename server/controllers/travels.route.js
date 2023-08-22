@@ -103,6 +103,7 @@ travelsRouter.get('/:travelId', async (req, res, next) => {
    try {
       const travel = await Travel.findById(travelId).populate('user', {
          username: 1,
+         name: 1,
          cellphone: 1,
          avatar: 1
       })

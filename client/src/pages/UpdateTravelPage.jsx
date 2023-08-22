@@ -17,10 +17,8 @@ import fastfoodIcon from '../assets/fastfood.svg'
 import voiceIcon from '../assets/voice_selection.svg'
 import { useNavigate } from 'react-router-dom'
 import { NotificationContext } from '../context/FloatinNotificationContext'
-import { UserContext } from '../context/UserContext'
 
 export default function UpdateTravelPage() {
-   const { hasToSplitUI } = useContext(UserContext)
    const { isLoading, floatingNotification } = useContext(NotificationContext)
    const { register, handleSubmit, formState: { errors }, setValue } = useForm()
    const { travel } = useGetOneTravel()
@@ -118,45 +116,29 @@ export default function UpdateTravelPage() {
                         </div>
                         {errors.price?.message && < ErrorMessage errorMessage={errors.price?.message} />}
 
-                        {
-                           hasToSplitUI
-                              ?
-                              <>
-                                 <input
-                                    {...register('dateTime', {
-                                       required: 'Completá la fecha de salida'
-                                    })}
-                                    type="datetime-local"
-                                 />
-                                 {errors.dateTime?.message && < ErrorMessage errorMessage={errors.dateTime?.message} />}
-                              </>
-                              :
-                              <>
-                                 <div className="formGroup">
-                                    <label htmlFor="date">¿Fecha de salida?</label>
-                                    <input
-                                       {...register('Date', {
-                                          required: 'Completá la fecha de salida'
-                                       })}
-                                       type='date'
-                                       placeholder='Elegí una fecha de salida'
-                                    />
-                                    {errors.Date?.message && < ErrorMessage errorMessage={errors.Date?.message} />}
-                                 </div>
+                        <div className="formGroup">
+                           <label htmlFor="date">¿Fecha de salida?</label>
+                           <input
+                              {...register('Date', {
+                                 required: 'Completá la fecha de salida'
+                              })}
+                              type='date'
+                              placeholder='Elegí una fecha de salida'
+                           />
+                           {errors.Date?.message && < ErrorMessage errorMessage={errors.Date?.message} />}
+                        </div>
 
-                                 <div className="formGroup">
-                                    <label htmlFor="time">Hora de salida?</label>
-                                    <input
-                                       {...register('time', {
-                                          required: 'Completá la hora de salida'
-                                       })}
-                                       type='time'
-                                       placeholder='Indicá una hora de salida'
-                                    />
-                                    {errors.time?.message && < ErrorMessage errorMessage={errors.time?.message} />}
-                                 </div>
-                              </>
-                        }
+                        <div className="formGroup">
+                           <label htmlFor="time">Hora de salida?</label>
+                           <input
+                              {...register('time', {
+                                 required: 'Completá la hora de salida'
+                              })}
+                              type='time'
+                              placeholder='Indicá una hora de salida'
+                           />
+                           {errors.time?.message && < ErrorMessage errorMessage={errors.time?.message} />}
+                        </div>
 
                      </div>
                      {errors.dateTime?.message && < ErrorMessage errorMessage={errors.dateTime?.message} />}

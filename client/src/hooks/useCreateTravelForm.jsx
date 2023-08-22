@@ -8,7 +8,7 @@ import { validateDate } from '../helpers/validateDate'
 import { LOCAL_STORAGE_NAME } from "../helpers/consts"
 
 export default function useCreateTravelForm() {
-   const { user, hasToSplitUI, setUser } = useContext(UserContext)
+   const { user, setUser } = useContext(UserContext)
    const { setFloatingNotification, setIsLoading } = useContext(NotificationContext)
 
    const navigate = useNavigate()
@@ -20,29 +20,6 @@ export default function useCreateTravelForm() {
    }, [user])
 
    const handleCreateTravel = async (data) => {
-      let newTravel
-
-      if (hasToSplitUI) {
-         const { from, to, capacity, price, dateTime, pet, luggage, music, food, talk } = data
-         const date = new Date(dateTime).getTime()
-         const isFutureDate = validateDate(date)
-
-         if (!isFutureDate) {
-            return setFloatingNotification({ message: 'La fecha debe ser futura' })
-         }
-
-         const features = { pet, luggage, music, food, talk }
-         newTravel = {
-            from: from.trim().toLowerCase(),
-            to: to.trim().toLowerCase(),
-            capacity: Number(capacity),
-            price: Number(price),
-            date,
-            features
-         }
-      }
-
-      if (!hasToSplitUI) {
          const { from, to, capacity, price, Date, time, pet, luggage, music, food, talk } = data
          const date = formatDateTime(Date, time)
          const isFutureDate = validateDate(date)
@@ -52,7 +29,7 @@ export default function useCreateTravelForm() {
          }
 
          const features = { pet, luggage, music, food, talk }
-         newTravel = {
+         const newTravel = {
             from: from.trim().toLowerCase(),
             to: to.trim().toLowerCase(),
             capacity: Number(capacity),
@@ -60,7 +37,6 @@ export default function useCreateTravelForm() {
             date,
             features
          }
-      }
 
       setIsLoading(true)
 
