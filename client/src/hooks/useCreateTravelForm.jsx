@@ -90,6 +90,7 @@ export default function useCreateTravelForm() {
             })
             window.localStorage.removeItem(LOCAL_STORAGE_NAME)
             setUser(null)
+            return navigate('/login')
          }
          setFloatingNotification({
             message: 'no se ha podido crear tu viaje, intenta nuevamente',
