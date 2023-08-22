@@ -106,6 +106,8 @@ export default function useGetTravels() {
             delay: 5000 
          })
          navigate('/')
+      } finally{
+         setIsLoading(false)
       }
    }
 

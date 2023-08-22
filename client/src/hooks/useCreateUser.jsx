@@ -27,14 +27,12 @@ export default function useCreateUser() {
       try {
          await createUser(newUser)
          navigate('/login')
-         setIsLoading(false)
          setFloatingNotification({ 
             message: 'se ha creado tu usuario correctamente', 
             status: 'success', 
             duration: 3000 })
       } catch (err) {
          navigate('/singUp')
-         setIsLoading(false)
          console.log(err)
          setFloatingNotification({
             message: 'Puede que tu username, email o celular ya este en uso. Deben ser unicos',
@@ -42,6 +40,8 @@ export default function useCreateUser() {
             duration: 5000
          })
          return
+      } finally{
+         setIsLoading(false)
       }
    }
 

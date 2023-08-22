@@ -94,7 +94,6 @@ export default function useGetOneUser() {
          const newUser = await updateAccount(userId, newUserInfo, credentials)
          setAccount(newUser)
          await setUser({ ...user, name: name, username: username, avatar: newUser.avatar })
-         setIsLoading(false)
          setFloatingNotification({
             message: 'Has actualizado tu usuario correctamente',
             status: 'success',
@@ -103,12 +102,13 @@ export default function useGetOneUser() {
          navigate('/')
       } catch (err) {
          console.error({err})
-         setIsLoading(false)
          setFloatingNotification({
             message: 'No hemos podido actualizar tu usuario, intenta nuevamente',
             status: 'error',
             duration: 3000
          })
+      } finally{
+         setIsLoading(false)
       }
    }
 

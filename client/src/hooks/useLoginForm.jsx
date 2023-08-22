@@ -22,14 +22,14 @@ export default function useLoginForm(){
          const user = await loginPost(credentials)
          window.localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(user))
          setUser(user)
-         setIsLoading(false)
          navigate('/')
          setFloatingNotification({message: 'sesion iniciada correctamente', status: 'success', duration: 3000})
       } catch (err) {
          const errorMessage = err?.response?.status === 401 ? 'Usuario o contraseña inválida' : 'Lo siento, ha ocurrido un error. Intente nuevamente' 
-         setIsLoading(false)
          setFloatingNotification({message: errorMessage, status: 'error', duration: 3000})
          console.log(err)
+      } finally{
+         setIsLoading(false)
       }
    }
 

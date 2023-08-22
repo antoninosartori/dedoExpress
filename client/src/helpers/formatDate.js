@@ -38,15 +38,6 @@ export const formatDay = dateInNumber => {
 }
 
 export const formatDateTime = (date, time) => {
-   const userBrowser = browser.getBrowser()
-   const { name, version } = userBrowser
-   const browserVersion = Number(version.split('.')[0])
-
-   if (name.toLowerCase() === 'safari' && browserVersion >= SAFARI_VERSION_SPLIT) {
-      const dateEdited = date.replace(/-/g, "/")
-      return new Date(`${dateEdited}T${time}:00.000Z`).getTime()
-   } else {
       const datetime = `${date}T${time}:00.000Z`
       return new Date(datetime).getTime() + THREE_HOURS_IN_MS
-   }
 }

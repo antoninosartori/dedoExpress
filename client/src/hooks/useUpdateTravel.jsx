@@ -69,7 +69,6 @@ export default function useUpdateTravel() {
 
       try {
          const updatedTravel = await putUpdateTravel(travelId, newTravelInfo, config)
-         setIsLoading(false)
          setFloatingNotification({
             message: 'viaje actualizado correctamente',
             status: 'success',
@@ -83,6 +82,7 @@ export default function useUpdateTravel() {
             duration: 3000
          })
          console.log(err)
+      } finally {
          setIsLoading(false)
       }
    }

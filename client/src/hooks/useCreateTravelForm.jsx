@@ -20,13 +20,16 @@ export default function useCreateTravelForm() {
 
    const handleCreateTravel = async (data) => {
       let newTravel
+
       if (hasToSplitUI) {
          const { from, to, capacity, price, dateTime, pet, luggage, music, food, talk } = data
          const date = new Date(dateTime).getTime()
          const isFutureDate = validateDate(date)
+
          if (!isFutureDate) {
             return setFloatingNotification({ message: 'La fecha debe ser futura' })
          }
+
          const features = { pet, luggage, music, food, talk }
          newTravel = {
             from: from.trim().toLowerCase(),
@@ -37,6 +40,7 @@ export default function useCreateTravelForm() {
             features
          }
       }
+
       if (!hasToSplitUI) {
          const { from, to, capacity, price, Date, time, pet, luggage, music, food, talk } = data
          const date = formatDateTime(Date, time)
@@ -45,6 +49,7 @@ export default function useCreateTravelForm() {
          if (!isFutureDate) {
             return setFloatingNotification({ message: 'La fecha debe ser futura' })
          }
+
          const features = { pet, luggage, music, food, talk }
          newTravel = {
             from: from.trim().toLowerCase(),
@@ -68,7 +73,6 @@ export default function useCreateTravelForm() {
 
       try {
          await postNewTravel(newTravel, config)
-         setIsLoading(false)
          setFloatingNotification({
             message: 'viaje creado correctamente',
             status: 'success',
@@ -82,6 +86,7 @@ export default function useCreateTravelForm() {
             duration: 3000
          })
          console.log(err)
+      } finally{
          setIsLoading(false)
       }
    }
