@@ -136,6 +136,13 @@ input[type='checkbox']:focus {
    outline: none;
 }
 
+input[type='datetime-local'] {
+   appearance: none;
+   min-height: var(--fsBody);
+   width: 100%;
+   padding: var(--fsBody);
+}
+
 input::placeholder {
    font-family: var(--fontMain);
    font-size: var(--fsBody);
