@@ -1,6 +1,4 @@
-import { SAFARI_VERSION_SPLIT, THREE_HOURS_IN_MS } from "./consts"
-import Bowser from "bowser";
-const browser = Bowser.getParser(window.navigator.userAgent);
+import { THREE_HOURS_IN_MS } from "./consts"
 export const formatDate = date => {
    const newDate = new Date(date).toLocaleDateString('es-AR', {
       weekday: 'long',

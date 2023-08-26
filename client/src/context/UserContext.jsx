@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { LOCAL_STORAGE_NAME, SAFARI_VERSION_SPLIT } from "../helpers/consts";
+import { LOCAL_STORAGE_NAME } from "../helpers/consts";
 
 export const UserContext = createContext()
 

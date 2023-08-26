@@ -25,7 +25,7 @@ export default function useCreateTravelForm() {
          const isFutureDate = validateDate(date)
 
          if (!isFutureDate) {
-            return setFloatingNotification({ message: 'La fecha debe ser futura' })
+            return setFloatingNotification({ message: 'La fecha puede ser hasta 30 días futuros al día actual' })
          }
 
          const features = { pet, luggage, music, food, talk }
