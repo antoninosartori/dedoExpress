@@ -96,8 +96,9 @@ export default function HomePage() {
             }
 
             < AddTravelFixed />
-
+            
          </main>
+         
       </>
    )
 }

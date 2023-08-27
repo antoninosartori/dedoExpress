@@ -11,6 +11,7 @@ import ChangePasswordPage from './pages/ChangePasswordPage'
 import ForgottenPassword from './pages/ForgottenPassword'
 import NotFound from './pages/NotFound'
 import HelpPage from './pages/HelpPage'
+import Footer from './components/Footer'
 
 function App() {
 
@@ -31,6 +32,8 @@ function App() {
                <Route path='*' element={< NotFound />} />
             </Routes>
          </TravelContextState>
+
+         < Footer />
       </>
    )
 }

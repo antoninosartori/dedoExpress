@@ -4,8 +4,6 @@
    gap: var(--marginVerticalToComponents);
 }
 
-
-
 .homePage .travels-container {
    display: flex;
    flex-direction: column;

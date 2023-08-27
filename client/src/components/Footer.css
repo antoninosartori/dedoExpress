@@ -1,0 +1,26 @@
+.footer-component{
+   width: 100vw;
+   background-color: var(--secondaryColor);
+   color: var(--white);
+   padding: var(--px2);
+}
+
+.footer-flex{
+   width: 100%;
+   max-width: var(--containerWidth);
+   height: 100%;
+   margin: 0 auto;
+   display: flex;
+   align-items: center;
+}
+
+.DedoExpress-footer{
+   display: flex;
+   
+}
+
+.footer-flex p{
+   display: flex;
+   gap: 3px;
+}
+
