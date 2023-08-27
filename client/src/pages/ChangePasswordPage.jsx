@@ -83,7 +83,7 @@ export default function ChangePasswordPage() {
                <Button onClickFunction={() => {navigate(-1)}} secondary type='button'>Volver atrás</Button>
 
             </form>
-            {isLoading && < LoadingSpinner text='creando viaje...' />}
+            {isLoading && < LoadingSpinner text='cargando...' />}
 
             {floatingNotification.message &&
                < FloatinNotification

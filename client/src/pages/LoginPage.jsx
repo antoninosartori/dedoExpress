@@ -82,7 +82,7 @@ export default function LoginPage() {
             </Button>
          </div>
 
-         {isLoading && < LoadingSpinner text='iniciando sesion...' />}
+         {isLoading && < LoadingSpinner text='cargando...' />}
          {floatingNotification.message && < FloatinNotification message={floatingNotification.message} status={floatingNotification.status} duration={floatingNotification.duration} />}
          {errors.username?.type === 'required' && < FloatinNotification message='Debes ingresar un nombre de usuario' />}
          {errors.password?.type === 'required' && < FloatinNotification message='Debes ingresar una contraseña' />}

@@ -39,7 +39,7 @@ export default function UserDetailsPage() {
          <main className='container userDetailsPage'>
             <h2 className='subtitle'>Detalles de la cuenta</h2>
 
-            {isLoading && < LoadingSpinner text='cargando detalles...' />}
+            {isLoading && < LoadingSpinner text='cargando...' />}
             {floatingNotification.message &&
                < FloatinNotification
                   message={floatingNotification.message}

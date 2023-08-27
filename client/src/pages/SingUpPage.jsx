@@ -107,7 +107,7 @@ export default function SingUpPage() {
                <Button primary type='submit'>Crear cuenta</Button>
                
             </form>
-            {isLoading && < LoadingSpinner text='creando usuario...' />}
+            {isLoading && < LoadingSpinner text='cargando...' />}
             {floatingNotification.message &&
                < FloatinNotification
                   message={floatingNotification.message}

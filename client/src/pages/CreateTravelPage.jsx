@@ -36,7 +36,7 @@ export default function CreateTravelPage() {
       <>
          < Header />
          <main className='container createTravel'>
-            {isLoading && < LoadingSpinner text='creando viaje...' />}
+            {isLoading && < LoadingSpinner text='cargando...' />}
 
             {floatingNotification.message &&
                < FloatinNotification

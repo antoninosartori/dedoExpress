@@ -78,7 +78,7 @@ export default function HomePage() {
             
             < TravelFilters handleChange={handleChangeFilters} />
 
-            {isLoading && < LoadingSpinner text='cargando viajes' />}
+            {isLoading && < LoadingSpinner text='cargando...' />}
 
             {travelsToShow.length === 0 && !isLoading &&
                < EmptyComponent />

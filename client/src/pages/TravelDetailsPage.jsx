@@ -69,7 +69,7 @@ export default function TravelDetailsPage() {
                />
             }
             {isLoading &&
-               < LoadingSpinner text='cargando viaje' />
+               < LoadingSpinner text='cargando...' />
             }
 
             {travel && !isLoading &&
