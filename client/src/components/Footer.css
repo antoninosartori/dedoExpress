@@ -12,15 +12,27 @@
    margin: 0 auto;
    display: flex;
    align-items: center;
+   justify-content: center;
+   gap: var(--px2);
+   flex-wrap: wrap;
 }
 
-.DedoExpress-footer{
+.footer-textContainer p {
    display: flex;
-   
 }
 
-.footer-flex p{
+.footer-textContainer p a:last-child{
+   margin-left: 3px;
+}
+
+.footer-iconsContainer{
    display: flex;
-   gap: 3px;
+   align-items: center;
+   height: 100%;
+   gap: var(--px1);
 }
 
+.footer-iconsContainer a{
+   display: flex;
+   align-items: center;
+}
