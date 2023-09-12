@@ -41,7 +41,7 @@ export default function useGetOneUser() {
 
       getOneUser(userId, credentials)
          .then(data => {
-            const { avatar } = data
+            const avatar = data?.avatar
             setAccount(data)
             return urlToBlob(avatar.url)
          })
