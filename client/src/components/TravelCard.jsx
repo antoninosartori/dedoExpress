@@ -20,15 +20,15 @@ export default function TravelCard({ travel, ...restOfProps }) {
    const { floatingNotification } = useContext(NotificationContext)
 
    const { _id: travelId, title, from, to, price, capacity, date, user } = travel
-   const { _id: userId, username, cellphone, avatar } = user[0]
-   const { url: avatarUrl } = avatar
-
+   /* const { _id: userId, username, cellphone, avatar } = user[0] */
+   /* const { url: avatarUrl } = avatar */
+   
    const { formattedDate, timeAgo } = useTimeAgo(date)
    const [weekday, month, time] = formattedDate.split(', ')
    const dayInNumber = Number(month.split(' ')[0])
    const dayInfo = formatDay(dayInNumber)
 
-   const defaultText = user ? `Hola ${user[0].username}, me gustaria viajar con vos a ${to}.` : ''
+   const defaultText = user ? `Hola ${user[0]?.username}, me gustaria viajar con vos a ${to}.` : ''
 
    return (
       <>
@@ -45,7 +45,7 @@ export default function TravelCard({ travel, ...restOfProps }) {
 
             <header className='travelCard-header'>
                <div className='travelCard-header_userAvatar'>
-                  < Avatar avatarSrc={avatarUrl} username={username} />
+                  < Avatar avatarSrc={user[0]?.avatar?.url} username={user[0]?.username} />
                </div>
                <div className='travelCard-header_userInfo'>
                   <p className='travelCard-locations'>
@@ -53,7 +53,7 @@ export default function TravelCard({ travel, ...restOfProps }) {
                      <img src={rigthArrow} alt="hacia donde" />
                      {to}
                   </p>
-                  <h3 className='travelCard-usernameText'>{username}</h3>
+                  <h3 className='travelCard-usernameText'>{user[0]?.username}</h3>
                </div>
                {/* {dayInfo &&
                   <div className='travelCard-dayInfo'>
@@ -76,7 +76,7 @@ export default function TravelCard({ travel, ...restOfProps }) {
                   <Link to={`/travelDetails/${travelId}`}>Ver detalles</Link>
                </Button>
                <Button type='button' secondary>
-                  <a href={`https://api.whatsapp.com/send/?phone=${user[0].cellphone}&text=${defaultText}`} target='_blank' rel='noreferrer'>
+                  <a href={`https://api.whatsapp.com/send/?phone=${user[0]?.cellphone}&text=${defaultText}`} target='_blank' rel='noreferrer'>
                      ¡Me sumo!
                   </a>
                </Button>
