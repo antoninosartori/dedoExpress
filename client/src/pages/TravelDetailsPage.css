@@ -59,7 +59,8 @@
 }
 
 .feature-false{
-   opacity: .6;
+   /* opacity: .6; */
+   display: none;
 }
 
 .travelDetails-driverInfo{
