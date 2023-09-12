@@ -27,10 +27,10 @@ export default function UserDetailsPage() {
    }, [])
 
    useEffect(() => {
-      setValue('name', account.name)
-      setValue('username', account.username)
-      setValue('email', account.email)
-      setValue('cellphone', account.cellphone)
+      setValue('name', account?.name)
+      setValue('username', account?.username)
+      setValue('email', account?.email)
+      setValue('cellphone', account?.cellphone)
    }, [account])
 
    return (

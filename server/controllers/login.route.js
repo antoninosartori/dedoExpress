@@ -28,8 +28,8 @@ loginRouter.post('/', async (req, res, next) => {
          username: user.username
       }
    
-      // expira en 30 dias
-      const tokenDuration = 60 * 60 * 24 * 30
+      // expira en 90 dias
+      const tokenDuration = 60 * 60 * 24 * 30 * 3
       
       const token = jwt.sign(
          userToToken, 
