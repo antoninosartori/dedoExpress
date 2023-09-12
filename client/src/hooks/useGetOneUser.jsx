@@ -52,11 +52,11 @@ export default function useGetOneUser() {
             setAvatarPreview(base64)
          })
          .catch(err => {
-            if(err.config.xsrfHeaderName === "X-XSRF-TOKEN"){
+            if(err?.config?.xsrfHeaderName === "X-XSRF-TOKEN"){
                window.localStorage.removeItem(LOCAL_STORAGE_NAME)
                return navigate('/login')
             }
-            setFloatingNotification({ message: err.response, status: 'error', duration: 5000 })
+            setFloatingNotification({ message: err?.response, status: 'error', duration: 5000 })
             console.log(err)
          })
          .finally(() => setIsLoading(false))
