@@ -7,3 +7,24 @@ export const ONE_MONTH_IN_MS = ONE_DAY_IN_MS * 30
 export const THREE_HOURS_IN_MS = 10800000
 export const SAFARI_VERSION_SPLIT = 20
 export const LIMIT_TO_UPLOAD = 2097152
+export const CITIES = [
+   'gualeguaychú',
+   'larroque',
+   'urdinarrain',
+   'rosario',
+   'colón',
+   'capital federal',
+   'irazusta',
+   'carbó',
+   'concepción del uruguay',
+   'parera',
+   'la plata',
+   'almada',
+   'gualeguay',
+   'victoria',
+   'rosario del tala',
+   'basavilbaso',
+   'galarza',
+   'nogoyá',
+   'diamante'
+].sort()

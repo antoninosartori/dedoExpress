@@ -37,7 +37,7 @@ export default function useCreateTravelForm() {
             date,
             features
          }
-
+         console.log({newTravel})
       setIsLoading(true)
 
       const { token } = user
