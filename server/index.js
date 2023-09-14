@@ -8,7 +8,7 @@ require('./connection/mongo.js')
 const cors = require('cors')
 
 
-/* Sentry.init({
+Sentry.init({
    dsn: "https://630bc1dc36897bd619acd05d5765efa1@o4505749248475136.ingest.sentry.io/4505749250703360",
    integrations: [
      // enable HTTP calls tracing
@@ -22,9 +22,9 @@ const cors = require('cors')
    ],
    // Performance Monitoring
    tracesSampleRate: 1.0, // Capture 100% of the transactions, reduce in production!,
- }); */
+ });
 
-app.use(cors())
+app.use(cors('*'))
 app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({ limit: '25mb' }));
 
@@ -34,9 +34,9 @@ const travelsRouter = require('./controllers/travels.route.js')
 const loginRouter = require('./controllers/login.route')
 const usersRouter = require('./controllers/users.route.js')
 
-// // Trace incoming requests
-// app.use(Sentry.Handlers.requestHandler());
-// app.use(Sentry.Handlers.tracingHandler());
+// Trace incoming requests
+app.use(Sentry.Handlers.requestHandler());
+app.use(Sentry.Handlers.tracingHandler());
 
 app.use('/api/login', loginRouter)
 app.use('/api/users', usersRouter)
