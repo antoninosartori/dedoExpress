@@ -24,7 +24,28 @@ Sentry.init({
    tracesSampleRate: 1.0, // Capture 100% of the transactions, reduce in production!,
 });
 
-app.use(cors(`*`))
+// app.use(cors(`*`))
+const allowedOrigins = [
+   'http://localhost:5173/',
+   'http://localhost:3000/',
+   'https://dedo-express.vercel.app', 
+   'https://dedo-express.vercel.app/',
+   'https://dedo-express.vercel.app/api/',
+   'https://dedo-express.vercel.app/api/login/forgotten-password',
+   'https://dedo-express.vercel.app/#',
+   'https://dedo-express.vercel.app/#/',
+];
+app.use(cors({
+   origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+         callback(null, true);
+      } else {
+         callback(new Error('Acceso no permitido por CORS'));
+      }
+   },
+}));
+
+
 
 app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({ limit: '25mb' }));
