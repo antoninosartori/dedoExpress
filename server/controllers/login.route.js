@@ -85,8 +85,10 @@ loginRouter.post('/forgotten-password', async (req, res, next) => {
                <h1>Vamos a restablecer tu contraseña</h1>
                <p style="font-size: 20px;" >👇 Necesitamos que hagas click en este enlace </p>
                <a style="font-size: 16px;" href=${BASE_URL}/#/reset-password/${tokenToResetPassword}>Link para ingresar una nueva contraseña</a>
+               <p style="font-size: 16px;">⚠ ¡Cuidado! No compartas este link con nadie.</p>
                <p style="font-size: 20px;">También podés copiar y pegar este enlace </p>
                ${BASE_URL}/#/reset-password/${tokenToResetPassword}
+
             </main>
          `,
       })
