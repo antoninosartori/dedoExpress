@@ -48,11 +48,11 @@ export default function TravelCard({ travel, ...restOfProps }) {
                   < Avatar avatarSrc={user[0]?.avatar?.url} username={user[0]?.username} />
                </div>
                <div className='travelCard-header_userInfo'>
-                  <p className='travelCard-locations'>
-                     {from}
+                  <div className='travelCard-locations'>
+                     <span>{from}</span>
                      <img src={rigthArrow} alt="hacia donde" />
-                     {to}
-                  </p>
+                     <span>{to}</span>
+                  </div>
                   <h3 className='travelCard-usernameText'>{user[0]?.username}</h3>
                </div>
                {/* {dayInfo &&
