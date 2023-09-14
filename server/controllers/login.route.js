@@ -3,8 +3,10 @@ const User = require('../models/User.model.js')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const transporter = require('../connection/nodemailer.js')
-const BASE_URL = process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_URL : process.env.DEVELOPMENT_URL
+// const BASE_URL = process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_URL : process.env.DEVELOPMENT_URL
+const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://dedoexpress.vercel.app/' : process.env.DEVELOPMENT_URL
 
+console.log(BASE_URL)
 loginRouter.post('/', async (req, res, next) => {
    const { body } = req
    const { username, password } = body
@@ -120,7 +122,6 @@ loginRouter.post('/reset-password', async (req, res, next) => {
 
       res.status(201).json(updateUser)
    } catch (error) {
-      console.log('aca')
       next(error)
    }
 })
