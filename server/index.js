@@ -24,8 +24,8 @@ Sentry.init({
    tracesSampleRate: 1.0, // Capture 100% of the transactions, reduce in production!,
 });
 
-// app.use(cors(`*`))
-const allowedOrigins = [
+app.use(cors(`*`))
+/* const allowedOrigins = [
    'http://localhost:5173/',
    'http://localhost:3000/',
    'https://dedo-express.vercel.app', 
@@ -34,6 +34,7 @@ const allowedOrigins = [
    'https://dedo-express.vercel.app/api/login/forgotten-password',
    'https://dedo-express.vercel.app/#',
    'https://dedo-express.vercel.app/#/',
+   'https://dedoexpress.vercel.app/#/login'
 ];
 app.use(cors({
    origin: function (origin, callback) {
@@ -43,7 +44,7 @@ app.use(cors({
          callback(new Error('Acceso no permitido por CORS'));
       }
    },
-}));
+})); */
 
 
 
