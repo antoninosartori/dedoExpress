@@ -43,7 +43,7 @@ export default function SingUpPage() {
                         required: 'El campo del email esta vacio',
                         pattern: {
                            value: REGEX_EMAIL,
-                           message: 'Debes introducir un email valido'
+                           message: 'Debes introducir un email válido'
                         }
                      })}
                      type="email" placeholder='Ingresá tu correo' autoComplete='off' autoFocus />

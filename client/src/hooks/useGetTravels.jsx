@@ -27,7 +27,7 @@ export default function useGetTravels() {
             return data
          })
          .catch(err => {
-            if(err.response.data.error === "jwt expired"){
+            if(err.response?.data?.error === "jwt expired"){
                setFloatingNotification({
                   message: 'por favor, inicia sesion nuevamente',
                   status: 'error',

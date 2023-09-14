@@ -12,6 +12,7 @@ import ForgottenPassword from './pages/ForgottenPassword'
 import NotFound from './pages/NotFound'
 import HelpPage from './pages/HelpPage'
 import Footer from './components/Footer'
+import ResetPassword from './pages/ResetPassword'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
                <Route path='/login' element={< LoginPage />} />
                <Route path='/singUp' element={< SingUpPage />} />
                <Route path='/forgotten-password' element={< ForgottenPassword />} />
+               <Route path='/reset-password/:token' element={< ResetPassword />} />
                <Route path='/createTravel' element={< CreateTravelPage />} />
                <Route path='/help' element={< HelpPage />} />
                <Route path='/travelDetails/:travelId' element={< TravelDetailsPage />} />

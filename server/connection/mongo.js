@@ -1,3 +1,4 @@
+const User = require('../models/User.model')
 const { connect, connection } = require('mongoose');
 const connectionString = process.env.MONGO_DB_URI
 
@@ -7,4 +8,4 @@ connect(connectionString)
 
 process.on('uncaughtException', () => {
    connection.close()
-}) 
+})

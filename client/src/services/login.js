@@ -11,6 +11,16 @@ const createUser = async credentials => {
    return data
 }
 
+const askCodeToResetPassword = async (credentials) => {
+   const { data } = await axios.post(url.forgottenPassword, credentials)
+   return data
+}
+
+const resetPassword = async (credentials) => {
+   const { data } = await axios.post(url.resetPassword, credentials)
+   return data
+}
+
 const getOneUser = async (userId, credentials) => {
    const { data } = await axios.get(`${url.getOneUser}${userId}`, credentials)
    return data
@@ -26,4 +36,6 @@ const changePassword = async (userId, body, credentials) => {
    return data
 } 
 
-export { loginPost, createUser, getOneUser, updateAccount, changePassword}
+
+
+export { loginPost, createUser, getOneUser, updateAccount, changePassword, askCodeToResetPassword, resetPassword}

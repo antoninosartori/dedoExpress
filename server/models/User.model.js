@@ -14,7 +14,8 @@ const userSchema = new Schema({
    travels: [{
       type: Schema.Types.ObjectId,
       ref: 'Travel'
-   }]
+   }],
+   resetToken: String
 })
 
 userSchema.set('toJSON', {
