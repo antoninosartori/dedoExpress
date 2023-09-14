@@ -24,7 +24,13 @@ Sentry.init({
    tracesSampleRate: 1.0, // Capture 100% of the transactions, reduce in production!,
  });
 
-app.use(cors('*'))
+// app.use(cors())
+const allowedOrigins = ['https://https://dedoexpress.vercel.app/'];
+app.use(cors({
+   origin: (origin, callback) => {
+       return (allowedOrigins.includes(origin) || !origin) ? callback(null, true) : callback(new Error('Acceso no permitido por CORS'));
+   },
+}));
 app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({ limit: '25mb' }));
 
