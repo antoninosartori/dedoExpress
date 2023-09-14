@@ -25,12 +25,10 @@ Sentry.init({
  });
 
 // app.use(cors())
-const allowedOrigins = ['https://https://dedoexpress.vercel.app/'];
 app.use(cors({
-   origin: (origin, callback) => {
-       return (allowedOrigins.includes(origin) || !origin) ? callback(null, true) : callback(new Error('Acceso no permitido por CORS'));
-   },
-}));
+   origin: 'https://dedoexpress.vercel.app',
+ }));
+
 app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({ limit: '25mb' }));
 
