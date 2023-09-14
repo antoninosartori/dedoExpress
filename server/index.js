@@ -24,25 +24,8 @@ Sentry.init({
    tracesSampleRate: 1.0, // Capture 100% of the transactions, reduce in production!,
 });
 
-// app.use(cors())
-const allowCors = fn => async (req, res) => {
-   res.setHeader('Access-Control-Allow-Credentials', true)
-   res.setHeader('Access-Control-Allow-Origin', '*')
-   // otra configuración común
-   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-   res.setHeader(
-      'Access-Control-Allow-Headers',
-      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-   )
-   if (req.method === 'OPTIONS') {
-      res.status(200).end()
-      return
-   }
-   return await fn(req, res)
-}
+app.use(cors())
 
-app.use(allowCors);
 app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({ limit: '25mb' }));
 
