@@ -34,9 +34,9 @@ const travelsRouter = require('./controllers/travels.route.js')
 const loginRouter = require('./controllers/login.route')
 const usersRouter = require('./controllers/users.route.js')
 
-// Trace incoming requests
-app.use(Sentry.Handlers.requestHandler());
-app.use(Sentry.Handlers.tracingHandler());
+// // Trace incoming requests
+// app.use(Sentry.Handlers.requestHandler());
+// app.use(Sentry.Handlers.tracingHandler());
 
 app.use('/api/login', loginRouter)
 app.use('/api/users', usersRouter)
