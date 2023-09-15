@@ -12,34 +12,38 @@ cloudinary.config({
 });
 
 usersRouter.post('/', async (req, res, next) => {
+   // res.header("Access-Control-Allow-Origin", ["*"]);
+   // res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
+   
    const { name, username, email, password, cellphone, avatarBase64 } = req.body
-
    const saltsOrRounds = 10
-   const passwordHash = await bcrypt.hash(password, saltsOrRounds)
-   const savedAvatar = await cloudinary.uploader.upload(avatarBase64, {
-      folder: `DedoExpressApp/user/${username}/avatar`,
-      transformation: [
-         { aspect_ratio: "1.0", width: 150, crop: "fill" },
-         { quality: 60 }
-      ]
-   })
-
-   const newUser = new User({
-      name,
-      username,
-      email,
-      passwordHash,
-      cellphone,
-      avatar: {
-         public_id: savedAvatar.public_id,
-         url: savedAvatar.secure_url
-      }
-   })
-
+   const passwordHash = await bcrypt.hash(password, saltsOrRounds)   
+   
    try {
+      
+      const savedAvatar = await cloudinary.uploader.upload(avatarBase64, {
+         folder: `DedoExpressApp/user/${username}/avatar`,
+         transformation: [
+            { aspect_ratio: "1.0", width: 150, crop: "fill" },
+            { quality: 60 }
+         ]
+      })
+   
+      const newUser = new User({
+         name,
+         username,
+         email,
+         passwordHash,
+         cellphone,
+         avatar: {
+            public_id: savedAvatar.public_id,
+            url: savedAvatar.secure_url
+         }
+      })
       const savedUser = await newUser.save()
       res.status(201).json(savedUser)
    } catch (err) {
+      console.log(err)
       next(err)
    }
 })

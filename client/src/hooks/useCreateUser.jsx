@@ -15,16 +15,17 @@ export default function useCreateUser() {
 
       const { name, username, email, password, cellphone } = data
       
-      const newUser = {
-         name: name.trim(), 
-         username: username.trim(), 
-         email: email.trim().toLowerCase(), 
-         password: password.trim(), 
-         cellphone: cellphone.trim(), 
-         avatarBase64: avatarPreview ?? `https://unavatar.io/${email}`
-      }
+      const defaultAvatar = `https://unavatar.io/banner.png`
 
       try {
+         const newUser = {
+            name: name.trim(), 
+            username: username.trim(), 
+            email: email.trim().toLowerCase(), 
+            password: password.trim(), 
+            cellphone: cellphone.trim(), 
+            avatarBase64: avatarPreview ?? defaultAvatar
+         }
          await createUser(newUser)
          navigate('/login')
          setFloatingNotification({ 
