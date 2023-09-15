@@ -1,4 +1,5 @@
 import './Footer.css'
+import {Link} from 'react-router-dom'
 import InstagramIcon from '../assets/InstagramIcon'
 import LinkedInIcon from '../assets/LinkedIn'
 import SiteIcon from '../assets/SiteIcon'
@@ -24,6 +25,7 @@ export default function Footer() {
                </a>
 
             </div>
+            <Link to='/help'>Necesito ayuda</Link>
          </div>
       </footer>
    )
