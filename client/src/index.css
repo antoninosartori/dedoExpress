@@ -89,12 +89,17 @@
    box-sizing: border-box;
 }
 
-#root{
+html{
+   overflow-y: scroll;
+}
+
+#root {
    min-height: 100vh;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
 }
+
 
 body {
    font-family: var(--fontMain);
@@ -252,7 +257,7 @@ input::placeholder {
 }
 
 /* desktop */
-@media screen and (min-width: 768px){
+@media screen and (min-width: 768px) {
    main.container {
       padding: calc(var(--headerHeight) + var(--marginVerticalToComponents)) 2px;
    }
