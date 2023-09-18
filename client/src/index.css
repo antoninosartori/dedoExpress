@@ -162,6 +162,21 @@ input::placeholder {
    color: var(--secondaryColor);
 }
 
+textarea{
+   resize: none;
+   font-family: var(--fontMain);
+   font-size: var(--fsBody);
+   background-color: var(--white);
+}
+
+textarea:focus{
+   outline: var(--inputOutline);
+}
+
+textarea::placeholder{
+   color: var(--secondaryColor);
+}
+
 .formGroup {
    width: 100%;
    display: flex;

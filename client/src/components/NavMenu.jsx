@@ -39,8 +39,8 @@ export default function NavMenu({ handleLogOut }) {
                </li>
             }
             <li>
-               <Link to='/help'>
-                  Ayuda
+               <Link to='/contact'>
+                  Contacto
                </Link>
             </li>
          </ul>

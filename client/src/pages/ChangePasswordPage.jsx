@@ -79,7 +79,7 @@ export default function ChangePasswordPage() {
                   type="password" placeholder='Repetí tu nueva contraseña'/>
                {errors.repeatedNewPassword?.message && < ErrorMessage errorMessage={errors.repeatedNewPassword?.message} />}
 
-               <Button primary type='submit'>Cambiar contraseña</Button>
+               <Button primary type='submit' disabledButton={isLoading ?? false}>{isLoading ? 'Cargando...' : 'Cambiar contraseña'}</Button>
                <Button onClickFunction={() => {navigate(-1)}} secondary type='button'>Volver atrás</Button>
 
             </form>

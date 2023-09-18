@@ -104,10 +104,10 @@ export default function SingUpPage() {
 
                </div>
 
-               <Button primary type='submit'>Crear cuenta</Button>
+               <Button primary type='submit' disabledButton={isLoading ?? false}>{isLoading ? < LoadingSpinner withoutText /> : 'Crear cuenta'}</Button>
                
             </form>
-            {isLoading && < LoadingSpinner text='cargando...' />}
+            {/* {isLoading && < LoadingSpinner text='cargando...' />} */}
             {floatingNotification.message &&
                < FloatinNotification
                   message={floatingNotification.message}

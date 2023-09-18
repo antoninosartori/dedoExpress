@@ -63,7 +63,7 @@ export default function ForgottenPassword() {
                   type="email" placeholder='Escribe tu email'
                   />
                   {errors.email?.message && < ErrorMessage errorMessage={errors.email?.message} />}
-               <Button type='submit' primary >Recuperar</Button>
+               <Button type='submit' primary disabledButton={isLoading ?? false} >{isLoading ? 'Enviando email...' : 'Recuperar'}</Button>
                {isLoading && < LoadingSpinner withoutText />}
                {floatingNotification.message &&
                < FloatinNotification

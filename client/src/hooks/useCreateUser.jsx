@@ -35,8 +35,9 @@ export default function useCreateUser() {
       } catch (err) {
          navigate('/singUp')
          console.log(err)
+         const errorMessage = err?.response?.data?.error ?? 'Lo siento, ha ocurrido un error'
          setFloatingNotification({
-            message: 'Puede que tu username, email o celular ya este en uso. Deben ser unicos',
+            message: errorMessage,
             status: 'error',
             duration: 5000
          })

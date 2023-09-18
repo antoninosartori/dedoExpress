@@ -6,21 +6,26 @@
    border-radius: var(--borderRadius);
    font-size: var(--fsBody);
    width: 100%;
+   height: 100%;
    margin: 0 auto;
    font-weight: 700;
-   cursor: pointer;
+   
    transition: opacity .1s;
 }
+
+
 
 .btn-primary{
    background-color: var(--mainColor);
    /* color: var(--secondaryColor); */
    color: var(--secondaryColor);
+   cursor: pointer;
 }
 
 .btn-secondary{
    background-color: var(--secondaryColor);
    color: var(--white);
+   cursor: pointer;
 }
 
 .mainBtn a {
@@ -28,4 +33,9 @@
    display: flex;
    align-items: center;
    justify-content: center;
+}
+
+.mainBtn:disabled{
+   cursor: not-allowed !important;
+   opacity: .5;
 }

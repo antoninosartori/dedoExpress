@@ -1,9 +1,9 @@
 const ERROR_HANDLERS = {
-   CastError: res => res.status(400).send({ error: 'id used is malformed'}),
-   ValidationError: (res, err) => res.status(409).res({error: err.message}),
-   JsonWebTokenError: (res) => res.status(401).json({ error: 'token missing or invalid'}),
-   TokenExpirerError: (res) => res.status(401).json({ error: 'token expired'}),
-   defaultError: res => res.status(500).end(),
+   CastError: res => res.status(400).send({ error: 'Id usado esta mal formado'}),
+   ValidationError: (res, err) => res.status(409).json({error: `Los campos del email, username y teléfono deben ser único.`}),
+   JsonWebTokenError: (res) => res.status(401).json({ error: 'sin token o es inválido'}),
+   TokenExpirerError: (res) => res.status(401).json({ error: 'token expirado'}),
+   defaultError: res => res.status(500).res({error: 'Default error :('}),
 }
 
 module.exports = ( err, req, res, next ) => {
@@ -16,3 +16,4 @@ module.exports = ( err, req, res, next ) => {
    const handler = ERROR_HANDLERS[err.name] || ERROR_HANDLERS.defaultError
    handler(res, err)
 }
+

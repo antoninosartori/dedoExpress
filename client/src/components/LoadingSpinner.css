@@ -14,8 +14,8 @@
 
 .spinner {
    border: 4px solid var(--thirdColor);
-   width: 36px;
-   height: 36px;
+   width: var(--fsSubTitle);
+   height: var(--fsSubTitle);
    border-radius: 50%;
    border-left-color: var(--secondaryColor);
 

@@ -49,10 +49,10 @@ export default function LoginPage() {
          <form onSubmit={handleSubmit(handleLogin)}>
 
             <input
-               {...register('username', {
+               {...register('email', {
                   required: true
                })}
-               type="text" placeholder='Escribe tu usuario' autoComplete='off' />
+               type="text" placeholder='Escribe tu email' autoComplete='off' />
 
             <div className="formGroup">
                <input
@@ -67,12 +67,12 @@ export default function LoginPage() {
                </div>
             </div>
 
-            <Button primary type='submit'>Iniciar sesion</Button>
+            <Button primary type='submit' disabledButton={isLoading ?? false}>{isLoading ? < LoadingSpinner withoutText /> : 'Iniciar sesión'}</Button>
 
             <Link to='/forgotten-password'>
                <p>¿Olvidaste tu contraseña?</p>
             </Link>
-
+            {/* {isLoading && < LoadingSpinner withoutText />} */}
          </form>
 
          <div className='loginPage-toSingUpButtonContainer'>
@@ -83,9 +83,9 @@ export default function LoginPage() {
          </div>
 
 
-         {isLoading && < LoadingSpinner text='cargando...' />}
+         
          {floatingNotification.message && < FloatinNotification message={floatingNotification.message} status={floatingNotification.status} duration={floatingNotification.duration} />}
-         {errors.username?.type === 'required' && < FloatinNotification message='Debes ingresar un nombre de usuario' />}
+         {errors.email?.type === 'required' && < FloatinNotification message='Debes ingresar un email' />}
          {errors.password?.type === 'required' && < FloatinNotification message='Debes ingresar una contraseña' />}
       </main>
 

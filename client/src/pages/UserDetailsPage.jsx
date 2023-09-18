@@ -110,7 +110,7 @@ export default function UserDetailsPage() {
                      <Link className='changePassword-link' to={`/user/${account?._id}/changePassword`}>Cambiar contraseña</Link>
                   </Button>
 
-                  <Button primary type='submit'>Guardar cambios</Button>
+                  <Button primary type='submit' disabledButton={isLoading ?? false}>{isLoading ? 'Guardando...' : 'Guardar cambios'}</Button>
                </form>
             }
 

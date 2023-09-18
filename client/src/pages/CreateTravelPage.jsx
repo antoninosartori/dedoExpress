@@ -177,7 +177,7 @@ export default function CreateTravelPage() {
                </div>
 
                <div className="column-separation">
-                  <Button primary type='submit'>Publicar viaje</Button>
+                  <Button primary type='submit' disabledButton={isLoading ?? false}>{isLoading ? 'Creando viaje...' : 'Publicar viaje'}</Button>
                   <Button onClickFunction={() => navigate(-1)} secondary type='button'>Volver atrás</Button>
                </div>
 

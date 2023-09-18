@@ -6,24 +6,22 @@ const transporter = require('../connection/nodemailer.js')
 // const BASE_URL = process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_URL : process.env.DEVELOPMENT_URL
 const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://dedoexpress.vercel.app/' : process.env.DEVELOPMENT_URL
 
-console.log(BASE_URL)
 loginRouter.post('/', async (req, res, next) => {
-   const { body } = req
-   const { username, password } = body
+   const { email, password } = req.body
 
-   if (!username || !password) {
-      res.status(400).json({ error: 'username or password have to be provider' })
+   if (!email || !password) {
+      res.status(400).json({ error: 'email or password have to be provider' })
    }
 
    try {
-      const user = await User.findOne({ username })
+      const user = await User.findOne({ email })
       const correctPassword = user === null
          ? false
          : await bcrypt.compare(password, user.passwordHash)
 
       if (!correctPassword || !user) {
          return res.status(401).json({
-            error: 'invalid user or password'
+            error: 'Email o usuario incorrecto'
          })
       }
 
@@ -59,7 +57,6 @@ loginRouter.post('/forgotten-password', async (req, res, next) => {
    if (email === null || email === undefined) {
       return res.status(401).json({ error: 'No se ha detectado ningun email' })
    }
-
 
    // if(!user){
    //    return res.status(404).json({ message: 'Usuario no encontrado' });

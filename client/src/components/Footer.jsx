@@ -25,7 +25,7 @@ export default function Footer() {
                </a>
 
             </div>
-            <Link to='/help'>Necesito ayuda</Link>
+            <Link to='/contact'>Contacto</Link>
          </div>
       </footer>
    )

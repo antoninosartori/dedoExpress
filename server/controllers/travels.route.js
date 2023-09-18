@@ -33,7 +33,7 @@ travelsRouter.post('/', tokenExtractor, async (req, res, next) => {
    const user = await User.findById(userId)
 
    if (!user) {
-      res.status(401).json({ error: 'without authorization' })
+      res.status(401).json({ error: 'No tienes permisos para esta operación' })
    }
 
    const newTravel = new Travel({
@@ -63,7 +63,7 @@ travelsRouter.put('/:travelId', tokenExtractor, async (req, res, next) => {
 
    const user = await User.findById(userId)
    if (!user) {
-      res.status(401).json({ error: 'without authorization' })
+      res.status(401).json({ error: 'No tienes permisos para esta operación' })
    }
 
    const newTravelInfo = { from: from.toLowerCase(), to: to.toLowerCase(), capacity, price, date, features }
@@ -82,7 +82,7 @@ travelsRouter.delete('/:travelId', tokenExtractor, async (req, res, next) => {
 
    const user = await User.findById(userId)
    if (!user) {
-      res.status(401).json({ error: 'without authorization' })
+      res.status(401).json({ error: 'No tienes permisos para esta operación' })
    }
 
    try {

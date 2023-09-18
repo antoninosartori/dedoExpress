@@ -15,6 +15,6 @@ export const url = {
    deleteOneTravel: `${baseURL}/api/travels/`,
    createNewTravel: `${baseURL}/api/travels`,
    updateTravel: `${baseURL}/api/travels/`,
-
+   sendMessage: `${baseURL}/api/message/`,
 }
 

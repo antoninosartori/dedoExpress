@@ -176,7 +176,7 @@ export default function UpdateTravelPage() {
                      </div>
 
                      <div className='column-separation'>
-                        <Button type='submit' primary >Modificar viaje</Button>
+                        <Button type='submit' primary disabledButton={isLoading ?? false}>{isLoading ? 'Modificando viaje...' : 'Modificar viaje'}</Button>
                         <Button type='button' onClickFunction={() => navigate(-1)} secondary >Cancelar</Button>
                      </div>
 

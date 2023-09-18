@@ -48,7 +48,7 @@ export default function useUpdateTravel() {
       }
 
       try {
-         const updatedTravel = await putUpdateTravel(travelId, newTravelInfo, config)
+         await putUpdateTravel(travelId, newTravelInfo, config)
          setFloatingNotification({
             message: 'viaje actualizado correctamente',
             status: 'success',
@@ -64,9 +64,11 @@ export default function useUpdateTravel() {
             })
             window.localStorage.removeItem(LOCAL_STORAGE_NAME)
             setUser(null)
+            return navigate('/login')
          }
+         const errorMessage = err?.response?.data?.error ?? 'Lo siento, ha ocurrido un error'
          setFloatingNotification({
-            message: 'no se ha podido crear tu viaje, intenta nuevamente',
+            message: errorMessage,
             status: 'error',
             duration: 3000
          })

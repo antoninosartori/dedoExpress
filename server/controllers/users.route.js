@@ -109,7 +109,7 @@ usersRouter.put('/:userId', tokenExtractor, async (req, res, next) => {
 
    const user = await User.findById(userId)
    if (!user) {
-      res.status(401).json({ error: 'without authorization' })
+      res.status(401).json({ error: 'No tienes permisos para esta operación' })
    }
 
    await cloudinary.uploader.destroy(user.avatar.public_id)
