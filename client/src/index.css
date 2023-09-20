@@ -89,7 +89,7 @@
    box-sizing: border-box;
 }
 
-html{
+html {
    overflow-y: scroll;
 }
 
@@ -134,7 +134,7 @@ button {
    background-color: transparent;
 }
 
-input {
+input, .mq-input {
    border: none;
    padding: var(--fsBody);
    width: 100%;
@@ -162,18 +162,18 @@ input::placeholder {
    color: var(--secondaryColor);
 }
 
-textarea{
+textarea {
    resize: none;
    font-family: var(--fontMain);
    font-size: var(--fsBody);
    background-color: var(--white);
 }
 
-textarea:focus{
+textarea:focus {
    outline: var(--inputOutline);
 }
 
-textarea::placeholder{
+textarea::placeholder {
    color: var(--secondaryColor);
 }
 
@@ -276,4 +276,8 @@ textarea::placeholder{
    main.container {
       padding: calc(var(--headerHeight) + var(--marginVerticalToComponents)) 2px;
    }
+}
+
+.mq-icon-clear {
+   display: none;
 }

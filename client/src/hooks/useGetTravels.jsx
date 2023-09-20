@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { TravelContext } from "../context/TravelsContext";
 import { NotificationContext } from "../context/FloatinNotificationContext";
 import { UserContext } from "../context/UserContext";
-import { LOCAL_STORAGE_NAME } from "../helpers/consts";
+import { CITIES_ENDSWITH_STRING, LOCAL_STORAGE_NAME } from "../helpers/consts";
 
 export default function useGetTravels() {
    const { user, setUser } = useContext(UserContext)
@@ -48,18 +48,29 @@ export default function useGetTravels() {
    }
 
    const validateParams = (from, to) => {
+      // sanitizando
+      if(from && !from.endsWith(CITIES_ENDSWITH_STRING)){
+         return setFloatingNotification({message: 'Ingresa una ciudad de las que aparece en la lista'})
+      }
+      if(to && !to.endsWith(CITIES_ENDSWITH_STRING)){
+         return setFloatingNotification({message: 'Ingresa una ciudad de las que aparece en la lista'})
+      }
+
+      let fromParam = from.split(',')[0]
+      let toParam = to.split(',')[0]
+
       let path = '?'
-      if (from && !to) {
-         path = (`${path}from=${from}`)
+      if (fromParam && !toParam) {
+         path = (`${path}from=${fromParam}`)
          location.search = path
          navigate(path)
       }
-      else if (!from && to) {
-         path = (`${path}to=${to}`)
+      else if (!fromParam && toParam) {
+         path = (`${path}to=${toParam}`)
          location.search = path
          navigate(path)
-      } else if (from && to) {
-         path = (`${path}from=${from}&to=${to}`)
+      } else if (fromParam && toParam) {
+         path = (`${path}from=${fromParam}&to=${toParam}`)
          location.search = path
          navigate(path)
       } else {
@@ -73,7 +84,6 @@ export default function useGetTravels() {
       setIsLoading(true)
       validateParams(fromInput, toInput)
       const params = location.search
-      
       getAllTravelsWithParams(params)
          .then(data => {
             setAllTravels(data)

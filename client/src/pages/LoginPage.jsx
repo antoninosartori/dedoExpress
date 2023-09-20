@@ -12,7 +12,6 @@ import eyeClose from '../assets/eye-slash.svg'
 import eyeOpen from '../assets/eye-fill.svg'
 import thermoIcon from '../assets/thermo.svg'
 
-
 export default function LoginPage() {
    const { user } = useContext(UserContext)
    const { floatingNotification, isLoading } = useContext(NotificationContext)
@@ -20,7 +19,6 @@ export default function LoginPage() {
    const { handleLogin } = useLoginForm();
    const navigate = useNavigate()
    const [showPassword, setShowPassword] = useState(false)
-
    const handleClickPassword = () => {
       setShowPassword(!showPassword)
    }
@@ -35,11 +33,10 @@ export default function LoginPage() {
          navigate('/')
       }
    }, [user])
-
-
+    
    return (
       <main className='container loginPage'>
-
+         
          <header>
             <h1 className='title'>Dedo<span>Express</span></h1>
             <img src={thermoIcon} alt="imagen de mate" />
@@ -72,7 +69,6 @@ export default function LoginPage() {
             <Link to='/forgotten-password'>
                <p>¿Olvidaste tu contraseña?</p>
             </Link>
-            {/* {isLoading && < LoadingSpinner withoutText />} */}
          </form>
 
          <div className='loginPage-toSingUpButtonContainer'>
@@ -83,7 +79,7 @@ export default function LoginPage() {
          </div>
 
 
-         
+
          {floatingNotification.message && < FloatinNotification message={floatingNotification.message} status={floatingNotification.status} duration={floatingNotification.duration} />}
          {errors.email?.type === 'required' && < FloatinNotification message='Debes ingresar un email' />}
          {errors.password?.type === 'required' && < FloatinNotification message='Debes ingresar una contraseña' />}

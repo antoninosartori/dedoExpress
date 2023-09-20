@@ -58,13 +58,11 @@ loginRouter.post('/forgotten-password', async (req, res, next) => {
       return res.status(401).json({ error: 'No se ha detectado ningun email' })
    }
 
-   // if(!user){
-   //    return res.status(404).json({ message: 'Usuario no encontrado' });
-   // }
-
    try {
       const user = await User.findOne({ email })
-
+      if(!user){
+         return res.status(404).json({ message: 'Usuario no encontrado' });
+      }
       const userToToken = {
          _id: user._id,
          username: user.username

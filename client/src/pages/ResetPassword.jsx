@@ -100,8 +100,7 @@ export default function ResetPassword() {
                })}
                   type="password" placeholder='Repetí tu nueva contraseña' />
                {errors.repeatedPassword?.message && < ErrorMessage errorMessage={errors.repeatedPassword?.message} />}
-               <Button type='submit' primary disabledButton={isLoading ?? false}>{isLoading ? 'Cambiando...' : 'Cambiar contraseña'}</Button>
-               {isLoading && < LoadingSpinner withoutText />}
+               <Button type='submit' primary disabledButton={isLoading ?? false}>{isLoading ? < LoadingSpinner withoutText /> : 'Cambiar contraseña'}</Button>
             </form>
             {floatingNotification.message && < FloatinNotification message={floatingNotification.message} status={floatingNotification.status} duration={floatingNotification.duration} />}
          </main>

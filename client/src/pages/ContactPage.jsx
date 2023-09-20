@@ -91,7 +91,7 @@ export default function ContactPage() {
                })}
                   cols="30" rows="5" placeholder='Escribe tu mensaje...'>
                </textarea>
-               <Button disabledButton={isLoading ?? false} type='submit' primary>Enviar mensaje</Button>
+               <Button disabledButton={isLoading ?? false} type='submit' primary>{isLoading ? < LoadingSpinner withoutText /> : 'Enviar mensaje'}</Button>
                {errors.name?.message && < ErrorMessage errorMessage={errors.name?.message} />}
                {errors.email?.message && < ErrorMessage errorMessage={errors.email?.message} />}
                {errors.message?.message && < ErrorMessage errorMessage={errors.message?.message} />}
@@ -102,7 +102,6 @@ export default function ContactPage() {
                   Contacto por WhatsApp
                </a>
             </Button>
-            {isLoading && < LoadingSpinner withoutText />}
             {floatingNotification.message &&
                < FloatinNotification message={floatingNotification.message}
                   status={floatingNotification.status}

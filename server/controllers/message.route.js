@@ -20,7 +20,7 @@ messageRoute.post('/', async (req, res, next) => {
                   <h3>Nombre: ${name}</h3>
                   <h3>Email: ${email}</h3>
                <span>Ha escrito el siguiente mensaje</span>
-               <p style="font-weight: bold;">${message}</p>
+               <p style="font-weight: bold; font-size: 30px;">${message}</p>
             </main>
          `,
       })

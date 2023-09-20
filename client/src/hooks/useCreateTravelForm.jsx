@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { NotificationContext } from "../context/FloatinNotificationContext"
 import { formatDateTime } from "../helpers/formatDate"
 import { validateDate } from '../helpers/validateDate'
-import { LOCAL_STORAGE_NAME } from "../helpers/consts"
+import { CITIES_ENDSWITH_STRING, LOCAL_STORAGE_NAME } from "../helpers/consts"
 
 export default function useCreateTravelForm() {
    const { user, setUser } = useContext(UserContext)
@@ -20,24 +20,28 @@ export default function useCreateTravelForm() {
    }, [user])
 
    const handleCreateTravel = async (data) => {
-         const { from, to, capacity, price, Date, time, pet, luggage, music, food, talk } = data
-         const date = formatDateTime(Date, time)
-         const isFutureDate = validateDate(date)
+      const { from, to, capacity, price, Date, time, pet, luggage, music, food, talk } = data
+      const date = formatDateTime(Date, time)
+      const isFutureDate = validateDate(date)
 
-         if (!isFutureDate) {
-            return setFloatingNotification({ message: 'La fecha puede ser hasta 30 días futuros al día actual' })
-         }
+      if (!isFutureDate) {
+         return setFloatingNotification({ message: 'La fecha puede ser hasta 30 días futuros al día actual' })
+      }
 
-         const features = { pet, luggage, music, food, talk }
-         const newTravel = {
-            from: from.trim().toLowerCase(),
-            to: to.trim().toLowerCase(),
-            capacity: Number(capacity),
-            price: Number(price),
-            date,
-            features
-         }
-         console.log({newTravel})
+      if(!from.toLowerCase().endsWith(CITIES_ENDSWITH_STRING) || !to.toLowerCase().endsWith(CITIES_ENDSWITH_STRING)){
+         return setFloatingNotification({ message: 'Las ciudades de origen y destino tienen que estar en la lista.'})
+      }
+
+      const features = { pet, luggage, music, food, talk }
+      const newTravel = {
+         from: from.trim().toLowerCase().split(',')[0],
+         to: to.trim().toLowerCase().split(',')[0],
+         capacity: Number(capacity),
+         price: Number(price),
+         date,
+         features
+      }
+      console.log({ newTravel })
       setIsLoading(true)
 
       const { token } = user
@@ -58,7 +62,7 @@ export default function useCreateTravelForm() {
          navigate('/')
       } catch (err) {
          // token expirado
-         if(err.response.data.error === "jwt expired"){
+         if (err.response.data.error === "jwt expired") {
             setFloatingNotification({
                message: 'por favor, inicia sesion nuevamente',
                status: 'error',
@@ -74,7 +78,7 @@ export default function useCreateTravelForm() {
             duration: 3000
          })
          console.log(err)
-      } finally{
+      } finally {
          setIsLoading(false)
       }
    }
