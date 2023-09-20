@@ -72,14 +72,14 @@ export default function UpdateTravelPage() {
                      <div className="form-separator">
                         <div className="formGroup">
                            <label htmlFor="from">¿Desde dónde salís?</label>
-                           {/* <input
+                           <input
                               {...register('from', {
                                  required: 'Completa el lugar de salida con una ciudad',
                                  maxLength: { value: 30, message: 'La ciudad de salida debe ser menor a 30 caracteres' },
                                  minLength: { value: 3, message: 'El nombre de la ciudad de salida debe ser mayor a 3 caracteres' }
                               })}
-                              type="text" autoComplete='off' placeholder='Lugar de salida' /> */}
-                           < InputSearchCity
+                              type="text" autoComplete='off' placeholder='Lugar de salida' />
+                           {/* < InputSearchCity
                               inputId='from'
                               placeholder='Lugar de salida'
                               register={{
@@ -90,20 +90,20 @@ export default function UpdateTravelPage() {
                                     validate: value => value.toLowerCase().endsWith(CITIES_ENDSWITH_STRING) || 'La ciudad tiene que estar en la lista'
                                  })
                               }}
-                           />
+                           /> */}
                         </div>
                         {errors.from?.message && < ErrorMessage errorMessage={errors.from?.message} />}
 
                         <div className="formGroup">
                            <label htmlFor="to">¿Hacia dónde vas?</label>
-                           {/* <input
+                           <input
                               {...register('to', {
                                  required: 'Completa la ciudad de destino',
                                  minLength: { value: 3, message: 'La ciudad de destino debe ser mayor a 3 caracteres' },
                                  maxLength: { value: 30, message: 'La ciudad de destino debe ser menor a 30 caracteres' }
                               })}
-                              type="text" autoComplete='off' placeholder='Lugar de destino' /> */}
-                           < InputSearchCity
+                              type="text" autoComplete='off' placeholder='Lugar de destino' />
+                           {/* < InputSearchCity
                               inputId='to'
                               placeholder='Lugar de destino'
                               register={{
@@ -114,7 +114,7 @@ export default function UpdateTravelPage() {
                                     validate: value => value.toLowerCase().endsWith(CITIES_ENDSWITH_STRING) || 'La ciudad tiene que estar en la lista'
                                  })
                               }}
-                           />
+                           /> */}
                         </div>
                         {errors.to?.message && < ErrorMessage errorMessage={errors.to?.message} />}
 

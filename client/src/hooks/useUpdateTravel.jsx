@@ -26,8 +26,8 @@ export default function useUpdateTravel() {
 
          const features = { pet, food, music, luggage, talk }
          const newTravelInfo = { 
-            from: from.trim().toLowerCase().split(',')[0],
-            to: to.trim().toLowerCase().split(',')[0],
+            from: from.trim().toLowerCase(),
+            to: to.trim().toLowerCase(),
             capacity: Number(capacity),
             price: Number(price),
             date, 

@@ -28,14 +28,14 @@ export default function useCreateTravelForm() {
          return setFloatingNotification({ message: 'La fecha puede ser hasta 30 días futuros al día actual' })
       }
 
-      if(!from.toLowerCase().endsWith(CITIES_ENDSWITH_STRING) || !to.toLowerCase().endsWith(CITIES_ENDSWITH_STRING)){
+      /* if(!from.toLowerCase().endsWith(CITIES_ENDSWITH_STRING) || !to.toLowerCase().endsWith(CITIES_ENDSWITH_STRING)){
          return setFloatingNotification({ message: 'Las ciudades de origen y destino tienen que estar en la lista.'})
-      }
+      } */
 
       const features = { pet, luggage, music, food, talk }
       const newTravel = {
-         from: from.trim().toLowerCase().split(',')[0],
-         to: to.trim().toLowerCase().split(',')[0],
+         from: from.trim().toLowerCase(),
+         to: to.trim().toLowerCase(),
          capacity: Number(capacity),
          price: Number(price),
          date,

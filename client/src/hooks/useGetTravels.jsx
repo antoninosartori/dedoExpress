@@ -49,28 +49,28 @@ export default function useGetTravels() {
 
    const validateParams = (from, to) => {
       // sanitizando
-      if(from && !from.endsWith(CITIES_ENDSWITH_STRING)){
+      /* if(from && !from.endsWith(CITIES_ENDSWITH_STRING)){
          return setFloatingNotification({message: 'Ingresa una ciudad de las que aparece en la lista'})
       }
       if(to && !to.endsWith(CITIES_ENDSWITH_STRING)){
          return setFloatingNotification({message: 'Ingresa una ciudad de las que aparece en la lista'})
-      }
+      } */
 
-      let fromParam = from.split(',')[0]
-      let toParam = to.split(',')[0]
+      /* let fromParam = from.split(',')[0]
+      let toParam = to.split(',')[0] */
 
       let path = '?'
-      if (fromParam && !toParam) {
-         path = (`${path}from=${fromParam}`)
+      if (from && !to) {
+         path = (`${path}from=${from}`)
          location.search = path
          navigate(path)
       }
-      else if (!fromParam && toParam) {
-         path = (`${path}to=${toParam}`)
+      else if (!from && to) {
+         path = (`${path}to=${to}`)
          location.search = path
          navigate(path)
-      } else if (fromParam && toParam) {
-         path = (`${path}from=${fromParam}&to=${toParam}`)
+      } else if (from && to) {
+         path = (`${path}from=${from}&to=${to}`)
          location.search = path
          navigate(path)
       } else {

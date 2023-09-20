@@ -18,8 +18,6 @@ import musicIcon from '../assets/music_note.svg'
 import fastfoodIcon from '../assets/fastfood.svg'
 import voiceIcon from '../assets/voice_selection.svg'
 import InputSearchCity from '../components/InputSearchCity'
-import { CITIES_ENDSWITH_STRING } from '../helpers/consts'
-// import { CITIES } from '../helpers/consts'
 
 export default function CreateTravelPage() {
    const { user } = useContext(UserContext)
@@ -64,13 +62,13 @@ export default function CreateTravelPage() {
 
                <div className='form-separator'>
                   {/* tradicional */}
-                  {/* <input
+                  <input
                      {...register('from', {
                         required: 'Completa el lugar de salida con una ciudad',
                         maxLength: { value: 30, message: 'La ciudad de salida debe ser menor a 30 caracteres' },
                         minLength: { value: 3, message: 'El nombre de la ciudad de salida debe ser mayor a 3 caracteres' }
                      })} type='text' placeholder='¿Desde dónde salís?' autoComplete='off' />
-                  {errors.from?.message && < ErrorMessage errorMessage={errors.from?.message} />} */}
+                  {errors.from?.message && < ErrorMessage errorMessage={errors.from?.message} />}
 
                   {/* midudex */}
                   {/* <input {...register('from', {
@@ -85,7 +83,7 @@ export default function CreateTravelPage() {
                      </datalist> */}
 
                   {/* map api */}
-                  < InputSearchCity
+                  {/* < InputSearchCity
                      inputId='from'
                      placeholder='¿Desde dónde salís?'
                      register={{
@@ -95,10 +93,10 @@ export default function CreateTravelPage() {
                            minLength: { value: 3, message: 'El nombre de la ciudad de salida debe ser mayor a 3 caracteres' },
                         })
                      }}
-                  />
+                  /> */}
                   {/* {errors.from?.message && < ErrorMessage errorMessage={errors.from?.message} />} */}
 
-                  < InputSearchCity inputId='to' register={{
+                  {/* < InputSearchCity inputId='to' register={{
                      ...register('to', {
                         required: 'Completa la ciudad de destino',
                         minLength: { value: 3, message: 'La ciudad de destino debe ser mayor a 3 caracteres' },
@@ -106,18 +104,18 @@ export default function CreateTravelPage() {
                      })
                   }}
                      placeholder='¿Hacia dónde vas?'
-                  />
+                  /> */}
                   {/* {errors.to?.message && < ErrorMessage errorMessage={errors.to?.message} />} */}
 
 
-                  {/* <input
+                  <input
                      {...register('to', {
                         required: 'Completa la ciudad de destino',
                         minLength: { value: 3, message: 'La ciudad de destino debe ser mayor a 3 caracteres' },
                         maxLength: { value: 30, message: 'La ciudad de destino debe ser menor a 30 caracteres' }
                      })} type="text" placeholder='¿Hacia dónde vas?' autoComplete='off'
                   />
-                  {errors.to?.message && < ErrorMessage errorMessage={errors.to?.message} />} */}
+                  {errors.to?.message && < ErrorMessage errorMessage={errors.to?.message} />}
 
                   {/* <input {...register('to', {
                         required: 'Completa el lugar de salida con una ciudad',
